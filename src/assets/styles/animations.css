@@ -1,0 +1,61 @@
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+/* Modal animations */
+.modal-overlay-enter {
+  opacity: 0;
+}
+
+.modal-overlay-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.modal-overlay-exit {
+  opacity: 1;
+}
+
+.modal-overlay-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.modal-content-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.modal-content-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.modal-content-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modal-content-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 200ms, transform 200ms;
+}
