@@ -1,12 +1,17 @@
-import heroImg from "@assets/images/sunnyside-2.jpg";
-import therapyImg from "@assets/images/sunnyside-3.jpg";
-import classroomImg from "@assets/images/sunnyside-4.jpg";
-import childrenImg from "@assets/images/sunnyside-5.jpg";
-import childrenImg2 from "@assets/images/sunny-two.png";
-import learningImg from "@assets/images/sunnyside-6.jpg";
-import supportImg from "@assets/images/sunnyside-7.jpg";
-import educationImg from "@assets/images/sunnyside-8.jpg";
-import communityImg from "@assets/images/sunnyside-9.jpg";
+// Import images from your assets folder
+// Adjust paths based on where your images are stored
+import heroImg from "@assets/images/hero.jpg";
+import therapyImg from "@assets/images/therapy.png";
+import classroomImg from "@assets/images/classroom.jpg";
+import childrenImg from "@assets/images/children.jpg";
+import learningImg from "@assets/images/learning.jpg";
+import supportImg from "@assets/images/support.jpg";
+import educationImg from "@assets/images/education.jpg";
+import communityImg from "@assets/images/community.jpg";
+import childrenImg2 from "@assets/images/children2.jpg";
+import ben from "@assets/images/team/ben.jpg";
+import izzy from "@assets/images/team/izzy.jpg";
+import sunnysideAbout from "@assets/images/sunnyside-about.jpg";
 
 export const APP_NAME =
   import.meta.env.VITE_APP_NAME || "Sunnyside Therapy Center";
@@ -16,7 +21,7 @@ export const APP_URL =
 export const CONTACT = {
   PHONE_1: import.meta.env.VITE_CONTACT_PHONE_1 || "0978501101",
   PHONE_2: import.meta.env.VITE_CONTACT_PHONE_2 || "0973902247",
-  EMAIL: import.meta.env.VITE_CONTACT_EMAIL || "info@sunnyside.com",
+  EMAIL: import.meta.env.VITE_CONTACT_EMAIL || "[email protected]",
   ADDRESS: "Lusaka, Zambia",
   FACEBOOK: "https://facebook.com/sunnysidetherapycenter",
 };
@@ -34,6 +39,41 @@ export const COLORS = {
   danger: "#ce4c52",
   white: "#ffffff",
 };
+
+// Images - Using imported assets
+export const IMAGES = {
+  hero: heroImg, // Children learning
+  therapy: therapyImg, // Therapy session
+  classroom: classroomImg, // Classroom
+  children: childrenImg, // Happy children
+  learning: learningImg, // Child learning
+  support: supportImg, // Support/care
+  education: educationImg, // Education
+  community: communityImg, // Community
+  sunnyTwo: childrenImg2, // Alternative happy children
+  ben: ben, // Ben photo
+  izzy: izzy, // Izzy photo
+  sunnysideAbout: sunnysideAbout, // About section image
+};
+
+// Fallback: If you don't have local images yet, use Unsplash
+// Comment out the imports above and uncomment this:
+/*
+export const IMAGES = {
+  hero: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1200&q=80',
+  therapy: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
+  classroom: 'https://images.unsplash.com/photo-1544717684-2be6e3e4f8c0?w=800&q=80',
+  children: 'https://images.unsplash.com/photo-1587616211892-e2e3c8455a4f?w=800&q=80',
+  learning: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80',
+  support: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&q=80',
+  education: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80',
+  community: 'https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=600&q=80',
+  sunnyTwo: 'https://images.unsplash.com/photo-1587616211892-e2e3c8455a4f?w=800&q=80',
+  ben: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
+  izzy: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+  sunnysideAbout: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=1200&q=80',
+};
+*/
 
 export const DONATION_AMOUNTS = [50, 100, 250, 500, 1000];
 export const MIN_DONATION = 10;
@@ -53,21 +93,8 @@ export const ROUTES = {
   GALLERY: "/gallery",
   RESOURCES: "/resources",
   BLOG: "/blog",
-  PRIVACY: "/privacy-policy",
   ENROLLMENT: "/enrollment",
-};
-
-// Unsplash Images - High quality placeholders
-export const IMAGES = {
-  hero: heroImg, // Children learning
-  therapy: therapyImg, // Therapy session
-  classroom: classroomImg, // Classroom
-  children: childrenImg, // Happy children
-  learning: learningImg, // Child learning
-  support: supportImg, // Support/care
-  education: educationImg, // Education
-  community: communityImg, // Community
-  sunnyTwo: childrenImg2, // Alternative happy children
+  PRIVACY: "/privacy-policy",
 };
 
 export const LEARNING_DOMAINS = [

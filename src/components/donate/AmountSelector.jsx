@@ -40,7 +40,7 @@ const AmountSelector = ({ amount, setAmount, error }) => {
         </label>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <DollarSign className="w-5 h-5 text-gray-400" />
+            <span className="text-lg font-bold text-gray-400">K</span>
           </div>
           <input
             type="number"

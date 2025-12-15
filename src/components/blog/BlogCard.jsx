@@ -34,7 +34,10 @@ const BlogCard = ({ post, index }) => {
             className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-medium text-white shadow-sm"
             style={{ backgroundColor: category.color }}
           >
-            {category.icon} {category.name}
+            <span className="flex items-center gap-2">
+              <category.icon className="w-4 h-4 text-current" />
+              {category.name}
+            </span>
           </div>
         )}
       </Link>

@@ -1,3 +1,8 @@
+// ============================================================================
+// FILE: src/pages/BlogPost.jsx
+// FIXED - Single blog post with beautiful content rendering
+// ============================================================================
+
 import React, { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -13,6 +18,7 @@ import {
 } from "lucide-react";
 import { getPostBySlug, getRelatedPosts, BLOG_CATEGORIES } from "@data/blog";
 import BlogCard from "@components/blog/BlogCard";
+import ArticleContent from "@components/blog/ArticleContent";
 import SEO from "@components/common/SEO";
 import Button from "@components/common/Button";
 import { useState } from "react";
@@ -95,7 +101,8 @@ const BlogPost = () => {
                 className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-white mb-4"
                 style={{ backgroundColor: category.color }}
               >
-                {category.icon} {category.name}
+                <category.icon className="w-4 h-4 mr-1" />
+                {category.name}
               </div>
             )}
 
@@ -103,7 +110,7 @@ const BlogPost = () => {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight"
             >
               {post.title}
             </motion.h1>
@@ -209,42 +216,16 @@ const BlogPost = () => {
           </motion.div>
         </div>
 
-        {/* Content */}
+        {/* Content - NOW BEAUTIFUL! */}
         <article className="px-4 sm:px-6 lg:px-8 pb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="max-w-3xl mx-auto prose prose-lg prose-gray
-              prose-headings:font-bold prose-headings:text-gray-900
-              prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
-              prose-p:text-gray-700 prose-p:leading-relaxed
-              prose-a:text-[#32cd32] prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-gray-900 prose-strong:font-bold
-              prose-ul:text-gray-700 prose-ol:text-gray-700
-              prose-li:marker:text-[#32cd32]
-              prose-code:text-[#32cd32] prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-            "
-            dangerouslySetInnerHTML={{
-              __html: post.content
-                .split("\n")
-                .map((line) => {
-                  if (line.startsWith("# ")) {
-                    return `<h1>${line.substring(2)}</h1>`;
-                  } else if (line.startsWith("## ")) {
-                    return `<h2>${line.substring(3)}</h2>`;
-                  } else if (line.startsWith("### ")) {
-                    return `<h3>${line.substring(4)}</h3>`;
-                  } else if (line.startsWith("- ")) {
-                    return `<ul><li>${line.substring(2)}</li></ul>`;
-                  } else if (line.trim()) {
-                    return `<p>${line}</p>`;
-                  }
-                  return "";
-                })
-                .join(""),
-            }}
-          />
+            className="max-w-3xl mx-auto"
+          >
+            <ArticleContent content={post.content} />
+          </motion.div>
 
           {/* Tags */}
           <div className="max-w-3xl mx-auto mt-12 pt-8 border-t border-gray-200">

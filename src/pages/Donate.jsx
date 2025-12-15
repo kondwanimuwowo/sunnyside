@@ -22,7 +22,7 @@ const Donate = () => {
             className="text-center mb-12"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-10 text-gray-900 leading-normal">
-              Support Our <span className="text-[#32cd32]">Mission</span>
+              Support <span className="text-[#32cd32]">Our Mission</span>
             </h1>
             <p className="text-xl text-gray-600">
               Your donation helps us provide quality therapy and education to

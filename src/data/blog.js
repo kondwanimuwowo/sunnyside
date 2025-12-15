@@ -1,14 +1,36 @@
+import { Brain, BookOpen, Star, Users, Library } from "lucide-react";
+
 export const BLOG_CATEGORIES = [
-  { id: "therapy", name: "Therapy & Treatment", color: "#32cd32", icon: "🧠" },
-  { id: "education", name: "Education", color: "#4318dd", icon: "📚" },
+  {
+    id: "therapy",
+    name: "Therapy & Treatment",
+    color: "#32cd32",
+    icon: Brain,
+  },
+  {
+    id: "education",
+    name: "Education",
+    color: "#4318dd",
+    icon: BookOpen,
+  },
   {
     id: "success-stories",
     name: "Success Stories",
     color: "#1ba397",
-    icon: "🌟",
+    icon: Star,
   },
-  { id: "parents-guide", name: "Parents Guide", color: "#efe82a", icon: "👨‍👩‍👧" },
-  { id: "resources", name: "Resources", color: "#32cd32", icon: "📖" },
+  {
+    id: "parents-guide",
+    name: "Parents Guide",
+    color: "#efe82a",
+    icon: Users,
+  },
+  {
+    id: "resources",
+    name: "Resources",
+    color: "#32cd32",
+    icon: Library,
+  },
 ];
 
 export const BLOG_POSTS = [
