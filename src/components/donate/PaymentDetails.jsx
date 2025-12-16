@@ -1,19 +1,184 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MOBILE_MONEY_OPERATORS } from "@utils/constants";
 import Input from "@components/common/Input";
 import Select from "@components/common/Select";
-import { User, Mail, Phone, CreditCard, Smartphone } from "lucide-react";
+import {
+  User,
+  Mail,
+  Phone,
+  CreditCard,
+  Smartphone,
+  CheckCircle,
+} from "lucide-react";
 
 const PaymentDetails = ({ donorInfo, setDonorInfo, error }) => {
-  const [paymentMethod, setPaymentMethod] = useState("mobile-money"); // 'mobile-money' or 'card'
+  const [paymentMethod, setPaymentMethod] = useState("mobile-money");
+  const [autoDetected, setAutoDetected] = useState(false);
+
+  // ✅ Auto-detect operator from phone prefix
+  const detectOperator = (phone) => {
+    const cleaned = phone.replace(/\D/g, "");
+    const prefix = cleaned.startsWith("260")
+      ? cleaned.substring(3, 6)
+      : cleaned.substring(0, 3);
+
+    // Zambian mobile prefixes
+    const operatorMap = {
+      "097": "airtel",
+      "077": "airtel",
+      "096": "mtn",
+      "076": "mtn",
+      "095": "zamtel",
+      "075": "zamtel",
+    };
+
+    return operatorMap[prefix] || null;
+  };
+
+  // ✅ REAL-TIME VALIDATION FUNCTIONS
+  const validatePhone = (phone) => {
+    if (!phone) return null;
+    const cleaned = phone.replace(/\D/g, "");
+
+    if (cleaned.length < 9) {
+      return "Phone number too short";
+    }
+    if (cleaned.length > 12) {
+      return "Phone number too long";
+    }
+
+    // Check Zambian format
+    const validPrefixes = ["097", "077", "096", "076", "095", "075", "260"];
+    const prefix = cleaned.startsWith("260")
+      ? cleaned.substring(3, 6)
+      : cleaned.substring(0, 3);
+
+    if (!validPrefixes.includes(prefix) && !cleaned.startsWith("260")) {
+      return "Invalid Zambian number";
+    }
+
+    return null;
+  };
+
+  const validateEmail = (email) => {
+    if (!email) return null; // Email is optional
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email) ? null : "Invalid email format";
+  };
+
+  const validateCardNumber = (cardNumber) => {
+    if (!cardNumber) return null;
+    const cleaned = cardNumber.replace(/\s/g, "");
+
+    if (cleaned.length < 13 || cleaned.length > 19) {
+      return "Invalid card number length";
+    }
+
+    // Luhn algorithm for card validation
+    let sum = 0;
+    let isEven = false;
+
+    for (let i = cleaned.length - 1; i >= 0; i--) {
+      let digit = parseInt(cleaned[i]);
+
+      if (isEven) {
+        digit *= 2;
+        if (digit > 9) digit -= 9;
+      }
+
+      sum += digit;
+      isEven = !isEven;
+    }
+
+    return sum % 10 === 0 ? null : "Invalid card number";
+  };
+
+  const validateExpiryDate = (expiry) => {
+    if (!expiry) return null;
+    const match = expiry.match(/^(\d{2})\/(\d{2})$/);
+
+    if (!match) {
+      return "Use MM/YY format";
+    }
+
+    const month = parseInt(match[1]);
+    const year = parseInt("20" + match[2]);
+
+    if (month < 1 || month > 12) {
+      return "Invalid month";
+    }
+
+    const now = new Date();
+    const expDate = new Date(year, month - 1);
+
+    if (expDate < now) {
+      return "Card expired";
+    }
+
+    return null;
+  };
+
+  const validateCVV = (cvv) => {
+    if (!cvv) return null;
+    return cvv.length === 3 || cvv.length === 4 ? null : "Invalid CVV";
+  };
+
+  // ✅ DEBOUNCED VALIDATION
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const errors = {};
+
+      if (paymentMethod === "mobile-money") {
+        const phoneError = validatePhone(donorInfo.phone);
+        if (phoneError) errors.phone = phoneError;
+      }
+
+      if (paymentMethod === "card") {
+        const cardError = validateCardNumber(donorInfo.cardNumber);
+        if (cardError) errors.cardNumber = cardError;
+
+        const expiryError = validateExpiryDate(donorInfo.expiryDate);
+        if (expiryError) errors.expiryDate = expiryError;
+
+        const cvvError = validateCVV(donorInfo.cvv);
+        if (cvvError) errors.cvv = cvvError;
+      }
+
+      const emailError = validateEmail(donorInfo.email);
+      if (emailError) errors.email = emailError;
+
+      setFieldErrors(errors);
+    }, 500); // Wait 500ms after user stops typing
+
+    return () => clearTimeout(timer);
+  }, [donorInfo, paymentMethod]);
 
   const handleChange = (field, value) => {
     setDonorInfo((prev) => ({
       ...prev,
       [field]: value,
-      paymentMethod, // Always include payment method
+      paymentMethod,
     }));
+
+    // Auto-detect operator when phone changes
+    if (field === "phone" && paymentMethod === "mobile-money") {
+      const cleaned = value.replace(/\D/g, "");
+      if (cleaned.length >= 9) {
+        const detected = detectOperator(value);
+        if (detected && detected !== donorInfo.operator) {
+          setDonorInfo((prev) => ({
+            ...prev,
+            phone: value,
+            operator: detected,
+            paymentMethod,
+          }));
+          setAutoDetected(true);
+          setTimeout(() => setAutoDetected(false), 2000);
+          console.log(`📱 Auto-detected operator: ${detected}`);
+        }
+      }
+    }
   };
 
   const handlePaymentMethodChange = (method) => {
@@ -102,12 +267,12 @@ const PaymentDetails = ({ donorInfo, setDonorInfo, error }) => {
       />
 
       <Input
-        label="Email"
+        label="Email (Optional)"
         type="email"
         name="email"
         value={donorInfo.email}
         onChange={handleChange}
-        placeholder="[email protected]"
+        placeholder="johndoe@email.com"
         icon={Mail}
       />
 
@@ -121,17 +286,34 @@ const PaymentDetails = ({ donorInfo, setDonorInfo, error }) => {
             exit={{ opacity: 0, height: 0 }}
             className="space-y-4"
           >
-            <Input
-              label="Mobile Money Number"
-              type="tel"
-              name="phone"
-              value={donorInfo.phone}
-              onChange={handleChange}
-              placeholder="0971234567"
-              error={error && !donorInfo.phone ? "Phone is required" : ""}
-              required
-              icon={Phone}
-            />
+            <div className="relative">
+              <Input
+                label="Mobile Money Number"
+                type="tel"
+                name="phone"
+                value={donorInfo.phone}
+                onChange={handleChange}
+                placeholder="0971234567"
+                error={error && !donorInfo.phone ? "Phone is required" : ""}
+                required
+                icon={Phone}
+              />
+
+              {/* Auto-detect indicator */}
+              <AnimatePresence>
+                {autoDetected && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute -bottom-6 left-0 flex items-center space-x-1 text-xs text-[#32cd32]"
+                  >
+                    <CheckCircle className="w-3 h-3" />
+                    <span>Operator auto-detected</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             <Select
               label="Mobile Money Operator"
@@ -148,15 +330,20 @@ const PaymentDetails = ({ donorInfo, setDonorInfo, error }) => {
                 📱 You'll receive a push notification to approve this payment
               </p>
             </div>
-            {/* ✅ Add MTN Warning */}
+
+            {/* MTN Warning */}
             {donorInfo.operator === "mtn" && (
-              <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg"
+              >
                 <p className="text-sm text-yellow-800">
-                  ⚠️ <strong>MTN Notice:</strong> We're experiencing issues with
-                  MTN mobile money. For faster processing, please use{" "}
-                  <strong>Airtel</strong> or <strong>Zamtel</strong>.
+                  ⚠️ <strong>MTN Notice:</strong> We're experiencing technical
+                  issues with MTN mobile money. For faster processing, please
+                  use <strong>Airtel</strong> or <strong>Zamtel</strong>.
                 </p>
-              </div>
+              </motion.div>
             )}
           </motion.div>
         )}

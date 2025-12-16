@@ -174,7 +174,7 @@ const DonationForm = () => {
 
   const pollPaymentStatus = async (ref) => {
     let attempts = 0;
-    const maxAttempts = 20; // Reduced from 60!
+    const maxAttempts = 20;
     let lookupFailCount = 0;
     const maxLookupFails = 5;
 
@@ -203,7 +203,7 @@ const DonationForm = () => {
             }`
           );
 
-          // ✅ Handle lookup failures (MTN Lenco bug)
+          // Handle lookup failures (MTN Lenco bug)
           if (status === "pending" && data.data.lookupFailCount) {
             lookupFailCount = data.data.lookupFailCount;
 
@@ -213,12 +213,12 @@ const DonationForm = () => {
               setError(
                 "MTN mobile money is experiencing technical issues. Please try Airtel or Zamtel instead, or contact support."
               );
-              setDonationStep(2);
+              setDonationStep(3);
               return;
             }
           }
 
-          // ✅ SUCCESS
+          // SUCCESS
           if (status === "successful") {
             shouldStopPolling = true;
             setLoading(false);
@@ -227,7 +227,7 @@ const DonationForm = () => {
             return;
           }
 
-          // ✅ FAILED, CANCELLED, or TIMEOUT
+          // FAILED, CANCELLED, or TIMEOUT
           if (["failed", "cancelled", "timeout"].includes(status)) {
             shouldStopPolling = true;
             setLoading(false);
@@ -243,12 +243,12 @@ const DonationForm = () => {
             }
 
             setError(errorMsg);
-            setDonationStep(2);
+            setDonationStep(3);
             console.log(`❌ Payment ${status}`);
             return;
           }
 
-          // ✅ PENDING/PROCESSING - Continue polling
+          // PENDING/PROCESSING - Continue polling
           if (["pending", "pay-offline", "processing"].includes(status)) {
             attempts++;
 
@@ -263,7 +263,7 @@ const DonationForm = () => {
               setError(
                 "Payment verification is taking longer than expected. Check your SMS for confirmation or contact support."
               );
-              setDonationStep(2);
+              setDonationStep(3);
               console.log("⏱️ Polling timeout");
             }
             return;
@@ -277,7 +277,7 @@ const DonationForm = () => {
             shouldStopPolling = true;
             setLoading(false);
             setError("Unable to verify payment. Please contact support.");
-            setDonationStep(2);
+            setDonationStep(3);
           }
         } else {
           throw new Error("Invalid response from server");
@@ -287,7 +287,7 @@ const DonationForm = () => {
         shouldStopPolling = true;
         setError(err.message || "Could not verify payment status");
         setLoading(false);
-        setDonationStep(2);
+        setDonationStep(3);
       }
     };
 
@@ -310,6 +310,21 @@ const DonationForm = () => {
     setShowOTPModal(false);
     setOTPError("");
     setOTPLoading(false);
+  };
+
+  const handleRetryPayment = () => {
+    setError("");
+    handleSubmit();
+  };
+
+  const handleBackToDetails = () => {
+    setError("");
+    setDonationStep(2);
+  };
+
+  const handleBackToAmount = () => {
+    setError("");
+    setDonationStep(1);
   };
 
   return (
@@ -518,6 +533,9 @@ const DonationForm = () => {
               phone={donorInfo.phone}
               paymentMethod={donorInfo.paymentMethod}
               error={error}
+              onRetry={handleRetryPayment}
+              onBackToDetails={handleBackToDetails}
+              onBackToAmount={handleBackToAmount}
             />
           </motion.div>
         )}
