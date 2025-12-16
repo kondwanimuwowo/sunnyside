@@ -43,7 +43,7 @@ const Services = () => {
               The Five Domains of Learning
             </motion.h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
               {LEARNING_DOMAINS.map((domain, idx) => (
                 <ServiceCard key={domain.id} service={domain} index={idx} />
               ))}
@@ -61,7 +61,7 @@ const Services = () => {
               Additional Specialized Services
             </motion.h2>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 items-stretch">
               {ADDITIONAL_SERVICES.map((service, idx) => (
                 <motion.div
                   key={service.id}
@@ -69,12 +69,14 @@ const Services = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="bg-gradient-to-br from-orange-50 to-pink-50 rounded-2xl p-8 border-2 border-orange-200"
+                  className="bg-gradient-to-br from-[rgba(50,205,50,0.03)] to-[rgba(50,205,50,0.10)] rounded-2xl p-8 border border-[rgba(50,205,50,0.25)] h-full flex flex-col"
                 >
-                  <h3 className="text-2xl font-bold mb-4 text-orange-800">
+                  <h3 className="text-2xl font-bold mb-4 text-[#1c4d1c]">
                     {service.title}
                   </h3>
-                  <p className="text-gray-700 mb-6">{service.description}</p>
+                  <p className="text-gray-700 mb-6 flex-1">
+                    {service.description}
+                  </p>
                   <ul className="space-y-3">
                     {service.points.map((point, i) => (
                       <li key={i} className="flex items-start text-gray-700">

@@ -14,7 +14,11 @@ const ServiceCard = ({ service, index }) => {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
     >
-      <Card hover padding="none" className="h-full bg-white overflow-hidden">
+      <Card
+        hover
+        padding="none"
+        className="h-full bg-white overflow-hidden flex flex-col"
+      >
         {/* Image Header */}
         {service.image && (
           <div className="relative h-48 overflow-hidden">
@@ -35,11 +39,11 @@ const ServiceCard = ({ service, index }) => {
         )}
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 flex-1 flex flex-col">
           <h3 className="text-xl font-bold mb-3 text-gray-900">
             {service.title}
           </h3>
-          <p className="text-gray-600 mb-4">{service.description}</p>
+          <p className="text-gray-600 mb-4 flex-1">{service.description}</p>
 
           {service.features && (
             <ul className="space-y-2">

@@ -10,11 +10,11 @@ class EmailService {
     const mailOptions = {
       from: `"Sunnyside Therapy Center" <${process.env.SMTP_USER}>`,
       to: email,
-      subject: "Thank You for Your Donation! 💚",
+      subject: "Thank You for Your Donation!",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: linear-gradient(135deg, #32cd32, #1ba397); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
-            <h1 style="margin: 0;">Thank You! 🎉</h1>
+            <h1 style="margin: 0;">Thank You!</h1>
             <p style="margin: 10px 0 0 0;">Your donation makes a difference</p>
           </div>
           
@@ -102,19 +102,26 @@ class EmailService {
       return;
     }
 
+    // ✅ FIX: Handle all donation notification types
     const subjects = {
+      // Donations
+      donation_initiated: `💰 Donation Initiated: K${data.amount} (${data.paymentMethod})`,
+      donation_successful: `✅ Donation Successful: K${data.amount}`,
+      donation_failed: `❌ Donation Failed: K${data.amount}`,
+      // Legacy support
       donation: `💰 New Donation: K${data.amount}`,
+      // Enrollment
       enrollment: `🎯 New Enrollment: ${data.childFirstName} ${data.childLastName}`,
     };
 
     const mailOptions = {
       from: `"Sunnyside System" <${process.env.SMTP_USER}>`,
       to: process.env.ADMIN_EMAIL,
-      subject: subjects[type] || "New Notification",
+      subject: subjects[type] || `🔔 New Notification: ${type}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="background: #32cd32; color: white; padding: 20px;">
-            <h2 style="margin: 0;">${subjects[type]}</h2>
+            <h2 style="margin: 0;">${subjects[type] || type}</h2>
             <p style="margin: 5px 0;">Reference: ${reference}</p>
           </div>
           <div style="background: #f9f9f9; padding: 20px;">
@@ -129,7 +136,7 @@ class EmailService {
     };
 
     await transporter.sendMail(mailOptions);
-    console.log("✉️  Admin notification sent");
+    console.log(`✉️  Admin notification sent: ${type}`);
   }
 }
 

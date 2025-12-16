@@ -1,53 +1,47 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Heart, Users, Book, Sparkles } from "lucide-react";
 import Card from "@components/common/Card";
 
 const ImpactSection = () => {
+  const primaryColor = "#32cd32";
+
   const impacts = [
     {
-      icon: Heart,
       amount: "K50",
       title: "One Therapy Session",
-      description: "Provides one specialized therapy session for a child",
-      color: "#32cd32",
+      description: "Provides one specialized therapy session for a child.",
     },
     {
-      icon: Users,
       amount: "K250",
       title: "Week of Support",
-      description: "Covers a full week of therapy and educational support",
-      color: "#4318dd",
+      description: "Covers a full week of therapy and educational support.",
     },
     {
-      icon: Book,
       amount: "K500",
       title: "Learning Materials",
       description:
-        "Provides essential learning materials and tools for a month",
-      color: "#1ba397",
+        "Provides essential learning materials and therapy tools for a month.",
     },
     {
-      icon: Sparkles,
       amount: "K1000",
       title: "Transform a Life",
-      description: "Sponsors a month of comprehensive support for a child",
-      color: "#efe82a",
+      description:
+        "Sponsors a full month of comprehensive support for a child.",
     },
   ];
 
   return (
     <section className="py-12">
-      <div className="mb-8 text-center">
-        <h3 className="text-2xl font-bold mb-2 text-gray-900">
+      <div className="mb-8 text-center max-w-2xl mx-auto">
+        <h3 className="text-2xl font-bold mb-3 text-gray-900">
           Your Impact Matters
         </h3>
         <p className="text-gray-600">
-          See how your donation makes a difference
+          A simple, clear look at how your gift helps children at Sunnyside.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
         {impacts.map((impact, idx) => (
           <motion.div
             key={idx}
@@ -55,30 +49,25 @@ const ImpactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
+            className="h-full"
           >
-            <Card hover padding="default" className="bg-white">
-              <div className="flex items-start space-x-4">
+            <Card
+              hover
+              padding="default"
+              className="bg-white h-full flex flex-col justify-between"
+            >
+              <div className="space-y-2">
                 <div
-                  className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: `${impact.color}15` }}
+                  className="inline-flex items-baseline px-3 py-1 rounded-full text-sm font-semibold mb-1"
+                  style={{
+                    backgroundColor: "rgba(50,205,50,0.06)",
+                    color: primaryColor,
+                  }}
                 >
-                  <impact.icon
-                    className="w-6 h-6"
-                    style={{ color: impact.color }}
-                  />
+                  {impact.amount}
                 </div>
-                <div className="flex-1">
-                  <div
-                    className="text-2xl font-bold mb-1"
-                    style={{ color: impact.color }}
-                  >
-                    {impact.amount}
-                  </div>
-                  <h4 className="font-bold mb-1 text-gray-900">
-                    {impact.title}
-                  </h4>
-                  <p className="text-sm text-gray-600">{impact.description}</p>
-                </div>
+                <h4 className="font-bold text-gray-900">{impact.title}</h4>
+                <p className="text-sm text-gray-600">{impact.description}</p>
               </div>
             </Card>
           </motion.div>
@@ -91,7 +80,7 @@ const ImpactSection = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.5 }}
-        className="mt-8 bg-gradient-to-r from-[rgba(50,205,50,0.08)] to-[rgba(27,163,151,0.08)] rounded-xl p-6 border border-[rgba(50,205,50,0.2)]"
+        className="mt-10 bg-gradient-to-r from-[rgba(50,205,50,0.06)] to-[rgba(50,205,50,0.12)] rounded-2xl p-6 border border-[rgba(50,205,50,0.2)]"
       >
         <div className="text-center">
           <h4 className="font-bold text-lg mb-2 text-gray-900">

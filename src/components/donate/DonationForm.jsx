@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  Heart,
   ArrowLeft,
   Check,
   DollarSign,
@@ -14,6 +15,7 @@ import DonationProgress from "./DonationProgress";
 import DonationSuccess from "./DonationSuccess";
 import Button from "@components/common/Button";
 import { MIN_DONATION } from "@utils/constants";
+import OTPModal from "./OTPModal";
 
 const DonationForm = () => {
   const [donationStep, setDonationStep] = useState(1);
@@ -23,11 +25,16 @@ const DonationForm = () => {
     email: "",
     phone: "",
     operator: "airtel",
-    paymentMethod: "mobile-money", // NEW: Track payment method
+    paymentMethod: "mobile-money",
   });
+  const [showOTPModal, setShowOTPModal] = useState(false);
+  const [otpError, setOTPError] = useState("");
+  const [otpLoading, setOTPLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [reference, setReference] = useState("");
+  const [isRecurring, setIsRecurring] = useState(false);
+  const [frequency, setFrequency] = useState("monthly");
 
   const steps = [
     { number: 1, label: "Amount", Icon: DollarSign },
@@ -50,7 +57,6 @@ const DonationForm = () => {
     setError("");
   };
 
-  // ✅ ENHANCED: Validate based on payment method
   const validateDonorInfo = () => {
     if (!donorInfo.name) {
       setError("Please enter your name");
@@ -84,7 +90,6 @@ const DonationForm = () => {
     return true;
   };
 
-  // ✅ ENHANCED: Handle both mobile money and card payments
   const handleSubmit = async () => {
     if (!validateDonorInfo()) {
       return;
@@ -98,7 +103,6 @@ const DonationForm = () => {
       const API_URL =
         import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
 
-      // Prepare payload based on payment method
       const payload = {
         amount: donationAmount,
         donorName: donorInfo.name,
@@ -106,7 +110,6 @@ const DonationForm = () => {
         paymentMethod: donorInfo.paymentMethod,
       };
 
-      // Add payment-specific fields
       if (donorInfo.paymentMethod === "mobile-money") {
         payload.phone = donorInfo.phone;
         payload.operator = donorInfo.operator;
@@ -126,7 +129,6 @@ const DonationForm = () => {
 
       if (data.success) {
         setReference(data.reference);
-        // Start polling for payment status
         pollPaymentStatus(data.reference);
       } else {
         throw new Error(data.message || "Payment failed");
@@ -138,54 +140,152 @@ const DonationForm = () => {
     }
   };
 
+  const handleOTPSubmit = async (otp) => {
+    setOTPLoading(true);
+    setOTPError("");
+
+    try {
+      const API_URL =
+        import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+
+      const response = await fetch(`${API_URL}/donations/${reference}/otp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ otp }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setShowOTPModal(false);
+        setLoading(true);
+        setDonationStep(3);
+        // Resume polling
+        pollPaymentStatus(reference);
+      } else {
+        setOTPError(data.message || "Invalid OTP");
+      }
+    } catch (err) {
+      setOTPError(err.message);
+    } finally {
+      setOTPLoading(false);
+    }
+  };
+
   const pollPaymentStatus = async (ref) => {
     let attempts = 0;
-    const maxAttempts = 40; // 4 minutes total (6 sec intervals)
+    const maxAttempts = 20; // Reduced from 60!
+    let lookupFailCount = 0;
+    const maxLookupFails = 5;
+
     const API_URL =
       import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+    let shouldStopPolling = false;
 
     const checkStatus = async () => {
+      if (shouldStopPolling) {
+        console.log("⏹️ Polling stopped");
+        return;
+      }
+
       try {
         const response = await fetch(`${API_URL}/donations/status/${ref}`);
         const data = await response.json();
 
         if (data.success && data.data) {
-          const status = data.data.status;
+          const status = data.data.status?.toLowerCase();
 
-          console.log(`Status check #${attempts + 1}: ${status}`);
+          console.log(
+            `📊 Status #${attempts + 1}: ${status}${
+              data.data.lookupFailCount
+                ? ` (lookup fails: ${data.data.lookupFailCount})`
+                : ""
+            }`
+          );
 
-          if (status === "successful") {
-            setLoading(false);
-            setDonationStep(4);
-            return;
-          } else if (status === "failed") {
-            throw new Error(data.data.reasonForFailure || "Payment failed");
-          } else if (status === "pending" || status === "pay-offline") {
-            attempts++;
-            if (attempts < maxAttempts) {
-              setTimeout(checkStatus, 6000);
-            } else {
-              throw new Error(
-                "Payment is taking longer than expected. Please contact support if needed."
+          // ✅ Handle lookup failures (MTN Lenco bug)
+          if (status === "pending" && data.data.lookupFailCount) {
+            lookupFailCount = data.data.lookupFailCount;
+
+            if (lookupFailCount >= maxLookupFails) {
+              shouldStopPolling = true;
+              setLoading(false);
+              setError(
+                "MTN mobile money is experiencing technical issues. Please try Airtel or Zamtel instead, or contact support."
               );
-            }
-          } else {
-            // Unknown status - keep polling
-            attempts++;
-            if (attempts < maxAttempts) {
-              setTimeout(checkStatus, 6000);
-            } else {
-              throw new Error(
-                "Unable to verify payment status. Please contact support."
-              );
+              setDonationStep(2);
+              return;
             }
           }
+
+          // ✅ SUCCESS
+          if (status === "successful") {
+            shouldStopPolling = true;
+            setLoading(false);
+            setDonationStep(4);
+            console.log("🎉 Payment successful!");
+            return;
+          }
+
+          // ✅ FAILED, CANCELLED, or TIMEOUT
+          if (["failed", "cancelled", "timeout"].includes(status)) {
+            shouldStopPolling = true;
+            setLoading(false);
+
+            let errorMsg = "Payment failed. Please try again.";
+            if (status === "cancelled") {
+              errorMsg = "Payment was cancelled.";
+            } else if (status === "timeout") {
+              errorMsg =
+                "Payment timed out. You did not approve the payment in time.";
+            } else if (data.data.reasonForFailure) {
+              errorMsg = data.data.reasonForFailure;
+            }
+
+            setError(errorMsg);
+            setDonationStep(2);
+            console.log(`❌ Payment ${status}`);
+            return;
+          }
+
+          // ✅ PENDING/PROCESSING - Continue polling
+          if (["pending", "pay-offline", "processing"].includes(status)) {
+            attempts++;
+
+            // Smart backoff: slower intervals after first 10 attempts
+            const interval = attempts > 10 ? 10000 : 6000;
+
+            if (attempts < maxAttempts) {
+              setTimeout(checkStatus, interval);
+            } else {
+              shouldStopPolling = true;
+              setLoading(false);
+              setError(
+                "Payment verification is taking longer than expected. Check your SMS for confirmation or contact support."
+              );
+              setDonationStep(2);
+              console.log("⏱️ Polling timeout");
+            }
+            return;
+          }
+
+          // Unknown status
+          attempts++;
+          if (attempts < maxAttempts) {
+            setTimeout(checkStatus, 6000);
+          } else {
+            shouldStopPolling = true;
+            setLoading(false);
+            setError("Unable to verify payment. Please contact support.");
+            setDonationStep(2);
+          }
         } else {
-          throw new Error("Failed to check payment status");
+          throw new Error("Invalid response from server");
         }
       } catch (err) {
-        console.error("Status check error:", err);
-        setError(err.message);
+        console.error("❌ Status check error:", err);
+        shouldStopPolling = true;
+        setError(err.message || "Could not verify payment status");
         setLoading(false);
         setDonationStep(2);
       }
@@ -207,11 +307,14 @@ const DonationForm = () => {
     setError("");
     setReference("");
     setLoading(false);
+    setShowOTPModal(false);
+    setOTPError("");
+    setOTPLoading(false);
   };
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-      {/* Clean Progress Header */}
+      {/* Progress Header */}
       <div className="bg-white border-b border-gray-100 p-6">
         <div className="flex items-center justify-between max-w-2xl mx-auto">
           {steps.map((step, idx) => (
@@ -273,6 +376,64 @@ const DonationForm = () => {
             transition={{ duration: 0.2 }}
             className="p-8"
           >
+            <div className="mb-6">
+              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-[rgba(50,205,50,0.05)] to-[rgba(27,163,151,0.05)] rounded-lg border border-[rgba(50,205,50,0.2)]">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-[rgba(50,205,50,0.15)] rounded-full flex items-center justify-center">
+                    <Heart className="w-5 h-5 text-[#32cd32]" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">
+                      Make it Monthly
+                    </h4>
+                    <p className="text-sm text-gray-600">
+                      Support children every month automatically
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsRecurring(!isRecurring)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                    isRecurring ? "bg-[#32cd32]" : "bg-gray-300"
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      isRecurring ? "translate-x-6" : "translate-x-1"
+                    }`}
+                  />
+                </button>
+              </div>
+
+              {isRecurring && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="mt-4 p-4 bg-white border border-gray-200 rounded-lg"
+                >
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Frequency
+                  </label>
+                  <select
+                    value={frequency}
+                    onChange={(e) => setFrequency(e.target.value)}
+                    className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-[#32cd32] focus:outline-none"
+                  >
+                    <option value="monthly">Monthly</option>
+                    <option value="quarterly">
+                      Quarterly (Every 3 months)
+                    </option>
+                    <option value="annually">Annually</option>
+                  </select>
+                  <p className="text-xs text-gray-500 mt-2">
+                    💡 You can cancel anytime from your email confirmation
+                  </p>
+                </motion.div>
+              )}
+            </div>
+
             <AmountSelector
               amount={donationAmount}
               setAmount={setDonationAmount}
@@ -377,6 +538,14 @@ const DonationForm = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <OTPModal
+        isOpen={showOTPModal}
+        onClose={() => setShowOTPModal(false)}
+        onSubmit={handleOTPSubmit}
+        loading={otpLoading}
+        error={otpError}
+        phone={donorInfo.phone}
+      />
     </div>
   );
 };

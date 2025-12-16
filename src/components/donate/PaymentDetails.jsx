@@ -148,6 +148,16 @@ const PaymentDetails = ({ donorInfo, setDonorInfo, error }) => {
                 📱 You'll receive a push notification to approve this payment
               </p>
             </div>
+            {/* ✅ Add MTN Warning */}
+            {donorInfo.operator === "mtn" && (
+              <div className="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
+                <p className="text-sm text-yellow-800">
+                  ⚠️ <strong>MTN Notice:</strong> We're experiencing issues with
+                  MTN mobile money. For faster processing, please use{" "}
+                  <strong>Airtel</strong> or <strong>Zamtel</strong>.
+                </p>
+              </div>
+            )}
           </motion.div>
         )}
 
