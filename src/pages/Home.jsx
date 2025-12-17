@@ -2,9 +2,10 @@ import React from "react";
 import SEO from "@components/common/SEO";
 import HeroSection from "@components/home/HeroSection";
 import StatsSection from "@components/home/StatsSection";
-import ServicesPreview from "@components/home/ServicesPreview";
 import TestimonialsSection from "@components/home/TestimonialsSection";
 import CTASection from "@components/home/CTASection";
+import ProgramsSection from "../components/home/ProgramsSection";
+import MissionSection from "../components/home/MissionSection";
 
 const Home = () => {
   return (
@@ -16,8 +17,9 @@ const Home = () => {
       />
 
       <HeroSection />
+      <MissionSection />
       <StatsSection />
-      <ServicesPreview />
+      <ProgramsSection />
       <TestimonialsSection />
       <CTASection />
     </>

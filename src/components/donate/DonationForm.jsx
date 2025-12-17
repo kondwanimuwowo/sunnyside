@@ -136,7 +136,7 @@ const DonationForm = () => {
     } catch (err) {
       setError(err.message);
       setLoading(false);
-      setDonationStep(2);
+      setDonationStep(3);
     }
   };
 
@@ -203,7 +203,7 @@ const DonationForm = () => {
             }`
           );
 
-          // Handle lookup failures (MTN Lenco bug)
+          // ✅ Handle lookup failures (MTN Lenco bug)
           if (status === "pending" && data.data.lookupFailCount) {
             lookupFailCount = data.data.lookupFailCount;
 
@@ -218,7 +218,7 @@ const DonationForm = () => {
             }
           }
 
-          // SUCCESS
+          // ✅ SUCCESS
           if (status === "successful") {
             shouldStopPolling = true;
             setLoading(false);
@@ -227,7 +227,7 @@ const DonationForm = () => {
             return;
           }
 
-          // FAILED, CANCELLED, or TIMEOUT
+          // ✅ FAILED, CANCELLED, or TIMEOUT
           if (["failed", "cancelled", "timeout"].includes(status)) {
             shouldStopPolling = true;
             setLoading(false);
@@ -248,7 +248,7 @@ const DonationForm = () => {
             return;
           }
 
-          // PENDING/PROCESSING - Continue polling
+          // ✅ PENDING/PROCESSING - Continue polling
           if (["pending", "pay-offline", "processing"].includes(status)) {
             attempts++;
 
@@ -310,21 +310,6 @@ const DonationForm = () => {
     setShowOTPModal(false);
     setOTPError("");
     setOTPLoading(false);
-  };
-
-  const handleRetryPayment = () => {
-    setError("");
-    handleSubmit();
-  };
-
-  const handleBackToDetails = () => {
-    setError("");
-    setDonationStep(2);
-  };
-
-  const handleBackToAmount = () => {
-    setError("");
-    setDonationStep(1);
   };
 
   return (
@@ -533,10 +518,37 @@ const DonationForm = () => {
               phone={donorInfo.phone}
               paymentMethod={donorInfo.paymentMethod}
               error={error}
-              onRetry={handleRetryPayment}
-              onBackToDetails={handleBackToDetails}
-              onBackToAmount={handleBackToAmount}
             />
+
+            {error && (
+              <>
+                <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700 mt-6">
+                  {error}
+                </div>
+
+                <div className="flex gap-3 mt-3">
+                  <button
+                    onClick={() => {
+                      setError("");
+                      handleSubmit();
+                    }}
+                    className="flex-1 py-2 bg-[#32cd32] text-white rounded-lg font-medium hover:bg-[#22a722] transition-colors"
+                  >
+                    🔄 Retry Payment
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setError("");
+                      setDonationStep(1);
+                    }}
+                    className="flex-1 py-2 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                  >
+                    Change Amount
+                  </button>
+                </div>
+              </>
+            )}
           </motion.div>
         )}
 

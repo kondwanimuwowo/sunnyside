@@ -16,12 +16,12 @@ import sunnysideAbout from "@assets/images/sunnyside-about.jpg";
 export const APP_NAME =
   import.meta.env.VITE_APP_NAME || "Sunnyside Therapy Center";
 export const APP_URL =
-  import.meta.env.VITE_APP_URL || "https://sunnysidetherapy.zm";
+  import.meta.env.VITE_APP_URL || "https://sunnyside-virid-xi.vercel.app/";
 
 export const CONTACT = {
   PHONE_1: import.meta.env.VITE_CONTACT_PHONE_1 || "0978501101",
   PHONE_2: import.meta.env.VITE_CONTACT_PHONE_2 || "0973902247",
-  EMAIL: import.meta.env.VITE_CONTACT_EMAIL || "[email protected]",
+  EMAIL: import.meta.env.VITE_CONTACT_EMAIL || "info@sunnyside.com",
   ADDRESS: "Lusaka, Zambia",
   FACEBOOK: "https://facebook.com/sunnysidetherapycenter",
 };
@@ -42,18 +42,18 @@ export const COLORS = {
 
 // Images - Using imported assets
 export const IMAGES = {
-  hero: heroImg, // Children learning
-  therapy: therapyImg, // Therapy session
-  classroom: classroomImg, // Classroom
-  children: childrenImg, // Happy children
-  learning: learningImg, // Child learning
-  support: supportImg, // Support/care
-  education: educationImg, // Education
-  community: communityImg, // Community
-  sunnyTwo: childrenImg2, // Alternative happy children
-  ben: ben, // Ben photo
-  izzy: izzy, // Izzy photo
-  sunnysideAbout: sunnysideAbout, // About section image
+  hero: heroImg,
+  therapy: therapyImg,
+  classroom: classroomImg,
+  children: childrenImg,
+  learning: learningImg,
+  support: supportImg,
+  education: educationImg,
+  community: communityImg,
+  sunnyTwo: childrenImg2,
+  ben: ben,
+  izzy: izzy,
+  sunnysideAbout: sunnysideAbout,
 };
 
 // Fallback: If you don't have local images yet, use Unsplash

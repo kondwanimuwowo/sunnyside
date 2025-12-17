@@ -13,21 +13,18 @@ const DonationProgress = ({
   phone,
   paymentMethod = "mobile-money",
   error,
-  onRetry,
-  onBackToDetails,
-  onBackToAmount,
 }) => {
   // Different steps based on payment method
   const mobileMoneySteps = [
     { label: "Payment initiated", done: true },
     { label: "Push notification sent", done: true },
-    { label: "Waiting for approval", done: !error },
+    { label: "Waiting for approval", done: false },
   ];
 
   const cardSteps = [
     { label: "Payment initiated", done: true },
     { label: "Processing card payment", done: true },
-    { label: "Verifying transaction", done: !error },
+    { label: "Verifying transaction", done: false },
   ];
 
   const steps = paymentMethod === "card" ? cardSteps : mobileMoneySteps;
@@ -67,12 +64,8 @@ const DonationProgress = ({
         </motion.div>
       </div>
 
-      <h3 className="text-2xl font-bold mb-2 text-gray-900">
-        {error ? "Payment Issue" : title}
-      </h3>
-      <p className="text-gray-600 mb-8">
-        {error ? "There was a problem with your payment" : subtitle}
-      </p>
+      <h3 className="text-2xl font-bold mb-2 text-gray-900">{title}</h3>
+      <p className="text-gray-600 mb-8">{subtitle}</p>
 
       {/* Amount Display */}
       <div className="max-w-sm mx-auto mb-8">
@@ -108,7 +101,7 @@ const DonationProgress = ({
         </motion.div>
       )}
 
-      {/* Progress Steps - Only show when no error */}
+      {/* Progress Steps */}
       {!error && (
         <div className="max-w-sm mx-auto space-y-3">
           {steps.map((step, idx) => (
@@ -140,46 +133,8 @@ const DonationProgress = ({
         </div>
       )}
 
-      {/* Error Action Buttons */}
-      {error && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="max-w-sm mx-auto space-y-3"
-        >
-          {onRetry && (
-            <button
-              onClick={onRetry}
-              className="w-full py-3 bg-[#32cd32] text-white rounded-lg font-medium hover:bg-[#22a722] transition-colors flex items-center justify-center"
-            >
-              <span className="mr-2">🔄</span>
-              Retry Payment
-            </button>
-          )}
-
-          {onBackToDetails && (
-            <button
-              onClick={onBackToDetails}
-              className="w-full py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
-            >
-              Back to Details
-            </button>
-          )}
-
-          {onBackToAmount && (
-            <button
-              onClick={onBackToAmount}
-              className="w-full py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors"
-            >
-              Change Amount
-            </button>
-          )}
-        </motion.div>
-      )}
-
       <p className="text-xs text-gray-500 mt-8">
-        {error ? "" : "This may take up to 2 minutes"}
+        This may take up to 2 minutes
       </p>
     </div>
   );

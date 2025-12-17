@@ -28,10 +28,13 @@ const HeroSection = () => {
         pt-16 md:pt-0
         md:-mt-16
       "
-      style={{ backgroundImage: `url(${bgImage})` }}
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundAttachment: "fixed",
+      }}
     >
       {/* White Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white to-white/90 backdrop-blur-[8px]"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-white to-white/80 backdrop-blur-[8px]"></div>
 
       <div className="relative max-w-7xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -84,6 +87,8 @@ const HeroSection = () => {
               className="flex flex-wrap gap-4"
             >
               <Button
+                size="lg"
+                variant="primary"
                 onClick={() => navigate(ROUTES.DONATE)}
                 icon={ArrowRight}
                 iconPosition="right"

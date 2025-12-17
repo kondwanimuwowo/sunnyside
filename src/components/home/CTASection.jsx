@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart, ArrowRight, Phone } from "lucide-react";
+import { Heart } from "lucide-react";
 import { ROUTES, CONTACT } from "@utils/constants";
 import Button from "@components/common/Button";
 
@@ -9,66 +9,80 @@ const CTASection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative bg-[#32cd32] rounded-3xl p-12 overflow-hidden shadow-xl"
+          className="relative rounded-3xl overflow-hidden"
         >
-          {/* Background Pattern - Subtle */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 translate-y-1/2" />
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), url(/images/sunnyside-3.jpg)`,
+                filter: "blur(2px)",
+              }}
+            ></div>
           </div>
 
-          <div className="relative z-10 text-center text-white">
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6"
-            >
-              <Heart className="w-10 h-10 text-white" fill="white" />
-            </motion.div>
-
+          <div className="relative z-10 text-center text-white p-12 md:p-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Make a Difference?
+              Be Part of Something Greater
             </h2>
 
             <p className="text-xl mb-8 max-w-2xl mx-auto opacity-95">
-              Your support helps us provide quality therapy and education to
-              children who need it most. Every donation makes an impact.
+              Your support doesn't just fund therapy—it builds futures. Every
+              contribution helps us provide specialized care, train more
+              therapists, and reach more families across Zambia who have nowhere
+              else to turn.
             </p>
+
+            <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
+                <div className="text-2xl font-bold mb-2">K50</div>
+                <div className="text-sm">Sponsors a therapy session</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
+                <div className="text-2xl font-bold mb-2">K500</div>
+                <div className="text-sm">Funds a week of therapy</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
+                <div className="text-2xl font-bold mb-2">K2,000</div>
+                <div className="text-sm">Supports a child for a month</div>
+              </div>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
-                variant="white"
                 size="lg"
                 onClick={() => navigate(ROUTES.DONATE)}
-                icon={Heart}
+                className="bg-[#32cd32] hover:bg-[#22a722] text-white"
               >
-                Donate Now
+                Make a Difference Today
               </Button>
 
-              <a href={`tel:${CONTACT.PHONE_1}`}>
-                <Button variant="accent" size="lg" icon={Phone}>
-                  Call Us Today
-                </Button>
-              </a>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => navigate(ROUTES.ABOUT)}
+                className="text-white border-white hover:bg-white/10"
+              >
+                Learn About Our Impact
+              </Button>
             </div>
 
-            <p className="mt-6 text-sm opacity-90">
-              Questions?{" "}
-              <span
-                className="underline cursor-pointer font-semibold hover:opacity-80 transition-opacity"
-                onClick={() => navigate(ROUTES.CONTACT)}
+            <p className="mt-8 text-sm opacity-90">
+              Or call us at{" "}
+              <a
+                href={`tel:${CONTACT.PHONE_1}`}
+                className="text-[#32cd32] font-semibold hover:underline"
               >
-                Contact us
-              </span>{" "}
-              to learn more
+                {CONTACT.PHONE_1}
+              </a>{" "}
+              to discuss other ways to support
             </p>
           </div>
         </motion.div>

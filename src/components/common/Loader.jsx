@@ -1,8 +1,7 @@
 import React from "react";
-import { Loader2 } from "lucide-react";
 
 const Loader = ({
-  size = "md",
+  size = "lg",
   fullScreen = false,
   text = "",
   className = "",
@@ -16,14 +15,17 @@ const Loader = ({
 
   const loader = (
     <div className={`flex flex-col items-center justify-center ${className}`}>
-      <Loader2 className={`${sizes[size]} text-orange-600 animate-spin`} />
-      {text && <p className="mt-4 text-gray-600">{text}</p>}
+      <div className={`${sizes[size]} relative`}>
+        <div className="absolute inset-0 border-2 border-[#32cd32]/30 rounded-full"></div>
+        <div className="absolute inset-0 border-2 border-[#32cd32] rounded-full border-t-transparent animate-spin"></div>
+      </div>
+      {text && <p className="mt-4 text-gray-600 text-sm">{text}</p>}
     </div>
   );
 
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 bg-white bg-opacity-90 flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-white/90 backdrop-blur-sm flex items-center justify-center z-50">
         {loader}
       </div>
     );

@@ -4,7 +4,7 @@ export const servicesData = {
       id: "academic",
       title: "Academic Skills",
       icon: "Brain",
-      color: "from-blue-500 to-blue-600",
+      color: "from-0blue-500 to-blue-60",
       description: "Comprehensive cognitive and academic development",
       fullDescription:
         "We focus on building strong foundational academic skills that help children succeed in mainstream education. Our approach is tailored to each child's learning pace and style.",
