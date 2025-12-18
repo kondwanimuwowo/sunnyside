@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import unImg from "../../assets/images/therapy.png";
 
 const MissionSection = () => {
   return (
@@ -29,11 +30,14 @@ const MissionSection = () => {
             className="relative rounded-2xl overflow-hidden"
           >
             <div
-              className="h-96 bg-cover bg-center"
+              className="h-96 bg-cover bg-center relative"
               style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url(/images/mission-image.jpg)`,
+                backgroundImage: `url(${unImg})`,
               }}
             >
+              {/* Dark gradient overlay: strong at bottom, fading to transparent at top */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 className="text-2xl font-bold mb-2">
                   The Sunnyside Promise

@@ -12,7 +12,10 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
-import { IMAGES } from "@utils/constants";
+import { IMAGES, ROUTES } from "@utils/constants";
+import Timeline from "@components/common/Timeline";
+import { useNavigate } from "react-router-dom";
+import Button from "@components/common/Button";
 
 const Card = ({
   children,
@@ -23,11 +26,11 @@ const Card = ({
   ...props
 }) => {
   const variants = {
-    default: "bg-white shadow-lg",
+    default: "bg-white shadow-sm border border-gray-200",
     outlined: "bg-white border-2 border-gray-200",
     gradient:
-      "bg-gradient-to-br from-lime-50 to-teal-50 border-2 border-lime-200",
-    dark: "bg-gray-900 text-white",
+      "bg-gradient-to-br from-[#32cd32]/5 to-[#32cd32]/10 border border-[#32cd32]/20",
+    dark: "bg-gray-900 text-white border border-gray-800",
   };
 
   const paddings = {
@@ -38,7 +41,7 @@ const Card = ({
   };
 
   const hoverClass = hover
-    ? "hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+    ? "hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
     : "";
 
   return (
@@ -52,70 +55,28 @@ const Card = ({
 };
 
 const About = () => {
-  const conditions = [
-    "Autism Spectrum Disorder",
-    "Down Syndrome",
-    "Global Developmental Delay",
-    "Cerebral Palsy",
-    "And other learning challenges",
-  ];
+  const navigate = useNavigate();
 
-  const domains = [
+  const conditions = [
     {
-      title: "Academic Skills",
-      items: [
-        "Cognition",
-        "Math skills",
-        "Writing development",
-        "Literacy",
-        "Time & weather concepts",
-      ],
+      name: "Autism Spectrum Disorder",
+      description: "Comprehensive support for communication and social skills",
     },
     {
-      title: "Communication Skills",
-      items: [
-        "Expressive & receptive language",
-        "Speech-language therapy",
-        "Picture Exchange Communication System (PECS)",
-        "Augmentative and alternative communication",
-      ],
+      name: "Down Syndrome",
+      description: "Specialized programs for cognitive and motor development",
     },
     {
-      title: "Social Skills",
-      items: [
-        "Turn-taking",
-        "Small group work",
-        "Peer interaction",
-        "Emotional regulation",
-        "Friendship building",
-      ],
+      name: "Global Developmental Delay",
+      description: "Individualized therapy to bridge developmental gaps",
     },
     {
-      title: "Motor Skills",
-      items: [
-        "Gross motor: catching, throwing, balancing",
-        "Fine motor: lacing, beading, scissor use",
-        "Occupational therapy integration",
-        "Sensory motor activities",
-      ],
+      name: "Cerebral Palsy",
+      description: "Targeted motor skills and physical therapy",
     },
     {
-      title: "Adaptive Skills",
-      items: [
-        "Toilet training & bathroom independence",
-        "Independent feeding",
-        "Daily living skills",
-        "Self-care routines",
-      ],
-    },
-    {
-      title: "Behavioral Support",
-      items: [
-        "Behavior management strategies",
-        "Positive behavior support",
-        "SPED tutorials",
-        "Individualized behavior plans",
-      ],
+      name: "Other Learning Challenges",
+      description: "Customized support for unique developmental needs",
     },
   ];
 
@@ -126,6 +87,7 @@ const About = () => {
       description:
         "Registered with HPCZ, focusing on physical development and specialized education strategies for children with special needs.",
       expertise: ["Physiotherapy", "Special Education", "Motor Development"],
+      years: "4+ years",
     },
     {
       name: "Chisha Kaite",
@@ -133,52 +95,7 @@ const About = () => {
       description:
         "Specializes in behavior management and skill-building interventions for children with developmental challenges.",
       expertise: ["ABA Therapy", "Behavior Modification", "Skill Acquisition"],
-    },
-  ];
-
-  const additionalServices = [
-    {
-      title: "Speech & Language Therapy",
-      description:
-        "Comprehensive assessment and intervention for speech, language, and communication disorders.",
-    },
-    {
-      title: "Occupational Therapy",
-      description:
-        "Enhancing daily living skills, sensory processing, and fine/gross motor coordination.",
-    },
-    {
-      title: "Sensory Integration",
-      description:
-        "Tailored sensory activities for sensory seekers and calming strategies for sensory overload.",
-    },
-    {
-      title: "Parent Training & Support",
-      description:
-        "Empowering parents with strategies and tools to support their child's development at home.",
-    },
-  ];
-
-  const milestones = [
-    {
-      year: "2022",
-      title: "Home-Based Services",
-      description: "Started with one-on-one home therapy sessions",
-    },
-    {
-      year: "2023",
-      title: "Center Established",
-      description: "Opened full therapy center and preparatory school",
-    },
-    {
-      year: "2024",
-      title: "Team Expansion",
-      description: "Added specialized therapists and educators",
-    },
-    {
-      year: "2025",
-      title: "Community Impact",
-      description: "Serving 100+ families across Zambia",
+      years: "3+ years",
     },
   ];
 
@@ -196,147 +113,232 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="text-center mb-20"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-10 text-gray-900 leading-normal">
-              About <span className="text-[#32cd32]">Sunnyside</span>
+              Our Story & <span className="text-[#32cd32]">Mission</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              Empowering children with learning challenges to thrive through
-              therapy, education, and love in Lusaka, Zambia.
+              How a husband-and-wife team is transforming lives and creating
+              inclusive futures for children with learning challenges across
+              Zambia.
             </p>
           </motion.div>
 
-          {/* Hero Section */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="space-y-8"
-            >
-              <motion.h2
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl font-bold mb-4 text-gray-900 text-center mb-12 "
-              >
-                Our <span className="text-[#32cd32]">Story</span>
-              </motion.h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Founded in Lusaka by husband-and-wife team{" "}
-                <strong>Ben Phiri</strong> and{" "}
-                <strong>Izzy (Elizabeth) Phiri</strong>, Sunnyside began with
-                home-based one-on-one therapy sessions for families across
-                Zambia. Seeing the growing need, we expanded into a full Therapy
-                Center and Preparatory School in 2023.
-              </p>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                With <strong>Ben's 14+ years</strong> in developmental therapy
-                and <strong>Izzy's 11+ years</strong> in education and behavior
-                management, we've created a safe, inclusive space where every
-                child is valued and supported to reach their full potential.
-              </p>
-
-              {/* Milestones Timeline */}
-              <div className="pt-8">
-                <motion.h3
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-2xl font-bold mb-4 text-gray-900 text-center mb-12 "
-                >
-                  Our Journey
-                </motion.h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {milestones.map((milestone, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 + idx * 0.1 }}
-                      className="text-center"
-                    >
-                      <div className="text-3xl font-bold text-[#32cd32]">
-                        {milestone.year}
-                      </div>
-                      <div className="font-semibold mt-2 text-gray-900">
-                        {milestone.title}
-                      </div>
-                      <div className="text-sm text-gray-600 mt-1">
-                        {milestone.description}
-                      </div>
-                    </motion.div>
-                  ))}
+          {/* Hero Image with Animation */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative rounded-3xl overflow-hidden shadow-lg mb-24 max-w-6xl mx-auto"
+          >
+            <img
+              src={IMAGES.sunnysideAbout}
+              alt="Children engaging in therapy activities at Sunnyside Therapy Center, Lusaka"
+              className="w-full h-80 md:h-120 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="absolute bottom-6 left-6 text-white">
+              <div className="flex items-center gap-3">
+                <MapPin className="w-5 h-5 text-[#32cd32]" />
+                <div>
+                  <p className="text-sm opacity-80">Sunnyside Therapy Center</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
-              className="relative"
-            >
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
-                <img
-                  src={IMAGES.sunnysideAbout}
-                  alt="Children engaging in therapy activities at Sunnyside Therapy Center, Lusaka"
-                  className="w-full h-full object-cover min-h-[400px]"
+          {/* Main Content with Two-Column Layout */}
+          <div className="mb-28">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              {/* Left Column: Timeline - Now Sticky */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="lg:sticky lg:top-24"
+              >
+                <Timeline
+                  title="Our Journey"
+                  subtitle="From home visits to a center of excellence"
+                  items={[
+                    {
+                      year: "2022",
+                      title: "The Beginning",
+                      description:
+                        "Started with home-based one-on-one therapy sessions across Zambia.",
+                      details: [
+                        "Home visits only",
+                        "Served 15 families",
+                        "Founded by Ben & Izzy Phiri",
+                      ],
+                      iconName: "Home",
+                    },
+                    {
+                      year: "2023",
+                      title: "Center Established",
+                      description:
+                        "Opened the first Sunnyside Therapy Center in Lusaka.",
+                      details: [
+                        "First physical center",
+                        "Added 3 therapists",
+                        "Started school readiness program",
+                      ],
+                      iconName: "Building",
+                    },
+                    {
+                      year: "2024",
+                      title: "Growth & Impact",
+                      description: "Expanded programs and school partnerships.",
+                      details: [
+                        "Served 100+ children",
+                        "Trained 20+ teachers",
+                        "Launched parent workshops",
+                      ],
+                      iconName: "TrendingUp",
+                    },
+                    {
+                      year: "2025",
+                      title: "Looking Ahead",
+                      description: "Expanding reach and community impact.",
+                      details: [
+                        "New outreach programs",
+                        "Teacher training expansion",
+                        "Community partnerships",
+                      ],
+                      iconName: "Target",
+                    },
+                  ]}
+                  lineColor="#32cd32"
+                  animateLine={true}
+                  variant="condensed"
                 />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-[#32cd32] text-white p-6 rounded-2xl shadow-xl">
-                <Heart className="w-12 h-12 fill-white" />
-              </div>
-            </motion.div>
+              </motion.div>
+
+              {/* Right Column: Our Story - Also Sticky */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="space-y-10 lg:sticky lg:top-24"
+              >
+                {/* Story Content */}
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">
+                    Our Story
+                  </h2>
+
+                  <div className="space-y-6">
+                    <p className="text-gray-700 leading-relaxed">
+                      Founded in Lusaka by husband-and-wife team{" "}
+                      <strong className="text-[#22a722]">Ben Phiri</strong> and{" "}
+                      <strong className="text-[#22a722]">
+                        Izzy (Elizabeth) Phiri
+                      </strong>
+                      , Sunnyside began with a simple but profound vision: to
+                      provide specialized support for children with learning
+                      challenges when and where they needed it most.
+                    </p>
+
+                    <p className="text-gray-700 leading-relaxed">
+                      What started as home-based one-on-one therapy sessions in
+                      2022 quickly grew into something much larger. As word
+                      spread and the need became apparent, we expanded into a
+                      full Therapy Center and Preparatory School in 2023.
+                    </p>
+
+                    {/* Added Vision Card */}
+                    <div className="bg-[#32cd32]/5 p-6 rounded-xl border border-[#32cd32]/20">
+                      <h4 className="font-bold text-lg mb-2 text-gray-900">
+                        Our Vision
+                      </h4>
+                      <p className="text-gray-700">
+                        A Zambia where every child with learning challenges is
+                        accepted, supported, and treated fairly in mainstream
+                        schools and society.
+                      </p>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-[#32cd32]/5 to-[#32cd32]/10 p-6 rounded-xl border border-[#32cd32]/20">
+                      <h3 className="font-bold text-lg mb-3 text-gray-900">
+                        The Gap We Fill
+                      </h3>
+                      <p className="text-gray-700">
+                        We identified a critical void in Zambia's support
+                        systems—children with learning challenges were often
+                        overlooked, without access to specialized care.
+                        Sunnyside bridges this gap, ensuring every child has the
+                        tools and support to thrive.
+                      </p>
+                    </div>
+
+                    <p className="text-gray-700 leading-relaxed">
+                      With Ben's 14+ years of hands-on developmental therapy
+                      experience and Izzy's 11+ years in education and behavior
+                      management, we've created more than just a therapy
+                      center—we've built a movement for inclusive education in
+                      Zambia.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
 
           {/* Founders Section */}
-          <div className="mb-24">
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
+          <div className="mb-28">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl font-bold mb-4 text-gray-900 text-center mb-12 "
+              className="text-center mb-16"
             >
-              Meet Our <span className="text-[#32cd32]">Founders</span>
-            </motion.h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                The Hearts Behind the{" "}
+                <span className="text-[#32cd32]">Mission</span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Meet the passionate founders whose combined 25+ years of
+                experience drive Sunnyside's life-changing work.
+              </p>
+            </motion.div>
+
             <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
               {/* Ben Phiri */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
                 <Card variant="gradient" hover={true} padding="lg">
                   <div className="text-center">
-                    <div className="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-[#32cd32] shadow-xl">
+                    <div className="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-0 border-gray-700 shadow-xl">
                       <img
                         src={IMAGES.ben}
                         alt="Ben Phiri, Co-Founder and Developmental Therapist"
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
                       Ben Phiri
                     </h3>
-                    <p className="text-xl text-[#32cd32] font-medium mb-4">
+                    <div className="text-lg text-[#32cd32] font-medium mb-4">
                       Co-Founder & Developmental Therapist
-                    </p>
-                    <p className="text-lg text-gray-600 leading-relaxed mb-4">
+                    </div>
+                    <p className="text-lg text-gray-600 leading-relaxed mb-6">
                       With over 14 years of hands-on experience, Ben specializes
-                      in developmental therapy and creating supportive
-                      environments for children with special needs.
+                      in creating nurturing environments where children can
+                      develop at their own pace.
                     </p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-4">
-                      <span className="px-3 py-1 bg-lime-100 text-lime-800 rounded-full text-sm">
+                    <div className="flex flex-wrap justify-center gap-2">
+                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
                         Developmental Therapy
                       </span>
-                      <span className="px-3 py-1 bg-lime-100 text-lime-800 rounded-full text-sm">
+                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
                         Hands-on Support
                       </span>
-                      <span className="px-3 py-1 bg-lime-100 text-lime-800 rounded-full text-sm">
+                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
                         Program Design
                       </span>
                     </div>
@@ -348,37 +350,37 @@ const About = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <Card variant="gradient" hover={true} padding="lg">
                   <div className="text-center">
-                    <div className="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-4 border-[#32cd32] shadow-xl">
+                    <div className="w-48 h-48 mx-auto mb-6 rounded-full overflow-hidden border-0 border-gray-700 shadow-xl">
                       <img
                         src={IMAGES.izzy}
                         alt="Izzy (Elizabeth) Phiri, Co-Founder and Education Specialist"
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
                       Izzy (Elizabeth) Phiri
                     </h3>
-                    <p className="text-xl text-[#32cd32] font-medium mb-4">
+                    <div className="text-lg text-[#32cd32] font-medium mb-4">
                       Co-Founder & Education/Behaviour Specialist
-                    </p>
-                    <p className="text-lg text-gray-600 leading-relaxed mb-4">
+                    </div>
+                    <p className="text-lg text-gray-600 leading-relaxed mb-6">
                       With 11+ years in education and behavior management, Izzy
-                      designs individualized programs that build confidence and
-                      replace challenging behaviors with positive alternatives.
+                      designs transformative programs that build confidence and
+                      independence.
                     </p>
-                    <div className="flex flex-wrap justify-center gap-2 mt-4">
-                      <span className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm">
+                    <div className="flex flex-wrap justify-center gap-2">
+                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
                         Behavior Management
                       </span>
-                      <span className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm">
+                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
                         Special Education
                       </span>
-                      <span className="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm">
+                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
                         Program Development
                       </span>
                     </div>
@@ -389,42 +391,45 @@ const About = () => {
           </div>
 
           {/* Team Section */}
-          <div className="mb-24">
+          <div className="mb-28">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-center mb-12"
+              viewport={{ once: true }}
+              className="text-center mb-16"
             >
-              <motion.h2
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl font-bold mb-4 text-gray-900 text-center mb-12 "
-              >
-                Our <span className="text-[#32cd32]">Team</span>
-              </motion.h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                Our Expert <span className="text-[#32cd32]">Team</span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Specialized professionals dedicated to supporting every child's
+                unique journey.
+              </p>
             </motion.div>
+
             <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
               {team.map((member, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
                 >
                   <Card variant="default" hover={true} padding="lg">
                     <div className="text-center">
-                      <h3 className="text-3xl font-bold text-gray-900 mb-2">
-                        {member.name}
-                      </h3>
-                      <p className="text-xl text-[#32cd32] font-medium mb-4">
-                        {member.role}
-                      </p>
-                      <p className="text-lg text-gray-600 leading-relaxed mb-4">
-                        {member.description}
-                      </p>
+                      <div className="mb-4">
+                        <div className="text-sm text-[#32cd32] font-medium mb-1">
+                          {member.years} Experience
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                          {member.name}
+                        </h3>
+                        <div className="text-lg text-[#32cd32] font-medium">
+                          {member.role}
+                        </div>
+                      </div>
+                      <p className="text-gray-600 mb-6">{member.description}</p>
                       <div className="flex flex-wrap justify-center gap-2">
                         {member.expertise.map((skill, i) => (
                           <span
@@ -442,175 +447,65 @@ const About = () => {
             </div>
           </div>
 
-          {/* Domains of Learning */}
-          <div className="mb-24">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-center mb-12"
-            >
-              <motion.h2
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl font-bold mb-4 text-gray-900 text-center mb-12 "
-              >
-                Comprehensive <span className="text-[#32cd32]">Services</span>
-              </motion.h2>
-            </motion.div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {domains.map((domain, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ delay: idx * 0.1 }}
-                >
-                  <Card variant="default" hover={true} padding="lg">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                      {domain.title}
-                    </h3>
-                    <ul className="space-y-3">
-                      {domain.items.map((item, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-3 text-gray-600"
-                        >
-                          <CheckCircle className="w-5 h-5 text-[#32cd32] flex-shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Additional Services */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: 0.3 }}
-              className="mt-16"
-            >
-              <h3 className="text-3xl font-bold text-center mb-12 text-gray-900">
-                Specialized Therapeutic Services
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {additionalServices.map((service, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ delay: idx * 0.1 }}
-                  >
-                    <Card variant="outlined" hover={true} padding="lg">
-                      <div className="text-center">
-                        <h4 className="text-xl font-bold text-gray-900 mb-3">
-                          {service.title}
-                        </h4>
-                        <p className="text-gray-600">{service.description}</p>
-                      </div>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
           {/* Who We Serve */}
           <div className="mb-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-center mb-12"
+              viewport={{ once: true }}
+              className="text-center mb-16"
             >
-              <motion.h2
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl font-bold mb-4 text-gray-900 text-center mb-12 "
-              >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
                 Who We <span className="text-[#32cd32]">Serve</span>
-              </motion.h2>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Tailored programs for children with specific developmental
+                challenges
+              </p>
             </motion.div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
-              {conditions.map((condition, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="bg-white p-6 rounded-2xl text-center shadow-lg hover:shadow-xl transition-shadow border border-gray-200"
-                >
-                  <p className="text-lg font-semibold text-gray-900">
-                    {condition}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
 
-          {/* Mission & Values */}
-          <div className="mb-24">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="text-center mb-12"
-            >
-              <motion.h2
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl font-bold mb-4 text-gray-900 text-center mb-12 "
-              >
-                Our <span className="text-[#32cd32]">Values</span>
-              </motion.h2>
-            </motion.div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: Heart,
-                  title: "Compassion",
-                  description:
-                    "Treating every child and family with empathy, understanding, and unconditional positive regard.",
-                },
-                {
-                  icon: Users,
-                  title: "Inclusion",
-                  description:
-                    "Creating a welcoming environment where every child feels valued and has equal opportunities to learn and grow.",
-                },
-                {
-                  icon: CheckCircle,
-                  title: "Excellence",
-                  description:
-                    "Delivering evidence-based, high-quality therapy and education tailored to each child's unique needs.",
-                },
-              ].map((value, idx) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-6xl mx-auto">
+              {conditions.map((condition, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
+                  className="h-full"
                 >
-                  <Card variant="gradient" padding="lg">
-                    <div className="text-center">
-                      <div className="w-16 h-16 mx-auto mb-4 bg-[#32cd32] rounded-full flex items-center justify-center">
-                        <value.icon className="w-8 h-8 text-white" />
+                  <Card
+                    variant="default"
+                    hover={true}
+                    padding="lg"
+                    className="h-full flex flex-col items-center justify-center text-center min-h-[180px] transition-all duration-300 hover:shadow-md"
+                  >
+                    {/* Icon with Animation */}
+                    <motion.div
+                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      className="mb-4"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#32cd32]/10 to-[#32cd32]/20 flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-full bg-[#32cd32] flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">
+                            {idx + 1}
+                          </span>
+                        </div>
                       </div>
-                      <h3 className="text-2xl font-bold mb-4 text-gray-900">
-                        {value.title}
+                    </motion.div>
+
+                    {/* Title - Fixed Height */}
+                    <div className="h-12 flex items-center justify-center mb-2">
+                      <h3 className="text-base font-bold text-gray-900 line-clamp-2">
+                        {condition.name}
                       </h3>
-                      <p className="text-gray-600">{value.description}</p>
+                    </div>
+
+                    {/* Description - Fixed Height */}
+                    <div className="h-16 flex items-center">
+                      <p className="text-sm text-gray-600 line-clamp-3">
+                        {condition.description}
+                      </p>
                     </div>
                   </Card>
                 </motion.div>
@@ -618,67 +513,123 @@ const About = () => {
             </div>
           </div>
 
-          {/* Call to Action */}
+          {/* Mission & Values */}
+          <div className="mb-28">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                Our Core <span className="text-[#32cd32]">Values</span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                The principles that guide every interaction and decision at
+                Sunnyside.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: Heart,
+                  title: "Compassion",
+                  description:
+                    "We approach every child and family with empathy, understanding that each journey is unique and deserves personalized care.",
+                },
+                {
+                  icon: Users,
+                  title: "Inclusion",
+                  description:
+                    "We create environments where every child feels valued, respected, and has equal opportunities to learn and grow.",
+                },
+                {
+                  icon: CheckCircle,
+                  title: "Excellence",
+                  description:
+                    "We deliver evidence-based, high-quality therapy and education, constantly refining our approach for optimal outcomes.",
+                },
+              ].map((value, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                >
+                  <Card variant="gradient" padding="lg" className="h-full">
+                    <div className="text-center">
+                      <div className="w-12 h-12 mx-auto mb-4 bg-[#32cd32] rounded-full flex items-center justify-center">
+                        <value.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 text-gray-900">
+                        {value.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm">
+                        {value.description}
+                      </p>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Final CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true }}
           >
             <Card
               variant="dark"
               padding="lg"
-              className="text-center max-w-5xl mx-auto"
+              className="text-center max-w-4xl mx-auto"
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                className="flex justify-center mb-8"
-              >
-                {/*<div className="w-24 h-24 bg-[#32cd32] rounded-full flex items-center justify-center">
-                  {/*<Heart className="w-14 h-14 text-white" />
-                </div>*/}
-              </motion.div>
-              <h2 className="text-4xl font-bold mb-6 text-white">
-                Our Ultimate Goal
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                Ready to Begin the Journey?
               </h2>
-              <p className="text-2xl text-gray-200 mb-8 max-w-3xl mx-auto italic">
-                To ensure every child with learning challenges in Zambia is
-                accepted, supported, and treated fairly in mainstream schools
-                and society.
+              <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                Every child deserves the opportunity to learn, grow, and thrive.
+                Let's work together to create a brighter future.
               </p>
 
-              {/* Contact Information */}
-              <div className="grid md:grid-cols-3 gap-8 mt-12">
+              <div className="grid md:grid-cols-3 gap-8 mt-12 mb-12">
                 {[
                   {
                     icon: Phone,
-                    title: "Phone / WhatsApp",
+                    title: "Call/WhatsApp",
                     details: ["+260 978 501 101", "+260 973 902 247"],
+                    action: "tel:+260978501101",
                   },
                   {
                     icon: Mail,
                     title: "Email",
                     details: ["info@sunnysidetherapy.com"],
+                    action: "mailto:info@sunnysidetherapy.com",
                   },
                   {
-                    icon: MapPin,
-                    title: "Location",
-                    details: ["Lusaka, Zambia"],
+                    icon: Calendar,
+                    title: "Visit Us",
+                    details: ["Lusaka, Zambia", "Schedule a tour"],
+                    action: ROUTES.CONTACT,
                   },
                 ].map((contact, idx) => (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true }}
                     transition={{ delay: idx * 0.1 }}
                     className="flex flex-col items-center"
                   >
                     <contact.icon className="w-8 h-8 text-[#32cd32] mb-3" />
-                    <p className="text-white font-semibold">{contact.title}</p>
+                    <p className="text-white font-semibold mb-2">
+                      {contact.title}
+                    </p>
                     {contact.details.map((detail, i) => (
-                      <p key={i} className="text-gray-300">
+                      <p key={i} className="text-gray-300 text-sm">
                         {detail}
                       </p>
                     ))}
@@ -686,37 +637,48 @@ const About = () => {
                 ))}
               </div>
 
-              {/* Social Media Links - Only Facebook and Instagram */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: 0.4 }}
-                className="flex justify-center gap-6 mt-12"
-              >
-                <a
-                  href="https://facebook.com/sunnysidetherapycenter"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#32cd32] hover:text-lime-400 p-3 transition-colors"
-                  aria-label="Visit our Facebook page"
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                {/* Changed to white variant */}
+                <Button
+                  variant="white"
+                  onClick={() => navigate(ROUTES.CONTACT)}
+                  size="lg"
                 >
-                  <Facebook className="w-8 h-8" />
-                </a>
-                <a
-                  href="https://instagram.com/_sunnysidetherapycenter"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#32cd32] hover:text-lime-400 p-3 transition-colors"
-                  aria-label="Visit our Instagram page"
+                  Book a Consultation
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate(ROUTES.ENROLLMENT)}
+                  size="lg"
+                  className="text-white border-white hover:bg-white/10"
                 >
-                  <Instagram className="w-8 h-8" />
-                </a>
-              </motion.div>
+                  Start Enrollment
+                </Button>
+              </div>
 
-              <p className="mt-8 text-gray-400 text-lg">
-                When you need a safe space – consider Sunnyside.
-              </p>
+              <div className="mt-12 pt-8 border-t border-gray-800">
+                <p className="text-gray-400 mb-6">Connect with our community</p>
+                <div className="flex justify-center gap-6">
+                  <a
+                    href="https://facebook.com/sunnysidetherapycenter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#32cd32] hover:text-lime-400 transition-colors"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="w-6 h-6" />
+                  </a>
+                  <a
+                    href="https://instagram.com/_sunnysidetherapycenter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#32cd32] hover:text-lime-400 transition-colors"
+                    aria-label="Instagram"
+                  >
+                    <Instagram className="w-6 h-6" />
+                  </a>
+                </div>
+              </div>
             </Card>
           </motion.div>
         </div>

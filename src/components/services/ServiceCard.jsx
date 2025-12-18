@@ -21,7 +21,7 @@ const ServiceCard = ({ service, index }) => {
       >
         {/* Image Header */}
         {service.image && (
-          <div className="relative h-48 overflow-hidden">
+          <div className="relative h-64 overflow-hidden">
             <img
               src={service.image}
               alt={service.title}

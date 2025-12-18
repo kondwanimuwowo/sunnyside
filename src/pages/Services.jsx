@@ -15,9 +15,13 @@ import {
   Heart,
   Calendar,
   Phone,
+  MessageSquare,
+  ClipboardCheck,
+  Map,
 } from "lucide-react";
 import Button from "@components/common/Button";
 import { useNavigate } from "react-router-dom";
+import servicesData from "../data/services";
 
 const Services = () => {
   const navigate = useNavigate();
@@ -207,7 +211,7 @@ const Services = () => {
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {LEARNING_DOMAINS.map((domain, idx) => (
+              {servicesData.domains.map((domain, idx) => (
                 <ServiceCard key={domain.id} service={domain} index={idx} />
               ))}
             </div>
@@ -487,84 +491,146 @@ const Services = () => {
               </div>
             </motion.div>
           </div>
-          {/* Next Steps - Ultra Minimalist */}
+
+          {/* The Sunnyside Process - With Lucide Icons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-24"
+            className="mb-28"
           >
-            <div className="max-w-3xl mx-auto px-4">
-              <div className="text-center mb-12">
-                <h3 className="text-3xl font-bold mb-4 text-gray-900">
-                  The Sunnyside Process
+            <div className="max-w-4xl mx-auto px-4">
+              <div className="text-center mb-16">
+                <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                  Our Process
                 </h3>
-                <p className="text-gray-600">
-                  How we create personalized pathways for success
+                <p className="text-gray-600 text-lg">
+                  A clear, thoughtful journey from initial conversation to
+                  personalized support
                 </p>
               </div>
 
-              <div className="space-y-10">
-                {[
-                  {
-                    step: "Step 1",
-                    title: "Share Your Story",
-                    description:
-                      "We listen. A free, no-pressure conversation to understand your child's journey and your hopes.",
-                  },
-                  {
-                    step: "Step 2",
-                    title: "Comprehensive Assessment",
-                    description:
-                      "We assess strengths and needs across all five learning domains through careful observation and interaction.",
-                  },
-                  {
-                    step: "Step 3",
-                    title: "Personalized Pathway",
-                    description:
-                      "We create a tailored plan that combines the right therapy domains with appropriate programs.",
-                  },
-                ].map((item, idx) => (
+              <div className="relative">
+                {/* Animated timeline line - desktop only */}
+                <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 overflow-hidden">
                   <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ height: 0 }}
+                    whileInView={{ height: "100%" }}
                     viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="relative pl-10"
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="w-full bg-[#32cd32] origin-top"
+                  />
+                </div>
+
+                <div className="space-y-12 md:space-y-16">
+                  {[
+                    {
+                      step: "Step One",
+                      title: "Understanding Your Journey",
+                      description:
+                        "We begin with a free, no-pressure consultation. This is where we listen—to your story, your concerns, and your hopes for your child's future.",
+                      Icon: MessageSquare,
+                    },
+                    {
+                      step: "Step Two",
+                      title: "Comprehensive Assessment",
+                      description:
+                        "Through careful observation and interaction, we evaluate strengths and needs across all five learning domains to build a complete picture.",
+                      Icon: ClipboardCheck,
+                    },
+                    {
+                      step: "Step Three",
+                      title: "Personalized Pathway",
+                      description:
+                        "We craft a tailored plan that combines targeted therapy with strategic programs, creating a roadmap for meaningful, sustainable progress.",
+                      Icon: Map,
+                    },
+                  ].map((item, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ delay: idx * 0.2, duration: 0.6 }}
+                      className="relative flex"
+                    >
+                      {/* Step indicator - desktop */}
+                      <div className="hidden md:flex items-center justify-center w-16 flex-shrink-0">
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            delay: idx * 0.2 + 0.3,
+                            type: "spring",
+                          }}
+                          className="w-16 h-16 rounded-full border-2 border-[#32cd32] flex items-center justify-center bg-white relative z-10"
+                        >
+                          <item.Icon className="w-6 h-6 text-[#32cd32]" />
+                        </motion.div>
+                      </div>
+
+                      {/* Step indicator - mobile */}
+                      <div className="md:hidden mr-4 flex-shrink-0">
+                        <div className="w-12 h-12 rounded-full border-2 border-[#32cd32] flex items-center justify-center bg-white">
+                          <item.Icon className="w-5 h-5 text-[#32cd32]" />
+                        </div>
+                      </div>
+
+                      {/* Content - proper spacing */}
+                      <div className="flex-1 md:ml-8">
+                        <div className="mb-3">
+                          <div className="text-sm text-[#32cd32] font-medium tracking-wider mb-1">
+                            {item.step}
+                          </div>
+                          <h4 className="text-xl md:text-2xl font-bold text-gray-900">
+                            {item.title}
+                          </h4>
+                        </div>
+                        <p className="text-gray-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.8 }}
+                className="mt-20 pt-12 border-t border-gray-100 text-center"
+              >
+                <p className="text-gray-600 mb-8 text-lg">Ready to begin?</p>
+                <div className="inline-flex flex-col sm:flex-row items-center gap-8">
+                  <button
+                    onClick={() => navigate(ROUTES.CONTACT)}
+                    className="text-[#32cd32] hover:text-[#22a722] font-medium text-lg transition-colors group"
                   >
-                    <div className="absolute left-0 top-0">
-                      <div className="w-6 h-6 rounded-full border-2 border-[#32cd32] flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full bg-[#32cd32]"></div>
-                      </div>
-                    </div>
-
-                    <div className="border-l-2 border-gray-200 pl-8 pb-8 last:pb-0 last:border-l-0">
-                      <div className="text-sm text-[#32cd32] font-medium mb-1">
-                        {item.step}
-                      </div>
-                      <h4 className="text-lg font-bold text-gray-900 mb-2">
-                        {item.title}
-                      </h4>
-                      <p className="text-gray-600">{item.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-12 text-center border-t border-gray-200 pt-8">
-                <button
-                  onClick={() => navigate(ROUTES.CONTACT)}
-                  className="text-gray-700 hover:text-[#32cd32] transition-colors group"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    Begin the conversation
-                    <span className="transform group-hover:translate-x-1 transition-transform">
-                      →
+                    <span className="flex items-center gap-2">
+                      Start your journey
+                      <span className="transform group-hover:translate-x-1 transition-transform duration-200">
+                        →
+                      </span>
                     </span>
-                  </span>
-                </button>
-              </div>
+                  </button>
+
+                  <div className="h-4 w-px bg-gray-300 hidden sm:block"></div>
+
+                  <div className="text-gray-500 text-sm">
+                    Questions? Call{" "}
+                    <a
+                      href={`tel:${CONTACT.PHONE_1}`}
+                      className="text-[#32cd32] hover:text-[#22a722] font-medium"
+                    >
+                      {CONTACT.PHONE_1}
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>

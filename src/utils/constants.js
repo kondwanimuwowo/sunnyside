@@ -12,6 +12,10 @@ import childrenImg2 from "@assets/images/children2.jpg";
 import ben from "@assets/images/team/ben.jpg";
 import izzy from "@assets/images/team/izzy.jpg";
 import sunnysideAbout from "@assets/images/sunnyside-about.jpg";
+import unOne from "@assets/images/un-one.png";
+import unTwo from "@assets/images/un-two.jpg";
+import unThree from "@assets/images/un-three.jpg";
+import playing from "@assets/images/playing.jpg";
 
 export const APP_NAME =
   import.meta.env.VITE_APP_NAME || "Sunnyside Therapy Center";
@@ -54,6 +58,10 @@ export const IMAGES = {
   ben: ben,
   izzy: izzy,
   sunnysideAbout: sunnysideAbout,
+  unOne: unOne,
+  unTwo: unTwo,
+  unThree: unThree,
+  playing: playing,
 };
 
 // Fallback: If you don't have local images yet, use Unsplash
