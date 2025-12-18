@@ -114,6 +114,7 @@ const ProgramsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              className="my-12 border-t border-gray-200 pt-12"
             >
               <h3 className="text-3xl font-bold mb-8 text-gray-900">
                 Our Therapy Domains
@@ -123,7 +124,7 @@ const ProgramsSection = () => {
                 delivered within our strategic programs
               </p>
 
-              <div className="grid gap-6">
+              <div className="grid gap-6 md:grid-cols-2">
                 {services.map((service, idx) => (
                   <motion.div
                     key={idx}
@@ -176,7 +177,10 @@ const ProgramsSection = () => {
             className="relative"
           >
             <div className="sticky top-24">
-              <div
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
                 className="relative h-96 rounded-2xl bg-cover bg-center mb-6"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(${IMAGES.community})`,
@@ -188,7 +192,7 @@ const ProgramsSection = () => {
                     See how our programs translate into real change
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
                 <h4 className="font-bold text-lg mb-4 text-gray-900">
