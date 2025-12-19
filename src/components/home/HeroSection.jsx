@@ -53,7 +53,7 @@ const HeroSection = () => {
               className="inline-flex items-center space-x-2 bg-[rgba(50,205,50,0.12)] px-4 py-2 rounded-full"
             >
               <span className="font-medium text-[#22a722]">
-                Every Child Learns
+                Sunnyside Therapy Center & Preparatory School
               </span>
             </motion.div>
 
