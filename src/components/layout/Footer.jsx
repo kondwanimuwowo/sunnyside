@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Heart, Phone, Mail, MapPin, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook } from "lucide-react";
 import { ROUTES, CONTACT, APP_NAME } from "@utils/constants";
 import logo from "/sunnyside-bw-logo.png";
 
@@ -24,10 +24,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
-
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <img src={logo} alt="Sunnyside Logo" className="w-28" />
@@ -49,45 +48,48 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-gray-400 hover:text-[#32cd32] transition-colors duration-150"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Quick Links & Support - Side by side on mobile */}
+          <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-8">
+            {/* Quick Links */}
+            <div>
+              <h3 className="font-bold text-lg mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                {quickLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="text-gray-400 hover:text-[#32cd32] transition-colors duration-150 text-sm"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Support Links */}
-          <div>
-            <h3 className="font-bold text-lg mb-4">Support</h3>
-            <ul className="space-y-2">
-              {supportLinks.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-gray-400 hover:text-[#32cd32] transition-colors duration-150"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {/* Support Links */}
+            <div>
+              <h3 className="font-bold text-lg mb-4">Support</h3>
+              <ul className="space-y-2">
+                {supportLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="text-gray-400 hover:text-[#32cd32] transition-colors duration-150 text-sm"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
         {/* Contact Information */}
         <div className="border-t border-gray-800 pt-8 mb-8">
           <h3 className="font-bold text-lg mb-4">Contact Us</h3>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
             <div className="flex items-start space-x-3">
               <Phone className="w-5 h-5 text-[#32cd32] flex-shrink-0 mt-1" />
               <div>

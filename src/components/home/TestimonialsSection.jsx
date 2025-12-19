@@ -25,7 +25,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="pt-16 pb-6 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,8 +33,8 @@ const TestimonialsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            Stories of <span className="text-[#32cd32]">Transformation</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-normal">
+            Stories of Transformation
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Real families. Real progress. Hear from parents whose children have

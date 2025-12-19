@@ -27,6 +27,7 @@ const HeroSection = () => {
         bg-cover bg-center bg-no-repeat
         pt-16 md:pt-0
         md:-mt-16
+        pt-32 sm:pt-32 md:pt-32 lg:pt-32 xl:pt-16
       "
       style={{
         backgroundImage: `url(${bgImage})`,
@@ -84,7 +85,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 pb-6"
             >
               <Button
                 size="lg"
@@ -95,7 +96,11 @@ const HeroSection = () => {
               >
                 Support Our Mission
               </Button>
-              <Button variant="accent" onClick={() => navigate(ROUTES.CONTACT)}>
+              <Button
+                variant="teal"
+                size="lg"
+                onClick={() => navigate(ROUTES.CONTACT)}
+              >
                 Learn More
               </Button>
             </motion.div>

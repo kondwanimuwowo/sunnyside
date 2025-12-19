@@ -192,16 +192,15 @@ const Services = () => {
             </motion.div>
           </motion.div>
           {/* Five Domains */}
-          <div className="mb-24">
+          <div className="mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-6 text-gray-900">
-                The Five Learning{" "}
-                <span className="text-[#32cd32]">Domains</span>
+              <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-normal">
+                The Five Learning Domains
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Our holistic approach addresses every aspect of development,
@@ -217,15 +216,15 @@ const Services = () => {
             </div>
           </div>
           {/* Core Programs Section */}
-          <div className="mb-24">
+          <div className="mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-6 text-gray-900">
-                Our Structured <span className="text-[#32cd32]">Programs</span>
+              <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-normal">
+                Our Structured Programs
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Beyond individual therapy, we offer comprehensive programs
@@ -327,16 +326,15 @@ const Services = () => {
             </motion.div>
           </div>
           {/* Additional Services */}
-          <div className="mb-24">
+          <div className="mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-6 text-gray-900">
-                Specialised Support{" "}
-                <span className="text-[#32cd32]">Services</span>
+              <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-normal">
+                Specialised Support Services
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 We provide targeted interventions to address specific
@@ -371,125 +369,6 @@ const Services = () => {
                 </motion.div>
               ))}
             </div>
-          </div>
-          {/* Volunteer & Get Involved */}
-          <div className="mb-24">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl font-bold mb-6 text-gray-900">
-                Join Our <span className="text-[#32cd32]">Movement</span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                We believe in community-powered change. Whether you're a parent,
-                teacher, therapist, or concerned citizen, there's a place for
-                you at Sunnyside.
-              </p>
-              <h3 className="text-2xl font-bold mb-2 mt-8 text-gray-900">
-                Volunteer & Get Involved
-              </h3>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {volunteerOpportunities.map((opportunity, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 hover:shadow-lg transition-shadow h-full"
-                >
-                  <div className="mb-6">
-                    <h3 className="text-xl font-bold mb-2 text-gray-900">
-                      {opportunity.role}
-                    </h3>
-                    <p className="text-gray-700 mb-4">
-                      {opportunity.description}
-                    </p>
-                    <div className="text-sm text-[#32cd32] font-medium bg-[#32cd32]/5 px-3 py-1 rounded-full inline-block">
-                      {opportunity.commitment}
-                    </div>
-                  </div>
-
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-3">
-                      Requirements
-                    </h4>
-                    <ul className="space-y-2">
-                      {opportunity.requirements.map((req, i) => (
-                        <li
-                          key={i}
-                          className="flex items-center text-sm text-gray-600"
-                        >
-                          <div className="w-2 h-2 bg-gray-300 rounded-full mr-3"></div>
-                          {req}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">
-                      Benefits
-                    </h4>
-                    <ul className="space-y-2">
-                      {opportunity.benefits.map((benefit, i) => (
-                        <li
-                          key={i}
-                          className="flex items-center text-sm text-gray-600"
-                        >
-                          <div className="w-2 h-2 bg-[#32cd32] rounded-full mr-3"></div>
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-r from-gray-900 to-gray-800 text-white p-12 rounded-2xl text-center max-w-4xl mx-auto"
-            >
-              <h3 className="text-3xl font-bold mb-6">
-                Ready to Make a Difference?
-              </h3>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Whether you're enrolling your child, training as a volunteer, or
-                supporting our mission in other ways—we're here to help you get
-                started.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  variant="white"
-                  onClick={() => navigate(ROUTES.ENROLLMENT)}
-                  className="border-white text-gray-900 hover:bg-white/90 hover:border-white"
-                >
-                  Start Enrollment
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => navigate(ROUTES.CONTACT)}
-                  className="text-white border-white hover:bg-white/10"
-                >
-                  Volunteer Interest Form
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => navigate(ROUTES.DONATE)}
-                  className="text-white border-white hover:bg-white/10"
-                >
-                  Support Our Work
-                </Button>
-              </div>
-            </motion.div>
           </div>
 
           {/* The Sunnyside Process - With Lucide Icons */}
@@ -633,6 +512,125 @@ const Services = () => {
               </motion.div>
             </div>
           </motion.div>
+          {/* Volunteer & Get Involved */}
+          <div className="mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-normal">
+                Join Our Movement
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                We believe in community-powered change. Whether you're a parent,
+                teacher, therapist, or concerned citizen, there's a place for
+                you at Sunnyside.
+              </p>
+              <h3 className="text-2xl font-bold mb-2 mt-8 text-gray-900">
+                Volunteer & Get Involved
+              </h3>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-8">
+              {volunteerOpportunities.map((opportunity, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 hover:shadow-lg transition-shadow h-full"
+                >
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">
+                      {opportunity.role}
+                    </h3>
+                    <p className="text-gray-700 mb-4">
+                      {opportunity.description}
+                    </p>
+                    <div className="text-sm text-[#32cd32] font-medium bg-[#32cd32]/5 px-3 py-1 rounded-full inline-block">
+                      {opportunity.commitment}
+                    </div>
+                  </div>
+
+                  <div className="mb-6">
+                    <h4 className="font-semibold text-gray-900 mb-3">
+                      Requirements
+                    </h4>
+                    <ul className="space-y-2">
+                      {opportunity.requirements.map((req, i) => (
+                        <li
+                          key={i}
+                          className="flex items-center text-sm text-gray-600"
+                        >
+                          <div className="w-2 h-2 bg-gray-300 rounded-full mr-3"></div>
+                          {req}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3">
+                      Benefits
+                    </h4>
+                    <ul className="space-y-2">
+                      {opportunity.benefits.map((benefit, i) => (
+                        <li
+                          key={i}
+                          className="flex items-center text-sm text-gray-600"
+                        >
+                          <div className="w-2 h-2 bg-[#32cd32] rounded-full mr-3"></div>
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-gray-900 to-gray-800 text-white p-12 rounded-2xl text-center max-w-4xl mx-auto"
+            >
+              <h3 className="text-3xl font-bold mb-6">
+                Ready to Make a Difference?
+              </h3>
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Whether you're enrolling your child, training as a volunteer, or
+                supporting our mission in other ways—we're here to help you get
+                started.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  variant="white"
+                  onClick={() => navigate(ROUTES.ENROLLMENT)}
+                  className="border-white text-gray-900 hover:bg-white/90 hover:border-white"
+                >
+                  Start Enrollment
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate(ROUTES.CONTACT)}
+                  className="text-white border-white hover:bg-white/10"
+                >
+                  Volunteer Interest Form
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate(ROUTES.DONATE)}
+                  className="text-white border-white hover:bg-white/10"
+                >
+                  Support Our Work
+                </Button>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </>

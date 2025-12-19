@@ -26,9 +26,9 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="pt-0 pb-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border border-gray-50 rounded-2xl shadow-lg shadow-gray-100 p-6">
+    <section className="pt-12 pb-12 bg-gray-100 px-8 sm:px-12 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-50 rounded-2xl shadow-lg shadow-gray-200 overflow-hidden bg-white p-6">
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
@@ -36,7 +36,7 @@ const StatsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="text-center p-6"
+              className="text-center px-8 py-8 bg-white"
             >
               <motion.div
                 initial={{ scale: 0 }}

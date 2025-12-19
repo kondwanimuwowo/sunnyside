@@ -4,12 +4,13 @@ import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 import { ROUTES, CONTACT } from "@utils/constants";
 import Button from "@components/common/Button";
+import unTwo from "@assets/images/un-three.jpg";
 
 const CTASection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
+    <section className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
@@ -22,7 +23,7 @@ const CTASection = () => {
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), url(/images/sunnyside-3.jpg)`,
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), url(${unTwo})`,
                 filter: "blur(2px)",
               }}
             ></div>

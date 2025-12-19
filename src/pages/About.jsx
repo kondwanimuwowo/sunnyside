@@ -107,16 +107,16 @@ const About = () => {
         keywords="sunnyside therapy zambia, special needs school lusaka, autism therapy zambia, ben izzy phiri, speech therapy lusaka, occupational therapy zambia, down syndrome support zambia, special education zambia"
       />
 
-      <div className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+      <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Hero Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-20"
+            className="text-center mb-6"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-10 text-gray-900 leading-normal">
-              Our Story & <span className="text-[#32cd32]">Mission</span>
+              About <span className="text-[#32cd32]">Us</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
               How a husband-and-wife team is transforming lives and creating
@@ -130,7 +130,7 @@ const About = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative rounded-3xl overflow-hidden shadow-lg mb-24 max-w-6xl mx-auto"
+            className="relative rounded-md overflow-hidden shadow-lg mb-16 max-w-6xl mx-auto"
           >
             <img
               src={IMAGES.sunnysideAbout}
@@ -149,8 +149,8 @@ const About = () => {
           </motion.div>
 
           {/* Main Content with Two-Column Layout */}
-          <div className="mb-28">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="mb-16">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
               {/* Left Column: Timeline - Now Sticky */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -224,20 +224,17 @@ const About = () => {
               >
                 {/* Story Content */}
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
                     Our Story
                   </h2>
 
                   <div className="space-y-6">
                     <p className="text-gray-700 leading-relaxed">
-                      Founded in Lusaka by husband-and-wife team{" "}
-                      <strong className="text-[#22a722]">Ben Phiri</strong> and{" "}
-                      <strong className="text-[#22a722]">
-                        Izzy (Elizabeth) Phiri
-                      </strong>
-                      , Sunnyside began with a simple but profound vision: to
-                      provide specialized support for children with learning
-                      challenges when and where they needed it most.
+                      Founded in Lusaka by husband-and-wife team Ben Phiri and
+                      Izzy (Elizabeth) Phiri , Sunnyside began with a simple but
+                      profound vision: to provide specialized support for
+                      children with learning challenges when and where they
+                      needed it most.
                     </p>
 
                     <p className="text-gray-700 leading-relaxed">
@@ -286,16 +283,15 @@ const About = () => {
           </div>
 
           {/* Founders Section */}
-          <div className="mb-28">
+          <div className="mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                The Hearts Behind the{" "}
-                <span className="text-[#32cd32]">Mission</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-normal">
+                The Hearts Behind the Mission
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Meet the passionate founders whose combined 25+ years of
@@ -391,15 +387,15 @@ const About = () => {
           </div>
 
           {/* Team Section */}
-          <div className="mb-28">
+          <div className="mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                Our Expert <span className="text-[#32cd32]">Team</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-normal">
+                Our Expert Team
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Specialized professionals dedicated to supporting every child's
@@ -448,15 +444,15 @@ const About = () => {
           </div>
 
           {/* Who We Serve */}
-          <div className="mb-24">
+          <div className="mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                Who We <span className="text-[#32cd32]">Serve</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-normal">
+                Who We Serve
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Tailored programs for children with specific developmental
@@ -514,15 +510,15 @@ const About = () => {
           </div>
 
           {/* Mission & Values */}
-          <div className="mb-28">
+          <div className="mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                Our Core <span className="text-[#32cd32]">Values</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-normal">
+                Our Core Values
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 The principles that guide every interaction and decision at

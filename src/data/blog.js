@@ -1,4 +1,12 @@
 import { Brain, BookOpen, Star, Users, Library } from "lucide-react";
+import bOne from "@assets/images/blog/ss-one.jpg";
+import bTwo from "@assets/images/blog/ss-two.jpg";
+import bThree from "@assets/images/blog/ss-three.jpg";
+import bFour from "@assets/images/blog/ss-four.jpg";
+import bFive from "@assets/images/blog/ss-five.jpg";
+import bSix from "@assets/images/blog/ss-six.jpg";
+import bSeven from "@assets/images/blog/ss-seven.jpg";
+import bEight from "@assets/images/blog/ss-eight.jpg";
 
 export const BLOG_CATEGORIES = [
   {
@@ -32,6 +40,17 @@ export const BLOG_CATEGORIES = [
     icon: Library,
   },
 ];
+
+const BLOG_IMAGES = {
+  bOne: bOne,
+  bTwo: bTwo,
+  bThree: bThree,
+  bFour: bFour,
+  bFive: bFive,
+  bSix: bSix,
+  bSeven: bSeven,
+  bEight: bEight,
+};
 
 export const BLOG_POSTS = [
   {
@@ -100,8 +119,7 @@ Remember: Every child develops at their own pace, but early support can make all
     },
     category: "therapy",
     tags: ["autism", "early-intervention", "parents-guide", "development"],
-    featuredImage:
-      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1200&q=80",
+    featuredImage: `${bOne}`,
     publishedAt: "2024-12-01",
     readTime: 8,
     featured: true,
@@ -183,8 +201,7 @@ Every child deserves the opportunity to learn and grow. With patience, consisten
     },
     category: "education",
     tags: ["down-syndrome", "education", "teaching-strategies", "learning"],
-    featuredImage:
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80",
+    featuredImage: bEight,
     publishedAt: "2024-11-28",
     readTime: 6,
     featured: true,
@@ -247,10 +264,10 @@ Today, Mwape:
 ## Lessons Learned
 
 Mwape's success teaches us:
-- **Every child has unique strengths** - We found Mwape's visual learning strength
-- **Consistency matters** - Regular therapy and home practice were crucial
-- **Celebrate small wins** - Each new word was a victory
-- **Never give up** - Progress isn't always linear, but it happens
+- *Every child has unique strengths* - We found Mwape's visual learning strength
+- *Consistency matters* - Regular therapy and home practice were crucial
+- *Celebrate small wins* - Each new word was a victory
+- *Never give up* - Progress isn't always linear, but it happens
 
 ## What Parents Can Do
 
@@ -270,8 +287,7 @@ Mwape's story reminds us why we do what we do at Sunnyside. Every child deserves
     },
     category: "success-stories",
     tags: ["success-story", "speech-therapy", "reading", "communication"],
-    featuredImage:
-      "https://images.unsplash.com/photo-1587616211892-e2e3c8455a4f?w=1200&q=80",
+    featuredImage: bFive,
     publishedAt: "2024-11-25",
     readTime: 5,
     featured: true,
@@ -376,8 +392,7 @@ Remember: Every child's sensory needs are unique. What works for one may not wor
     },
     category: "parents-guide",
     tags: ["sensory-processing", "home-strategies", "environment", "parents"],
-    featuredImage:
-      "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=1200&q=80",
+    featuredImage: bSix,
     publishedAt: "2024-11-20",
     readTime: 7,
     featured: false,
@@ -477,8 +492,7 @@ At Sunnyside, we believe every child can make progress with the right support, p
     },
     category: "therapy",
     tags: ["cerebral-palsy", "motor-skills", "physical-therapy", "development"],
-    featuredImage:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=80",
+    featuredImage: bThree,
     publishedAt: "2024-11-15",
     readTime: 6,
     featured: false,
@@ -542,8 +556,7 @@ We envision a Zambia where every child, regardless of their challenges, can acce
     },
     category: "education",
     tags: ["inclusive-education", "zambia", "advocacy", "schools"],
-    featuredImage:
-      "https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=1200&q=80",
+    featuredImage: bSeven,
     publishedAt: "2024-11-10",
     readTime: 5,
     featured: false,

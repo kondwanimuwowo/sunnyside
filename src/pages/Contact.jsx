@@ -139,7 +139,7 @@ const Contact = () => {
         keywords="contact sunnyside therapy center, special needs support zambia, autism therapy contact"
       />
 
-      <div className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+      <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div

@@ -4,7 +4,7 @@ import unImg from "../../assets/images/therapy.png";
 
 const MissionSection = () => {
   return (
-    <section className="pt-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-gray-50 to-white pb-12 mt-16 mb-0">
+    <section className="pt-18 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white via-gray-50 to-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -12,8 +12,8 @@ const MissionSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-            More Than <span className="text-[#32cd32]">Therapy</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-normal">
+            More Than Therapy
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We're building a movement for inclusion in Zambia. Our approach goes
@@ -68,7 +68,7 @@ const MissionSection = () => {
               </p>
             </div>
 
-            <div className="bg-[#32cd32]/5 p-6 rounded-xl border border-[#32cd32]/20">
+            <div className="bg-[#32cd32]/5 p-6 rounded-2xl border border-[#32cd32]/20">
               <h4 className="font-bold text-lg mb-2 text-gray-900">
                 Our Vision
               </h4>

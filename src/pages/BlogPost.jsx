@@ -1,8 +1,3 @@
-// ============================================================================
-// FILE: src/pages/BlogPost.jsx
-// FIXED - Single blog post with beautiful content rendering
-// ============================================================================
-
 import React, { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -83,10 +78,10 @@ const BlogPost = () => {
         type="article"
       />
 
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-whitept pt-8 md:pt-0">
         {/* Header */}
         <div className="bg-gradient-to-b from-gray-50 to-white pt-20 pb-8 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col max-w-4xl mx-auto">
             <Link
               to="/blog"
               className="inline-flex items-center text-[#32cd32] hover:text-[#22a722] font-medium mb-6 transition-colors"
@@ -95,10 +90,9 @@ const BlogPost = () => {
               Back to Blog
             </Link>
 
-            {/* Category Badge */}
             {category && (
               <div
-                className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-white mb-4"
+                className="inline-flex w-fit self-start items-center px-3 py-1 rounded-full text-sm font-medium text-white mb-4"
                 style={{ backgroundColor: category.color }}
               >
                 <category.icon className="w-4 h-4 mr-1" />

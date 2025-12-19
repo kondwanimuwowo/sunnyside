@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Brain, Users, Hand } from "lucide-react";
+import { Brain, Users, Hand, MessageCircleHeart } from "lucide-react";
 import { ROUTES, IMAGES } from "@utils/constants";
 import Button from "@components/common/Button";
 import Card from "@components/common/Card";
@@ -57,10 +57,16 @@ const ProgramsSection = () => {
       description: "Fine and gross motor development",
       image: IMAGES.therapy,
     },
+    {
+      icon: MessageCircleHeart,
+      title: "Communication Skills",
+      description: "Expressive and receptive language",
+      image: IMAGES.learning,
+    },
   ];
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+    <section className="pt-16 pb-16 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section 1: Core Programs (Strategic) */}
         <motion.div
@@ -69,8 +75,8 @@ const ProgramsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-            Creating <span className="text-[#32cd32]">Lasting Change</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-normal">
+            Creating Lasting Change
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Our programs are designed to create sustainable impact at every
@@ -79,7 +85,7 @@ const ProgramsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-18 mb-20">
+        <div className="grid lg:grid-cols-2 gap-8 my-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -114,7 +120,7 @@ const ProgramsSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="my-12 border-t border-gray-200 pt-12"
+              className="text-center my-12 border-t border-[#32cd32]/50 pt-12"
             >
               <h3 className="text-3xl font-bold mb-8 text-gray-900">
                 Our Therapy Domains
@@ -166,6 +172,14 @@ const ProgramsSection = () => {
                   </motion.div>
                 ))}
               </div>
+              <Button
+                variant="ghost"
+                size="lg"
+                onClick={() => navigate(ROUTES.SERVICES)}
+                className="mt-8 mx-auto block bg-transparent hover:bg-transparent hover:text-gray-700 transition-all duration-300"
+              >
+                View All Domains
+              </Button>
             </motion.div>
           </motion.div>
 

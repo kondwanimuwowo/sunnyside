@@ -11,7 +11,7 @@ const Timeline = ({
   animateLine = true,
 }) => {
   return (
-    <div className="mb-28">
+    <div className="mb-8">
       <div className="max-w-4xl mx-auto px-4">
         {(title || subtitle) && (
           <div className="text-center mb-16">
