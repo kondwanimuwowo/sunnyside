@@ -43,7 +43,7 @@ const ProgramsSection = () => {
       icon: Brain,
       title: "Academic Skills",
       description: "Math, literacy, writing development",
-      image: IMAGES.education,
+      image: IMAGES.learning,
     },
     {
       icon: Users,
@@ -55,13 +55,13 @@ const ProgramsSection = () => {
       icon: Hand,
       title: "Motor Skills",
       description: "Fine and gross motor development",
-      image: IMAGES.therapy,
+      image: IMAGES.playing,
     },
     {
       icon: MessageCircleHeart,
       title: "Communication Skills",
       description: "Expressive and receptive language",
-      image: IMAGES.learning,
+      image: IMAGES.therapy,
     },
   ];
 

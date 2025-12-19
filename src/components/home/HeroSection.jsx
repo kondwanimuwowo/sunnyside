@@ -97,7 +97,7 @@ const HeroSection = () => {
                 Support Our Mission
               </Button>
               <Button
-                variant="teal"
+                variant="outline"
                 size="lg"
                 onClick={() => navigate(ROUTES.CONTACT)}
               >
