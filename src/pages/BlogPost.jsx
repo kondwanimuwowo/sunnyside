@@ -78,9 +78,9 @@ const BlogPost = () => {
         type="article"
       />
 
-      <div className="min-h-screen bg-whitept pt-8 md:pt-0">
+      <div className="min-h-screen bg-white">
         {/* Header */}
-        <div className="bg-gradient-to-b from-gray-50 to-white pt-20 pb-8 px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-b from-gray-50 to-white pt-16 pb-8 md:pt-20 md:pb-8 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col max-w-4xl mx-auto">
             <Link
               to="/blog"
@@ -104,7 +104,7 @@ const BlogPost = () => {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight"
             >
               {post.title}
             </motion.h1>

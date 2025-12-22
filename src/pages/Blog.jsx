@@ -58,17 +58,17 @@ const Blog = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
+        <section className="pt-24 md:pt-24 pb-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-center max-w-3xl mx-auto"
             >
-              <h1 className="text-5xl md:text-6xl font-bold mb-10 text-gray-900 leading-normal">
+               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
                 Blog & <span className="text-[#32cd32]">Resources</span>
               </h1>
-              <p className="text-xl text-gray-600 mb-8">
+              <p className="text-lg text-gray-600 mb-8">
                 Expert insights, success stories, and practical guidance for
                 parents and educators
               </p>

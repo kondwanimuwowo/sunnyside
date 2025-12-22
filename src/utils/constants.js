@@ -32,10 +32,10 @@ export const CONTACT = {
 
 // Brand Colors - Lime Green + Deep Blue system
 export const COLORS = {
-  primary: "#32cd32", // Lime Green
+  primary: "#32cd32",
   primaryLight: "#5ee45e",
   primaryDark: "#22a722",
-  accent: "#4318dd", // Deep Blue
+  accent: "#4318dd",
   accentLight: "#6366f1",
   accentDark: "#3311bb",
   teal: "#1ba397",

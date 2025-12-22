@@ -158,16 +158,16 @@ const Gallery = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
+        <section className="pt-24 md:pt-24 pb-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <h1 className="text-5xl md:text-6xl font-bold mb-10 text-gray-900 leading-normal">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
                 Our <span className="text-[#32cd32]">Gallery</span>
               </h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Take a glimpse into daily life at Sunnyside Therapy Center -
                 where every child thrives
               </p>

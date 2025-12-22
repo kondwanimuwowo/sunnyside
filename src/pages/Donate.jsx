@@ -13,7 +13,7 @@ const Donate = () => {
         keywords="donate, support children, zambia donations, therapy center donations, special needs support"
       />
 
-      <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      <div className="pt-24 md:pt-24 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <motion.div
@@ -21,10 +21,10 @@ const Donate = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-10 text-gray-900 leading-normal">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
               Support <span className="text-[#32cd32]">Our Mission</span>
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg text-gray-600">
               Your donation helps us provide quality therapy and education to
               children who need it most.
             </p>

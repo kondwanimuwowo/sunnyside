@@ -33,18 +33,19 @@ const Enrollment = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Header */}
-        <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-white">
+        <section className="pt-24 md:pt-24 pb-12 md:pb-12 bg-white">
+
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-center"
             >
-              <h1 className="text-5xl md:text-6xl font-bold mb-10 text-gray-900 leading-normal">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
                 Enroll <span className="text-[#32cd32]">Your Child</span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-6 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
                 Take the first step towards your child's success. Complete this
                 form to register for our specialized therapy and educational
                 programs.

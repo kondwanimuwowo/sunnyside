@@ -139,7 +139,7 @@ const Contact = () => {
         keywords="contact sunnyside therapy center, special needs support zambia, autism therapy contact"
       />
 
-      <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      <div className="pt-24 md:pt-24 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
@@ -147,7 +147,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
               Contact <span className="text-[#32cd32]">Us</span>
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">

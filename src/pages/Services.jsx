@@ -124,18 +124,18 @@ const Services = () => {
         keywords="therapy services, academic skills, communication therapy, social skills, motor skills, behavior management, sensory support, early intervention, school readiness, parent training, volunteer opportunities"
       />
 
-      <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      <div className="pt-24 md:pt-24 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Hero Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-28 max-w-4xl mx-auto h-screen-flex justify-center items-center flex flex-col"
+            className="text-center mb-16 md:mb-28 max-w-4xl mx-auto h-screen-flex justify-center items-center flex flex-col"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-10 text-gray-900 leading-normal">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
               Our <span className="text-[#32cd32]">Services</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
               At Sunnyside, we don't just provide therapy—we build comprehensive
               pathways to success for children, families, and communities across
               Zambia.
@@ -199,7 +199,7 @@ const Services = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-normal">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
                 The Five Learning Domains
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -223,7 +223,7 @@ const Services = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-normal">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
                 Our Structured Programs
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -333,7 +333,7 @@ const Services = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-normal">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
                 Specialised Support Services
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -380,7 +380,7 @@ const Services = () => {
           >
             <div className="max-w-4xl mx-auto px-4">
               <div className="text-center mb-16">
-                <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-900">
                   Our Process
                 </h3>
                 <p className="text-gray-600 text-lg">
@@ -520,7 +520,7 @@ const Services = () => {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold mb-6 text-gray-900 leading-normal">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
                 Join Our Movement
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">

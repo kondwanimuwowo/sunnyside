@@ -25,9 +25,8 @@ const HeroSection = () => {
         items-center
         px-4 sm:px-6 lg:px-8
         bg-cover bg-center bg-no-repeat
-        pt-16 md:pt-0
+        pt-32 md:pt-0
         md:-mt-16
-        pt-32 sm:pt-32 md:pt-32 lg:pt-32 xl:pt-16
       "
       style={{
         backgroundImage: `url(${bgImage})`,
@@ -52,7 +51,7 @@ const HeroSection = () => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center space-x-2 bg-[rgba(50,205,50,0.12)] px-4 py-2 rounded-full"
             >
-              <span className="font-medium text-[#22a722]">
+              <span className="text-sm text-center font-medium text-[#22a722]">
                 Sunnyside Therapy Center & Preparatory School
               </span>
             </motion.div>
@@ -74,7 +73,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl text-gray-700 leading-relaxed"
+              className="text-lg text-gray-700 leading-relaxed"
             >
               At Sunnyside Therapy Center, we provide specialized support for
               children with autism, Down syndrome, cerebral palsy, and other

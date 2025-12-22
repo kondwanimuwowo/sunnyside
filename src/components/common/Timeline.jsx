@@ -11,12 +11,12 @@ const Timeline = ({
   animateLine = true,
 }) => {
   return (
-    <div className="mb-8">
+    <div className="mb-0">
       <div className="max-w-4xl mx-auto px-4">
         {(title || subtitle) && (
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             {title && (
-              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-gray-900">
                 {title}
               </h3>
             )}

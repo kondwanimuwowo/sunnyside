@@ -11,7 +11,7 @@ const NotFound = () => {
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center">
         <div className="text-9xl font-bold text-[#32cd32] mb-4">404</div>
-        <h1 className="text-5xl md:text-6xl font-bold mb-10 text-gray-900 leading-normal">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
           Page Not Found
         </h1>
         <p className="text-gray-600 mb-8">

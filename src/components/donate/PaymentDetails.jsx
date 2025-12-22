@@ -15,6 +15,7 @@ import {
 const PaymentDetails = ({ donorInfo, setDonorInfo, error }) => {
   const [paymentMethod, setPaymentMethod] = useState("mobile-money");
   const [autoDetected, setAutoDetected] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
 
   // ✅ Auto-detect operator from phone prefix
   const detectOperator = (phone) => {
