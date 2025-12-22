@@ -99,7 +99,7 @@ export const ROUTES = {
   DONATE: "/donate",
   CONTACT: "/contact",
   GALLERY: "/gallery",
-  RESOURCES: "/resources",
+  RESOURCES: "/blog",
   BLOG: "/blog",
   ENROLLMENT: "/enrollment",
   PRIVACY: "/privacy-policy",
@@ -195,6 +195,19 @@ export const ADDITIONAL_SERVICES = [
       "Replacement behavior training",
       "Progress monitoring and adjustment",
       "Family training and support",
+    ],
+  },
+  {
+    id: "physical",
+    title: "Physical Therapy",
+    description: "Targeted motor development and physical rehabilitation",
+    points: [
+      "Gross motor skill development",
+      "Postural control and stability",
+      "Balance and coordination training",
+      "Strength and endurance building",
+      "Mobility and gait training",
+      "Individualized exercise programs",
     ],
   },
   {

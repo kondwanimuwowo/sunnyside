@@ -562,6 +562,54 @@ We envision a Zambia where every child, regardless of their challenges, can acce
     featured: false,
     views: 980,
   },
+  {
+    id: "resource-early-intervention-toolkit",
+    slug: "resource-early-intervention-toolkit",
+    title: "The Early Intervention Toolkit: A Downloadable Guide",
+    excerpt:
+      "A comprehensive guide for parents to help track developmental milestones and implement home-based support strategies.",
+    content: `
+# The Early Intervention Toolkit
+
+Early intervention is the most effective way to help children with developmental challenges reach their potential. This toolkit provides parents with the information and tools they need to stay informed and proactive.
+
+## What's Inside?
+
+### 1. Milestone Tracker
+A detailed checklist of developmental milestones across communication, social, and motor domains for children ages 2-6.
+
+### 2. Home Activity Guide
+Simple, effective activities you can do at home to support:
+- Sensory processing
+- Fine motor development
+- Social interaction routines
+
+### 3. Communication Log
+Template for tracking new words, gestures, and communication attempts to share with your therapy team.
+
+## How to Use This Resource
+
+We recommend printing the milestone tracker and keeping it in a visible place. Use the home activity guide as a reference when you have 15-20 minutes of playtime with your child.
+
+## Working with Professionals
+
+While these resources provide excellent support, they are designed to complement professional therapy. If you have concerns about your child's development, please contact us for a professional assessment.
+
+*Note: This is a digital resource provided for informational purposes only.*
+    `,
+    author: {
+      name: "Sunnyside Team",
+      role: "Therapy & Education specialists",
+      avatar: null,
+    },
+    category: "resources",
+    tags: ["toolkit", "guide", "milestones", "home-support"],
+    featuredImage: bFour,
+    publishedAt: "2024-12-15",
+    readTime: 4,
+    featured: false,
+    views: 850,
+  },
 ];
 
 // Helper functions

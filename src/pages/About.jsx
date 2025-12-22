@@ -163,7 +163,7 @@ const About = () => {
                   subtitle="From home visits to a center of excellence"
                   items={[
                     {
-                      year: "2022",
+                      year: "2020",
                       title: "The Beginning",
                       description:
                         "Started with home-based one-on-one therapy sessions across Zambia.",
@@ -175,7 +175,7 @@ const About = () => {
                       iconName: "Home",
                     },
                     {
-                      year: "2023",
+                      year: "2021",
                       title: "Center Established",
                       description:
                         "Opened the first Sunnyside Therapy Center in Lusaka.",
@@ -187,18 +187,18 @@ const About = () => {
                       iconName: "Building",
                     },
                     {
-                      year: "2024",
+                      year: "2023",
                       title: "Growth & Impact",
                       description: "Expanded programs and school partnerships.",
                       details: [
                         "Served 100+ children",
-                        "Trained 20+ teachers",
-                        "Launched parent workshops",
+                        "Trained 15+ teachers",
+                        "Launched parent Empowerment Sessions",
                       ],
                       iconName: "TrendingUp",
                     },
                     {
-                      year: "2025",
+                      year: "2024",
                       title: "Looking Ahead",
                       description: "Expanding reach and community impact.",
                       details: [
@@ -239,9 +239,9 @@ const About = () => {
 
                     <p className="text-gray-700 leading-relaxed">
                       What started as home-based one-on-one therapy sessions in
-                      2022 quickly grew into something much larger. As word
+                      2020 quickly grew into something much larger. As word
                       spread and the need became apparent, we expanded into a
-                      full Therapy Center and Preparatory School in 2023.
+                      full Therapy Center and Preparatory School in 2021.
                     </p>
 
                     {/* Added Vision Card */}

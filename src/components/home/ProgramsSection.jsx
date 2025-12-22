@@ -24,16 +24,16 @@ const ProgramsSection = () => {
       impact: "92% transition successfully to mainstream schools",
     },
     {
-      title: "Parent Empowerment Workshops",
+      title: "Parent Empowerment Sessions",
       description:
-        "Monthly workshops teaching parents strategies to support their child's development at home.",
-      impact: "Over 20 parents trained since 2023",
+        "Encouraging parents to be present during therapy sessions and teaching them strategies to support their child's development at home.",
+      impact: "Over 20 parents trained since 2020",
     },
     {
-      title: "Teacher Training Initiative",
+      title: "Teacher Training Program",
       description:
         "Training Zambian teachers on inclusive education practices for diverse learners.",
-      impact: "Training 5+ teachers annually",
+      impact: "Training 15+ teachers annually",
     },
   ];
 
@@ -219,7 +219,7 @@ const ProgramsSection = () => {
                   </li>
                   <li className="flex items-center text-gray-700">
                     <div className="w-2 h-2 bg-[#32cd32] rounded-full mr-3"></div>
-                    Train 5+ teachers in inclusive practices
+                    Train 15+ teachers in inclusive practices
                   </li>
                   <li className="flex items-center text-gray-700">
                     <div className="w-2 h-2 bg-[#32cd32] rounded-full mr-3"></div>

@@ -17,7 +17,6 @@ const Footer = () => {
 
   const supportLinks = [
     { path: ROUTES.DONATE, label: "Donate" },
-    { path: ROUTES.RESOURCES, label: "Resources" },
     { path: ROUTES.BLOG, label: "Blog" },
     { path: ROUTES.PRIVACY, label: "Privacy Policy" },
   ];

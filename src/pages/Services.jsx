@@ -120,8 +120,8 @@ const Services = () => {
     <>
       <SEO
         title="Our Services & Programs"
-        description="Comprehensive therapy, education services, and support programs for children with learning challenges. Five learning domains plus specialized behavioral and sensory support."
-        keywords="therapy services, academic skills, communication therapy, social skills, motor skills, behavior management, sensory support, early intervention, school readiness, parent training, volunteer opportunities"
+        description="Comprehensive physical therapy, developmental education services, and support programs for children with learning challenges. Five learning domains plus specialized behavioral, physical, and sensory support."
+        keywords="therapy services, physical therapy, academic skills, communication therapy, social skills, motor skills, behavior management, sensory support, early intervention, school readiness, parent training, volunteer opportunities"
       />
 
       <div className="pt-24 md:pt-24 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
@@ -157,13 +157,13 @@ const Services = () => {
                 <div className="text-sm text-gray-600">Core Programs</div>
               </div>
               <div className="text-center p-4 rounded-xl">
-                <div className="text-2xl font-bold text-[#32cd32]">7</div>
+                <div className="text-2xl font-bold text-[#32cd32]">8</div>
                 <div className="text-sm text-gray-600">
                   Specialized Services
                 </div>
               </div>
               <div className="text-center p-4 rounded-xl">
-                <div className="text-2xl font-bold text-[#32cd32]">100+</div>
+                <div className="text-2xl font-bold text-[#32cd32]">160+</div>
                 <div className="text-sm text-gray-600">Children Served</div>
               </div>
             </motion.div>
@@ -342,7 +342,7 @@ const Services = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {ADDITIONAL_SERVICES.map((service, idx) => (
                 <motion.div
                   key={service.id}

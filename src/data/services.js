@@ -142,6 +142,21 @@ const servicesData = {
       ],
     },
     {
+      id: "physical",
+      title: "Physical Therapy",
+      description: "Targeted motor development and physical rehabilitation",
+      fullDescription:
+        "Our physical therapy program focuses on helping children improve their physical function and mobility. We use individualized exercises and interventions to develop strength, balance, and coordination, empowering children to participate more fully in their daily activities.",
+      points: [
+        "Gross motor skill development",
+        "Postural control and stability",
+        "Balance and coordination training",
+        "Strength and endurance building",
+        "Mobility and gait training",
+        "Individualized exercise programs",
+      ],
+    },
+    {
       id: "sensory",
       title: "Sensory Support",
       description: "Individualized sensory integration therapy",

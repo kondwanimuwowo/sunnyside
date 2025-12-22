@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const StatsSection = () => {
   const stats = [
     {
-      value: "100+",
+      value: "160+",
       label: "Children Supported",
       description: "Active cases across Zambia",
     },
