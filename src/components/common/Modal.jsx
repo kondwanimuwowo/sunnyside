@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { X } from "lucide-react";
 
 const Modal = ({
@@ -9,13 +9,40 @@ const Modal = ({
   size = "md",
   showCloseButton = true,
 }) => {
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      
+      // Push state to history so back button closes modal instead of navigating away
+      window.history.pushState({ modalOpen: true }, "", window.location.href);
+
+      const handlePopState = () => {
+        // User pressed back button, so we close the modal
+        onCloseRef.current();
+      };
+
+      window.addEventListener("popstate", handlePopState);
+
+      return () => {
+        document.body.style.overflow = "unset";
+        window.removeEventListener("popstate", handlePopState);
+        
+        // If we're closing via X button (history state still exists), remove it
+        if (window.history.state?.modalOpen) {
+          window.history.back();
+        }
+      };
     } else {
       document.body.style.overflow = "unset";
     }
-
+    
+    // Safety cleanup for unmount or unexpected state
     return () => {
       document.body.style.overflow = "unset";
     };
