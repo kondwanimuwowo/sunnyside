@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { CheckCircle, Clock, Shield } from "lucide-react";
+import { CheckCircle, Clock, Shield, Phone, MessageCircle } from "lucide-react";
 import EnrollmentForm from "@components/enrollment/EnrollmentForm";
 import SEO from "@components/common/SEO";
+import Button from "@components/common/Button";
 
 const Enrollment = () => {
   const benefits = [
@@ -113,22 +114,22 @@ const Enrollment = () => {
               process, our team is here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:0978501101"
-                className="inline-flex items-center justify-center px-6 py-3 bg-white border-2 border-[#32cd32] text-[#32cd32] rounded-lg font-medium hover:bg-[rgba(50,205,50,0.05)] transition-colors"
+              <Button
+                variant="outline"
+                icon={Phone}
+                onClick={() => window.location.href = "tel:0978501101"}
               >
                 Call Us
-              </a>
-              <a
-                href={`https://wa.me/260978501101?text=${encodeURIComponent(
+              </Button>
+              <Button
+                variant="primary"
+                icon={MessageCircle}
+                onClick={() => window.open(`https://wa.me/260978501101?text=${encodeURIComponent(
                   "Hello, I need help with enrollment"
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 bg-[#25d366] text-white rounded-lg font-medium hover:bg-[#20ba5a] transition-colors"
+                )}`, "_blank")}
               >
                 WhatsApp
-              </a>
+              </Button>
             </div>
           </div>
         </section>
