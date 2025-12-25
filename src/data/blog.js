@@ -233,7 +233,7 @@ Our team conducted a comprehensive assessment and discovered:
 
 We developed a plan focusing on:
 1. Picture Exchange Communication System (PECS)
-2. Speech therapy twice weekly
+2. Developmental therapy twice weekly
 3. Occupational therapy for fine motor skills
 4. Social skills group sessions
 
