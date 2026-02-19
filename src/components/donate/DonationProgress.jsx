@@ -1,40 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Smartphone,
-  CreditCard,
-  Loader2,
-  AlertCircle,
-  Check,
-} from "lucide-react";
+import { CreditCard, Loader2, AlertCircle, Check } from "lucide-react";
 
-const DonationProgress = ({
-  amount,
-  phone,
-  paymentMethod = "mobile-money",
-  error,
-}) => {
-  // Different steps based on payment method
-  const mobileMoneySteps = [
-    { label: "Payment initiated", done: true },
-    { label: "Push notification sent", done: true },
-    { label: "Waiting for approval", done: false },
+const DonationProgress = ({ amount, error }) => {
+  const steps = [
+    { label: "Checkout opened", done: true },
+    { label: "Processing payment", done: true },
+    { label: "Awaiting confirmation", done: false },
   ];
 
-  const cardSteps = [
-    { label: "Payment initiated", done: true },
-    { label: "Processing card payment", done: true },
-    { label: "Verifying transaction", done: false },
-  ];
-
-  const steps = paymentMethod === "card" ? cardSteps : mobileMoneySteps;
-  const Icon = paymentMethod === "card" ? CreditCard : Smartphone;
-  const title =
-    paymentMethod === "card" ? "Processing Card Payment" : "Processing Payment";
-  const subtitle =
-    paymentMethod === "card"
-      ? "Please wait while we process your card"
-      : "Please check your phone to complete";
+  const title = "Processing Payment";
+  const subtitle = "Complete your payment in the secure checkout window";
 
   return (
     <div className="text-center py-12">
@@ -51,7 +27,7 @@ const DonationProgress = ({
           }}
           className="w-20 h-20 mx-auto bg-[#32cd32] rounded-full flex items-center justify-center shadow-sm"
         >
-          <Icon className="w-10 h-10 text-white" />
+          <CreditCard className="w-10 h-10 text-white" />
         </motion.div>
 
         {/* Spinner */}
@@ -72,13 +48,7 @@ const DonationProgress = ({
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
           <p className="text-sm text-gray-600 mb-1">Amount</p>
           <p className="text-3xl font-bold text-[#32cd32]">K{amount}</p>
-          {/* Only show phone number for mobile money */}
-          {paymentMethod === "mobile-money" && phone && (
-            <p className="text-sm text-gray-500 mt-1">{phone}</p>
-          )}
-          {paymentMethod === "card" && (
-            <p className="text-sm text-gray-500 mt-1">Secure card processing</p>
-          )}
+          <p className="text-sm text-gray-500 mt-1">Secure payment via Lenco</p>
         </div>
       </div>
 
@@ -134,7 +104,7 @@ const DonationProgress = ({
       )}
 
       <p className="text-xs text-gray-500 mt-8">
-        This may take up to 2 minutes
+        This may take a moment to complete
       </p>
     </div>
   );

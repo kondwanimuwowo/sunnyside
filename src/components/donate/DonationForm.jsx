@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Heart,
@@ -15,7 +15,6 @@ import DonationProgress from "./DonationProgress";
 import DonationSuccess from "./DonationSuccess";
 import Button from "@components/common/Button";
 import { MIN_DONATION } from "@utils/constants";
-import OTPModal from "./OTPModal";
 
 const DonationForm = () => {
   const [donationStep, setDonationStep] = useState(1);
@@ -24,24 +23,49 @@ const DonationForm = () => {
     name: "",
     email: "",
     phone: "",
-    operator: "airtel",
-    paymentMethod: "mobile-money",
   });
-  const [showOTPModal, setShowOTPModal] = useState(false);
-  const [otpError, setOTPError] = useState("");
-  const [otpLoading, setOTPLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [reference, setReference] = useState("");
   const [isRecurring, setIsRecurring] = useState(false);
   const [frequency, setFrequency] = useState("monthly");
+  const [lencoReady, setLencoReady] = useState(false);
 
   const steps = [
     { number: 1, label: "Amount", Icon: DollarSign },
     { number: 2, label: "Details", Icon: FileText },
     { number: 3, label: "Payment", Icon: CreditCard },
-    { number: 4, label: "Complete", Icon: CheckCircle },
+    { number: 4, label: "Confirmation", Icon: CheckCircle },
   ];
+
+  useEffect(() => {
+    const existing = document.querySelector('script[data-lenco="inline"]');
+    if (window.LencoPay) {
+      setLencoReady(true);
+      return;
+    }
+    if (existing) return;
+
+    const script = document.createElement("script");
+    const isSandbox = String(import.meta.env.VITE_LENCO_SANDBOX) === "true";
+    script.src = isSandbox
+      ? "https://pay.sandbox.lenco.co/js/v1/inline.js"
+      : "https://pay.lenco.co/js/v1/inline.js";
+    script.async = true;
+    script.dataset.lenco = "inline";
+    script.onload = () => setLencoReady(true);
+    script.onerror = () => {
+      setError("Unable to load payment system. Please try again.");
+      setLencoReady(false);
+    };
+    document.body.appendChild(script);
+  }, []);
+
+  const getApiBase = () => {
+    const base = import.meta.env.VITE_API_BASE_URL || "";
+    if (!base) return "/api";
+    return base.endsWith("/api") ? base : `${base}/api`;
+  };
 
   const handleAmountContinue = () => {
     if (!donationAmount || parseFloat(donationAmount) < MIN_DONATION) {
@@ -63,31 +87,45 @@ const DonationForm = () => {
       return false;
     }
 
-    if (donorInfo.paymentMethod === "mobile-money") {
-      if (!donorInfo.phone) {
-        setError("Please enter your mobile money number");
-        return false;
-      }
-      if (!donorInfo.operator) {
-        setError("Please select your mobile money operator");
-        return false;
-      }
-    } else if (donorInfo.paymentMethod === "card") {
-      if (!donorInfo.cardNumber) {
-        setError("Please enter your card number");
-        return false;
-      }
-      if (!donorInfo.expiryDate) {
-        setError("Please enter card expiry date");
-        return false;
-      }
-      if (!donorInfo.cvv) {
-        setError("Please enter CVV");
-        return false;
-      }
+    if (!donorInfo.email) {
+      setError("Please enter your email address");
+      return false;
     }
 
     return true;
+  };
+
+  const openLencoCheckout = (ref) => {
+    const key = import.meta.env.VITE_LENCO_PUBLIC_KEY;
+    if (!key) {
+      throw new Error("Payment key is missing. Please contact support.");
+    }
+
+    const nameParts = donorInfo.name.trim().split(/\s+/);
+    const firstName = nameParts[0] || donorInfo.name;
+    const lastName = nameParts.slice(1).join(" ") || " ";
+
+    window.LencoPay.getPaid({
+      key,
+      reference: ref,
+      amount: Number(donationAmount),
+      currency: "ZMW",
+      email: donorInfo.email,
+      firstName,
+      lastName,
+      phone: donorInfo.phone || undefined,
+      title: "Sunnyside Therapy Center",
+      description: "Donation",
+      onClose: () => {
+        setLoading(false);
+        setError("Payment was cancelled. You can try again.");
+        setDonationStep(2);
+      },
+      callback: () => {
+        setLoading(false);
+        setDonationStep(4);
+      },
+    });
   };
 
   const handleSubmit = async () => {
@@ -100,24 +138,20 @@ const DonationForm = () => {
     setDonationStep(3);
 
     try {
-      const API_URL =
-        import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+      if (!lencoReady) {
+        throw new Error("Payment system is still loading. Please try again.");
+      }
+
+      const API_URL = getApiBase();
 
       const payload = {
         amount: donationAmount,
         donorName: donorInfo.name,
         donorEmail: donorInfo.email,
-        paymentMethod: donorInfo.paymentMethod,
+        donorPhone: donorInfo.phone,
+        isRecurring,
+        frequency,
       };
-
-      if (donorInfo.paymentMethod === "mobile-money") {
-        payload.phone = donorInfo.phone;
-        payload.operator = donorInfo.operator;
-      } else if (donorInfo.paymentMethod === "card") {
-        payload.cardNumber = donorInfo.cardNumber;
-        payload.expiryDate = donorInfo.expiryDate;
-        payload.cvv = donorInfo.cvv;
-      }
 
       const response = await fetch(`${API_URL}/donations/initiate`, {
         method: "POST",
@@ -129,7 +163,7 @@ const DonationForm = () => {
 
       if (data.success) {
         setReference(data.reference);
-        pollPaymentStatus(data.reference);
+        openLencoCheckout(data.reference);
       } else {
         throw new Error(data.message || "Payment failed");
       }
@@ -140,160 +174,6 @@ const DonationForm = () => {
     }
   };
 
-  const handleOTPSubmit = async (otp) => {
-    setOTPLoading(true);
-    setOTPError("");
-
-    try {
-      const API_URL =
-        import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
-
-      const response = await fetch(`${API_URL}/donations/${reference}/otp`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ otp }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setShowOTPModal(false);
-        setLoading(true);
-        setDonationStep(3);
-        // Resume polling
-        pollPaymentStatus(reference);
-      } else {
-        setOTPError(data.message || "Invalid OTP");
-      }
-    } catch (err) {
-      setOTPError(err.message);
-    } finally {
-      setOTPLoading(false);
-    }
-  };
-
-  const pollPaymentStatus = async (ref) => {
-    let attempts = 0;
-    const maxAttempts = 20;
-    let lookupFailCount = 0;
-    const maxLookupFails = 5;
-
-    const API_URL =
-      import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
-    let shouldStopPolling = false;
-
-    const checkStatus = async () => {
-      if (shouldStopPolling) {
-        console.log("⏹️ Polling stopped");
-        return;
-      }
-
-      try {
-        const response = await fetch(`${API_URL}/donations/status/${ref}`);
-        const data = await response.json();
-
-        if (data.success && data.data) {
-          const status = data.data.status?.toLowerCase();
-
-          console.log(
-            `📊 Status #${attempts + 1}: ${status}${
-              data.data.lookupFailCount
-                ? ` (lookup fails: ${data.data.lookupFailCount})`
-                : ""
-            }`
-          );
-
-          // ✅ Handle lookup failures (MTN Lenco bug)
-          if (status === "pending" && data.data.lookupFailCount) {
-            lookupFailCount = data.data.lookupFailCount;
-
-            if (lookupFailCount >= maxLookupFails) {
-              shouldStopPolling = true;
-              setLoading(false);
-              setError(
-                "MTN mobile money is experiencing technical issues. Please try Airtel or Zamtel instead, or contact support."
-              );
-              setDonationStep(3);
-              return;
-            }
-          }
-
-          // ✅ SUCCESS
-          if (status === "successful") {
-            shouldStopPolling = true;
-            setLoading(false);
-            setDonationStep(4);
-            console.log("🎉 Payment successful!");
-            return;
-          }
-
-          // ✅ FAILED, CANCELLED, or TIMEOUT
-          if (["failed", "cancelled", "timeout"].includes(status)) {
-            shouldStopPolling = true;
-            setLoading(false);
-
-            let errorMsg = "Payment failed. Please try again.";
-            if (status === "cancelled") {
-              errorMsg = "Payment was cancelled.";
-            } else if (status === "timeout") {
-              errorMsg =
-                "Payment timed out. You did not approve the payment in time.";
-            } else if (data.data.reasonForFailure) {
-              errorMsg = data.data.reasonForFailure;
-            }
-
-            setError(errorMsg);
-            setDonationStep(3);
-            console.log(`❌ Payment ${status}`);
-            return;
-          }
-
-          // ✅ PENDING/PROCESSING - Continue polling
-          if (["pending", "pay-offline", "processing"].includes(status)) {
-            attempts++;
-
-            // Smart backoff: slower intervals after first 10 attempts
-            const interval = attempts > 10 ? 10000 : 6000;
-
-            if (attempts < maxAttempts) {
-              setTimeout(checkStatus, interval);
-            } else {
-              shouldStopPolling = true;
-              setLoading(false);
-              setError(
-                "Payment verification is taking longer than expected. Check your SMS for confirmation or contact support."
-              );
-              setDonationStep(3);
-              console.log("⏱️ Polling timeout");
-            }
-            return;
-          }
-
-          // Unknown status
-          attempts++;
-          if (attempts < maxAttempts) {
-            setTimeout(checkStatus, 6000);
-          } else {
-            shouldStopPolling = true;
-            setLoading(false);
-            setError("Unable to verify payment. Please contact support.");
-            setDonationStep(3);
-          }
-        } else {
-          throw new Error("Invalid response from server");
-        }
-      } catch (err) {
-        console.error("❌ Status check error:", err);
-        shouldStopPolling = true;
-        setError(err.message || "Could not verify payment status");
-        setLoading(false);
-        setDonationStep(3);
-      }
-    };
-
-    checkStatus();
-  };
-
   const resetDonation = () => {
     setDonationStep(1);
     setDonationAmount("");
@@ -301,15 +181,10 @@ const DonationForm = () => {
       name: "",
       email: "",
       phone: "",
-      operator: "airtel",
-      paymentMethod: "mobile-money",
     });
     setError("");
     setReference("");
     setLoading(false);
-    setShowOTPModal(false);
-    setOTPError("");
-    setOTPLoading(false);
   };
 
   return (
@@ -496,7 +371,7 @@ const DonationForm = () => {
               fullWidth
               className="mt-6"
             >
-              Complete Donation
+              Proceed to Payment
             </Button>
 
             <p className="mt-4 text-xs text-center text-gray-500">
@@ -513,12 +388,7 @@ const DonationForm = () => {
             transition={{ duration: 0.2 }}
             className="p-8"
           >
-            <DonationProgress
-              amount={donationAmount}
-              phone={donorInfo.phone}
-              paymentMethod={donorInfo.paymentMethod}
-              error={error}
-            />
+            <DonationProgress amount={donationAmount} error={error} />
 
             {error && (
               <>
@@ -568,14 +438,6 @@ const DonationForm = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <OTPModal
-        isOpen={showOTPModal}
-        onClose={() => setShowOTPModal(false)}
-        onSubmit={handleOTPSubmit}
-        loading={otpLoading}
-        error={otpError}
-        phone={donorInfo.phone}
-      />
     </div>
   );
 };

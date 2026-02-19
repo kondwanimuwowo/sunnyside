@@ -94,17 +94,6 @@ const styles = {
     border: 1px solid #f0f0f0;
     border-top: none;
   `,
-  button: `
-    display: inline-block;
-    padding: 14px 28px;
-    background-color: #32cd32;
-    color: #ffffff !important;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 16px;
-    margin-top: 10px;
-  `,
 };
 
 const getBaseLayout = (title, subtitle, content) => `
@@ -117,18 +106,15 @@ const getBaseLayout = (title, subtitle, content) => `
 </head>
 <body style="margin: 0; padding: 20px; background-color: #f5f5f5;">
   <div style="${styles.container}">
-    <!-- Header -->
     <div style="${styles.header}">
       <h1 style="${styles.headerTitle}">${title}</h1>
       <p style="${styles.headerSubtitle}">${subtitle}</p>
     </div>
 
-    <!-- Content -->
     <div style="${styles.content}">
       ${content}
     </div>
 
-    <!-- Footer -->
     <div style="${styles.footer}">
       <p style="margin: 0 0 10px 0;">Sunnyside Therapy Center</p>
       <p style="margin: 0 0 10px 0;">Specialized Care for Special Children</p>
@@ -148,7 +134,7 @@ const templates = {
       <p style="${styles.greeting}">Dear ${data.name},</p>
       
       <p style="${styles.paragraph}">
-        Verify your transaction below. We are incredibly grateful for your generous donation of <strong>K${data.amount}</strong> to Sunnyside Therapy Center.
+        Thank you for your generous donation of <strong>K${data.amount}</strong> to Sunnyside Therapy Center.
       </p>
 
       <div style="${styles.highlightBox}">
@@ -157,7 +143,7 @@ const templates = {
       </div>
 
       <p style="${styles.paragraph}">
-        Your support directly empowers us to provide specialized therapy, educational resources, and a nurturing environment for children with developmental challenges. You are making a real difference in their lives.
+        Your support empowers us to provide specialized therapy, educational resources, and a nurturing environment for children with developmental challenges.
       </p>
 
       <table style="${styles.detailsTable}">
@@ -176,7 +162,11 @@ const templates = {
         <strong>The Sunnyside Team</strong>
       </p>
     `;
-    return getBaseLayout("Thank You!", "Your donation makes a difference", content);
+    return getBaseLayout(
+      "Thank You!",
+      "Your donation makes a difference",
+      content
+    );
   },
 
   enrollmentConfirmation: (data) => {
@@ -184,7 +174,7 @@ const templates = {
       <p style="${styles.greeting}">Dear ${data.parentName},</p>
       
       <p style="${styles.paragraph}">
-        We are thrilled to welcome <strong>${data.childName}</strong> to the Sunnyside family! We have successfully received your enrollment application.
+        We have received the enrollment application for <strong>${data.childName}</strong>.
       </p>
 
       <div style="${styles.highlightBox}">
@@ -221,13 +211,13 @@ const templates = {
           </div>
           <div style="display: table-cell; vertical-align: top;">
             <strong style="display: block; margin-bottom: 4px; color: #111;">Welcome Aboard</strong>
-            <span style="color: #666; font-size: 14px;">We'll begin the journey to unlock your child's full potential!</span>
+            <span style="color: #666; font-size: 14px;">We'll begin the journey to unlock your child's full potential.</span>
           </div>
         </div>
       </div>
 
       <p style="${styles.paragraph}">
-        If you have any urgent questions, please don't hesitate to reply to this email or call us directly.
+        If you have any questions, please reply to this email or contact us directly.
       </p>
 
       <p style="${styles.paragraph}">
@@ -235,7 +225,11 @@ const templates = {
         <strong>The Sunnyside Team</strong>
       </p>
     `;
-    return getBaseLayout("Enrollment Received", "Welcome to Sunnyside Therapy Center", content);
+    return getBaseLayout(
+      "Enrollment Received",
+      "Welcome to Sunnyside Therapy Center",
+      content
+    );
   },
 
   adminNotification: (type, data, reference) => {
@@ -243,16 +237,13 @@ const templates = {
     let subtitle = "System Alert";
     let detailsHtml = "";
 
-    // Format data into a readable table
     const formatData = (obj) => {
       let html = `<table style="${styles.detailsTable}">`;
       for (const [key, value] of Object.entries(obj)) {
-        // Skip complex objects or large arrays
-        if (typeof value === 'object' && value !== null) continue;
-        
-        // Format key
-        const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-        
+        if (typeof value === "object" && value !== null) continue;
+        const label = key
+          .replace(/([A-Z])/g, " $1")
+          .replace(/^./, (str) => str.toUpperCase());
         html += `
           <tr style="${styles.detailsRow}">
             <td style="${styles.detailsLabel}">${label}</td>
@@ -271,8 +262,8 @@ const templates = {
         Amount: `K${data.amount}`,
         Donor: data.donorName,
         Email: data.donorEmail,
-        "Payment Method": data.paymentMethod,
-        Status: data.status || type.split('_')[1]
+        Phone: data.donorPhone,
+        Status: data.status || type.split("_")[1],
       });
     } else if (type === "donation_failed") {
       title = "❌ Donation Failed";
@@ -287,15 +278,8 @@ const templates = {
         "Parent Email": data.parent1Email,
         "Parent Phone": data.parent1Phone,
         Diagnosis: data.diagnosis,
-        "Preferred Time": data.preferredTime
+        "Preferred Time": data.preferredTime,
       });
-      
-      // Add a note that full details are in the system (since we aren't showing everything)
-      detailsHtml += `
-        <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px; text-align: center; margin-top: 20px; font-size: 14px; color: #666;">
-          Full enrollment details are available in the JSON payload or Admin Dashboard.
-        </div>
-      `;
     }
 
     const content = `
@@ -321,7 +305,7 @@ const templates = {
       </p>
     `;
     return getBaseLayout(title, subtitle, content);
-  }
+  },
 };
 
-module.exports = templates;
+export default templates;

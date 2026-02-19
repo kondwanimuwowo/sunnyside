@@ -36,8 +36,10 @@ const DonationSuccess = ({ amount, reference, onReset }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <h3 className="text-3xl font-bold mb-2 text-gray-900">Thank You! 🎉</h3>
-        <p className="text-gray-600 mb-8">Your donation was successful</p>
+        <h3 className="text-3xl font-bold mb-2 text-gray-900">Thank You!</h3>
+        <p className="text-gray-600 mb-8">
+          Your payment was submitted and is being confirmed
+        </p>
       </motion.div>
 
       {/* Amount Display */}
@@ -64,10 +66,11 @@ const DonationSuccess = ({ amount, reference, onReset }) => {
         <div className="w-12 h-12 bg-[rgba(50,205,50,0.1)] rounded-full flex items-center justify-center mx-auto mb-4">
           <Heart className="w-6 h-6 text-[#32cd32]" />
         </div>
-        <h4 className="font-bold text-lg mb-2 text-gray-900">Your Impact</h4>
+        <h4 className="font-bold text-lg mb-2 text-gray-900">
+          What Happens Next
+        </h4>
         <p className="text-gray-600">
-          Your support will directly help children with learning challenges
-          receive the therapy and education they need to thrive.
+          We will email your confirmation as soon as the payment is verified.
         </p>
       </motion.div>
 
@@ -114,10 +117,11 @@ const DonationSuccess = ({ amount, reference, onReset }) => {
       </motion.div>
 
       <p className="text-xs text-gray-500 mt-8">
-        A receipt has been sent to your email (if provided)
+        Please check your email for the confirmation receipt.
       </p>
     </div>
   );
 };
 
 export default DonationSuccess;
+

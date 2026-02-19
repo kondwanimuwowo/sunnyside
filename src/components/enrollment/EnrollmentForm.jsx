@@ -204,8 +204,8 @@ const EnrollmentForm = () => {
     if (!validateStep(5)) return;
 
     try {
-      const API_URL =
-        import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+      const base = import.meta.env.VITE_API_BASE_URL || "";
+      const API_URL = base ? (base.endsWith("/api") ? base : `${base}/api`) : "/api";
 
       const response = await fetch(`${API_URL}/enrollment/submit`, {
         method: "POST",
