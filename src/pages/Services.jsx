@@ -621,13 +621,6 @@ const Services = () => {
                 >
                   Volunteer Interest Form
                 </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => navigate(ROUTES.DONATE)}
-                  className="text-white border-white hover:bg-white/10"
-                >
-                  Support Our Work
-                </Button>
               </div>
             </motion.div>
           </div>

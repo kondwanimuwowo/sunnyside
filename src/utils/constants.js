@@ -145,7 +145,6 @@ export const ROUTES = {
   HOME: "/",
   SERVICES: "/services",
   ABOUT: "/about",
-  DONATE: "/donate",
   CONTACT: "/contact",
   GALLERY: "/gallery",
   RESOURCES: "/blog",

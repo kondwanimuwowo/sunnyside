@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
 import { ROUTES, CONTACT } from "@utils/constants";
 import Button from "@components/common/Button";
 import unTwo from "@assets/images/un-three.jpg";
@@ -35,34 +34,17 @@ const CTASection = () => {
             </h2>
 
             <p className="text-xl mb-8 max-w-2xl mx-auto opacity-95">
-              Your support doesn't just fund therapy—it builds futures. Every
-              contribution helps us provide specialized care, train more
-              therapists, and reach more families across Zambia who have nowhere
-              else to turn.
+              We're here to help families find the right support path. Talk with
+              our team, schedule a visit, or learn how to get involved.
             </p>
-
-            <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-8">
-              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
-                <div className="text-2xl font-bold mb-2">K50</div>
-                <div className="text-sm">Sponsors a therapy session</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
-                <div className="text-2xl font-bold mb-2">K500</div>
-                <div className="text-sm">Funds a week of therapy</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
-                <div className="text-2xl font-bold mb-2">K2,000</div>
-                <div className="text-sm">Supports a child for a month</div>
-              </div>
-            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 size="lg"
-                onClick={() => navigate(ROUTES.DONATE)}
+                onClick={() => navigate(ROUTES.CONTACT)}
                 className="bg-[#32cd32] hover:bg-[#22a722] text-white"
               >
-                Make a Difference Today
+                Talk to Our Team
               </Button>
 
               <Button
@@ -71,7 +53,7 @@ const CTASection = () => {
                 onClick={() => navigate(ROUTES.ABOUT)}
                 className="text-white border-white hover:bg-white/10"
               >
-                Learn About Our Impact
+                Learn About Our Programs
               </Button>
             </div>
 
@@ -83,7 +65,7 @@ const CTASection = () => {
               >
                 {CONTACT.PHONE_1}
               </a>{" "}
-              to discuss other ways to support
+              to discuss how to get involved
             </p>
           </div>
         </motion.div>
@@ -93,3 +75,6 @@ const CTASection = () => {
 };
 
 export default CTASection;
+
+
+

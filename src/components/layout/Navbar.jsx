@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Heart, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useUI } from "@context/UIContext";
 import { useScrollPosition } from "@hooks/useScrollPosition";
 import { ROUTES } from "@utils/constants";
@@ -98,8 +98,8 @@ const Navbar = () => {
               </Link>
             ))}
 
-            <Link to={ROUTES.DONATE}>
-              <Button size="sm">Donate Now</Button>
+            <Link to={ROUTES.CONTACT}>
+              <Button size="sm">Get In Touch</Button>
             </Link>
           </div>
 
@@ -171,9 +171,9 @@ const Navbar = () => {
                 : "0ms",
             }}
           >
-            <Link to={ROUTES.DONATE} className="block">
+            <Link to={ROUTES.CONTACT} className="block">
               <Button fullWidth size="sm">
-                Donate Now
+                Get In Touch
               </Button>
             </Link>
           </div>

@@ -88,11 +88,11 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 variant="primary"
-                onClick={() => navigate(ROUTES.DONATE)}
+                onClick={() => navigate(ROUTES.CONTACT)}
                 icon={ArrowRight}
                 iconPosition="right"
               >
-                Support Our Mission
+                Contact Us
               </Button>
               <Button
                 variant="outline"
