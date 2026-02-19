@@ -1,19 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export const useScrollPosition = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollDirection, setScrollDirection] = useState("up");
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    let lastScrollY = window.pageYOffset;
-
     const handleScroll = () => {
-      const currentScrollY = window.pageYOffset;
+      if (ticking.current) return;
+      ticking.current = true;
 
-      setScrollPosition(currentScrollY);
-      setScrollDirection(currentScrollY > lastScrollY ? "down" : "up");
+      window.requestAnimationFrame(() => {
+        const currentScrollY = window.pageYOffset;
+        const nextDirection =
+          currentScrollY > lastScrollY.current ? "down" : "up";
 
-      lastScrollY = currentScrollY;
+        setScrollPosition((prev) =>
+          prev === currentScrollY ? prev : currentScrollY
+        );
+        setScrollDirection((prev) =>
+          prev === nextDirection ? prev : nextDirection
+        );
+
+        lastScrollY.current = currentScrollY;
+        ticking.current = false;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

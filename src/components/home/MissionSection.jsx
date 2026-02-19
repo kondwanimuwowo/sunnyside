@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import unImg from "../../assets/images/therapy.png";
+import { IMAGES } from "@utils/constants";
 
 const MissionSection = () => {
   return (
@@ -32,7 +32,8 @@ const MissionSection = () => {
             <div
               className="h-96 bg-cover bg-center relative"
               style={{
-                backgroundImage: `url(${unImg})`,
+                backgroundImage: `url(${IMAGES.childrenOnSwing})`,
+                backgroundSize: "cover",
               }}
             >
               {/* Dark gradient overlay: strong at bottom, fading to transparent at top */}

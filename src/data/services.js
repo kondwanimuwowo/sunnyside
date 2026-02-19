@@ -25,7 +25,7 @@ const servicesData = {
         "Enhanced cognitive abilities",
         "Increased confidence in learning",
       ],
-      image: IMAGES.learning,
+      image: IMAGES.childrensClassroomTherapy,
     },
     {
       id: "communication",

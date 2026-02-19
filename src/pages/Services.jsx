@@ -124,7 +124,7 @@ const Services = () => {
         keywords="therapy services, physical therapy, academic skills, communication therapy, social skills, motor skills, behavior management, sensory support, early intervention, school readiness, parent training, volunteer opportunities"
       />
 
-      <div className="pt-24 md:pt-24 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
+      <div className="pt-28 md:pt-28 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Hero Header */}
           <motion.div

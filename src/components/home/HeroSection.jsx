@@ -20,13 +20,12 @@ const HeroSection = () => {
     <section
       className="
         relative 
-        min-h-screen
+        min-h-[calc(100vh-5rem)]
         flex
         items-center
         px-4 sm:px-6 lg:px-8
         bg-cover bg-center bg-no-repeat
-        pt-32 md:pt-0
-        md:-mt-16
+        pt-20 pb-10
       "
       style={{
         backgroundImage: `url(${bgImage})`,

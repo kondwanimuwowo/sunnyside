@@ -11,11 +11,35 @@ import communityImg from "@assets/images/community.jpg";
 import childrenImg2 from "@assets/images/children2.jpg";
 import ben from "@assets/images/team/ben.jpg";
 import izzy from "@assets/images/team/izzy.jpg";
+import bervenKana from "@assets/images/team/berven-kana.jpg";
+import natashaLungu from "@assets/images/team/natasha-lungu.jpg";
+import sophiaKaumba from "@assets/images/team/sophia-kaumba.jpg";
+import tomLiyungu from "@assets/images/team/tom-liyungu.jpg";
 import sunnysideAbout from "@assets/images/sunnyside-about.jpg";
 import unOne from "@assets/images/un-one.png";
 import unTwo from "@assets/images/un-two.jpg";
 import unThree from "@assets/images/un-three.jpg";
 import playing from "@assets/images/playing.jpg";
+import childShopping1 from "@assets/images/child-shopping-1.jpg";
+import childShopping2 from "@assets/images/child-shopping-2.jpg";
+import childTeacherJumpingCastle from "@assets/images/child-teacher-jumping-castle.jpg";
+import childTherapyRoom from "@assets/images/child-therapy-room.jpg";
+import childrenOnSwing from "@assets/images/children-on-a-swing.jpg";
+import childrenPlayingWithBeads from "@assets/images/children-playing-with-beads.jpg";
+import childrenPlayground from "@assets/images/children-playground.jpg";
+import childrenSessionRoom from "@assets/images/children-session-room.jpg";
+import childrenTherapyClassroom from "@assets/images/children-therapy-classroom.jpg";
+import childrenTherapyRoom from "@assets/images/children-therapy-room.jpg";
+import childrensClassroomTherapy from "@assets/images/childrens-classroom-therapy.jpg";
+import freeGroupDevelopmentalTherapy from "@assets/images/free-group-developmental-therapy.jpg";
+import groupChildrenTeachers from "@assets/images/group-children-teachers.jpg";
+import outdoorTherapyChairSetup1 from "@assets/images/outdoor-therapy-chair-setup-1.jpg";
+import outdoorTherapyChairSetup from "@assets/images/outdoor-therapy-chair-setup.jpg";
+import paintedArt from "@assets/images/painted-art.jpg";
+import parentsTrainingSession from "@assets/images/parents-training-session.jpg";
+import sunnysideOfficeSpace from "@assets/images/sunnyside-office-space.jpg";
+import therapySessionRoom1 from "@assets/images/therapy-session-room-1.jpg";
+import withChildInPool from "@assets/images/with-child-in-pool.jpg";
 
 export const APP_NAME =
   import.meta.env.VITE_APP_NAME || "Sunnyside Therapy Center";
@@ -25,7 +49,8 @@ export const APP_URL =
 export const CONTACT = {
   PHONE_1: import.meta.env.VITE_CONTACT_PHONE_1 || "0978501101",
   PHONE_2: import.meta.env.VITE_CONTACT_PHONE_2 || "0973902247",
-  EMAIL: import.meta.env.VITE_CONTACT_EMAIL || "info@sunnyside.com",
+  EMAIL:
+    import.meta.env.VITE_CONTACT_EMAIL || "info@sunnysidetherapycenter.co.zm",
   ADDRESS: "Lusaka, Zambia",
   FACEBOOK: "https://facebook.com/sunnysidetherapycenter",
 };
@@ -57,11 +82,35 @@ export const IMAGES = {
   sunnyTwo: childrenImg2,
   ben: ben,
   izzy: izzy,
+  bervenKana: bervenKana,
+  natashaLungu: natashaLungu,
+  sophiaKaumba: sophiaKaumba,
+  tomLiyungu: tomLiyungu,
   sunnysideAbout: sunnysideAbout,
   unOne: unOne,
   unTwo: unTwo,
   unThree: unThree,
   playing: playing,
+  childShopping1: childShopping1,
+  childShopping2: childShopping2,
+  childTeacherJumpingCastle: childTeacherJumpingCastle,
+  childTherapyRoom: childTherapyRoom,
+  childrenOnSwing: childrenOnSwing,
+  childrenPlayingWithBeads: childrenPlayingWithBeads,
+  childrenPlayground: childrenPlayground,
+  childrenSessionRoom: childrenSessionRoom,
+  childrenTherapyClassroom: childrenTherapyClassroom,
+  childrenTherapyRoom: childrenTherapyRoom,
+  childrensClassroomTherapy: childrensClassroomTherapy,
+  freeGroupDevelopmentalTherapy: freeGroupDevelopmentalTherapy,
+  groupChildrenTeachers: groupChildrenTeachers,
+  outdoorTherapyChairSetup1: outdoorTherapyChairSetup1,
+  outdoorTherapyChairSetup: outdoorTherapyChairSetup,
+  paintedArt: paintedArt,
+  parentsTrainingSession: parentsTrainingSession,
+  sunnysideOfficeSpace: sunnysideOfficeSpace,
+  therapySessionRoom1: therapySessionRoom1,
+  withChildInPool: withChildInPool,
 };
 
 // Fallback: If you don't have local images yet, use Unsplash

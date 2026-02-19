@@ -34,7 +34,7 @@ const Enrollment = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Header */}
-        <section className="pt-24 md:pt-24 pb-12 md:pb-12 bg-white">
+        <section className="pt-28 md:pt-28 pb-12 md:pb-12 bg-white">
 
           <div className="max-w-4xl mx-auto">
             <motion.div

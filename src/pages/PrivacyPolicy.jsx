@@ -31,7 +31,7 @@ const PrivacyPolicy = () => {
         keywords="privacy policy, data protection, therapy center privacy, child data safety"
       />
 
-      <div className="min-h-screen bg-gray-50 pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-50 pt-28 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <motion.div

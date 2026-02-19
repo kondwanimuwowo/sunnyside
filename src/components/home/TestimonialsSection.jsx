@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import Modal from "../common/Modal";
 
 const TestimonialsSection = () => {
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
+  const scrollRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const isModalOpen = !!selectedTestimonial;
 
   const testimonials = [
     {
@@ -14,6 +17,18 @@ const TestimonialsSection = () => {
 
 Today, after only 12 months at Sunnyside, the change is breathtaking. Our daughter, who once struggled with severe language delays and social isolation, is now communicating with words and playing joyfully with other children. She has mastered her daily routines, follows instructions, and no longer suffers from the meltdowns or food selectivity that once overwhelmed our lives. She sleeps peacefully through the night and surprises us every day by repeating the lessons she learns. It feels like Sunnyside is finally 'unwrapping' the genius that was hidden inside her. They taught us that with patience, love, and guidance, real progress is possible.`,
       child: "Age 7, Autism Spectrum Disorder",
+    },
+    {
+      name: "Emma Chibale",
+      role: "Parent of a child with sensory integration disorder",
+      text: `Before Sunnyside, I was deeply worried about my son's development. He was unable to sit in one place for a long time, could not sense danger, and was unable to identify unhygienic things. Simple daily routines felt overwhelming, and as his parents, we often felt helpless.
+
+From the moment we were introduced to Sunnyside, I felt hope return to my heart. The teachers see beyond limitations and never judge any child. Instead, they treat every challenge as an opportunity to help a child grow and learn how to live a more independent and fulfilling life.
+
+Today, I am incredibly grateful for the progress my son has made. He is now able to identify danger, avoid dirty food, and wash his hands before eating. These may seem like small steps to some, but to me, they mean everything.
+
+I was ashamed to move with him in public places, but now I can confidently walk anywhere with him and feel a sense of pride within me. Thank you so much Sunnyside!`,
+      child: "Age 6, Autism Spectrum Disorder",
     },
     {
       name: "Mukaya M.",
@@ -46,8 +61,64 @@ I must say, you gave my wife and me hope for our son. Donel can now politely req
     return text.substr(0, maxLength).trim() + "...";
   };
 
+  const getScrollAmount = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container) return 0;
+    const firstCard = container.firstElementChild;
+    if (!firstCard) return container.offsetWidth;
+    const cardWidth = firstCard.getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(container).columnGap || "0");
+    return cardWidth + gap;
+  }, []);
+
+  const loopedTestimonials = useMemo(
+    () => [...testimonials, ...testimonials],
+    [testimonials]
+  );
+
+  const normalizeScroll = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const step = getScrollAmount();
+    if (!step) return;
+    const cycleWidth = step * testimonials.length;
+
+    if (container.scrollLeft >= cycleWidth) {
+      container.scrollLeft -= cycleWidth;
+    } else if (container.scrollLeft < 0) {
+      container.scrollLeft += cycleWidth;
+    }
+  }, [getScrollAmount, testimonials.length]);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const onScroll = () => normalizeScroll();
+    container.addEventListener("scroll", onScroll, { passive: true });
+    return () => container.removeEventListener("scroll", onScroll);
+  }, [normalizeScroll]);
+
+  const scroll = useCallback(
+    (direction) => {
+      const container = scrollRef.current;
+      if (!container) return;
+      const scrollAmount = getScrollAmount();
+      container.scrollBy({
+        left: direction === "next" ? scrollAmount : -scrollAmount,
+        behavior: "smooth",
+      });
+    },
+    [getScrollAmount]
+  );
+
+  useEffect(() => {
+    if (isPaused || isModalOpen) return;
+    const timer = setInterval(() => scroll("next"), 5000);
+    return () => clearInterval(timer);
+  }, [isPaused, isModalOpen, scroll]);
+
   return (
-    <section className="pt-16 pb-6 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="pt-16 pb-6 px-4 sm:px-6 lg:px-8 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -64,47 +135,73 @@ I must say, you gave my wife and me hope for our son. Donel can now politely req
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8">
-          {testimonials.map((testimonial, idx) => (
-            <motion.div
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar px-0"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {loopedTestimonials.map((testimonial, idx) => (
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="relative h-full"
+              className="snap-start bg-white p-8 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between shrink-0 overflow-hidden w-[85%] md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
             >
-              <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 h-full flex flex-col relative">
-                <Quote className="w-12 h-12 text-[#32cd32]/30 mb-6 absolute -top-2 -left-2" />
+              <Quote className="w-10 h-10 text-[#32cd32]/30 mb-6" />
 
-                <div className="flex-1 mb-6">
-                  <p className="text-gray-700 leading-relaxed text-lg">
-                    "{truncateText(testimonial.text, 200)}"
+              <div className="flex-1 mb-6">
+                <p
+                  className="text-gray-700 leading-relaxed text-lg"
+                  style={{
+                    display: "-webkit-box",
+                    WebkitLineClamp: 6,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    minHeight: "9.5rem",
+                  }}
+                >
+                  "{truncateText(testimonial.text, 200)}"
+                </p>
+                <button
+                  onClick={() => setSelectedTestimonial(testimonial)}
+                  className="text-[#32cd32] font-semibold mt-3 hover:underline focus:outline-none"
+                >
+                  Read full story
+                </button>
+              </div>
+
+              <div className="pt-6 border-t border-gray-100 mt-auto">
+                <div className="mb-2">
+                  <p className="font-bold text-gray-900 text-lg">
+                    {testimonial.name}
                   </p>
-                  {testimonial.text.length > 200 && (
-                    <button
-                      onClick={() => setSelectedTestimonial(testimonial)}
-                      className="text-[#32cd32] font-semibold mt-2 hover:underline focus:outline-none"
-                    >
-                      Read full story
-                    </button>
-                  )}
+                  <p className="text-gray-600">{testimonial.role}</p>
                 </div>
-
-                <div className="pt-6 border-t border-gray-100 mt-auto">
-                  <div className="mb-2">
-                    <p className="font-bold text-gray-900 text-lg">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-gray-600">{testimonial.role}</p>
-                  </div>
-                  <div className="text-sm text-gray-500 bg-gray-50 px-3 py-2 rounded-lg inline-block">
-                    {testimonial.child}
-                  </div>
+                <div className="text-sm text-gray-500 bg-gray-50 px-3 py-2 rounded-lg inline-block">
+                  {testimonial.child}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
+        </div>
+
+        <div className="flex justify-center gap-4 mt-8">
+          <button
+            onClick={() => scroll("prev")}
+            className="p-2 rounded-full bg-white shadow hover:bg-gray-100 transition"
+            aria-label="Previous testimonials"
+            type="button"
+          >
+            <ChevronLeft className="w-5 h-5 text-gray-700" />
+          </button>
+          <button
+            onClick={() => scroll("next")}
+            className="p-2 rounded-full bg-white shadow hover:bg-gray-100 transition"
+            aria-label="Next testimonials"
+            type="button"
+          >
+            <ChevronRight className="w-5 h-5 text-gray-700" />
+          </button>
         </div>
 
         <motion.div

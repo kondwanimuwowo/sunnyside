@@ -43,7 +43,7 @@ const ProgramsSection = () => {
       icon: Brain,
       title: "Academic Skills",
       description: "Math, literacy, writing development",
-      image: IMAGES.learning,
+      image: IMAGES.childrensClassroomTherapy,
     },
     {
       icon: Users,
@@ -197,7 +197,7 @@ const ProgramsSection = () => {
                 transition={{ duration: 0.6 }}
                 className="relative h-96 rounded-2xl bg-cover bg-center mb-6"
                 style={{
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(${IMAGES.community})`,
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(${IMAGES.childrenPlayingWithBeads})`,
                 }}
               >
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">

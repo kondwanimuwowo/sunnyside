@@ -82,20 +82,42 @@ const About = () => {
 
   const team = [
     {
-      name: "Tom",
-      role: "Physiotherapist & Education Specialist",
-      description:
-        "Registered with HPCZ, focusing on physical development and specialized education strategies for children with special needs.",
-      expertise: ["Physiotherapy", "Special Education", "Motor Development"],
-      years: "4+ years",
+      name: "Sophia Kaumba",
+      role: "Education Specialist",
+      image: IMAGES.sophiaKaumba,
+      funFact: "Movie/drama spoiler.",
+      favorite: "Learning and rediscovering.",
+      joke: "Important. Importanter. Importantest.",
     },
     {
-      name: "Chisha Kaite",
-      role: "Behavioral Therapist",
-      description:
-        "Specializes in behavior management and skill-building interventions for children with developmental challenges.",
-      expertise: ["ABA Therapy", "Behavior Modification", "Skill Acquisition"],
-      years: "3+ years",
+      name: "Berven Kana",
+      role: "Education Specialist",
+      image: IMAGES.bervenKana,
+      funFact: "I create light moments just to help others loosen up.",
+      favorite:
+        "Being a teacher to such vulnerable, beautiful souls gives me immense pleasure and joy.",
+      joke: "Imagine being promised a brand new vehicle for your birthday on February 29, 2026. How joyous would you feel?",
+    },
+    {
+      name: "Tom Liyungu",
+      role: "Education Specialist / Physiotherapist",
+      image: IMAGES.tomLiyungu,
+      funFact: "I love reading and sports.",
+      favorite:
+        "Seeing them learn new skills and being part of their development.",
+      joke:
+        "Scientists got bored after watching the earth rotate for 24 hours, so they called it a day.",
+    },
+    {
+      name: "Natasha Lungu",
+      role: "Education Specialist",
+      image: IMAGES.natashaLungu,
+      funFact:
+        "I'm thoughtful, care about how I come across, and love reading, music, and engaging with kids.",
+      favorite:
+        "Their unique way of seeing the world teaches me to be patient and creative, and it brings me joy. Their resilience and honesty remind me to celebrate progress, no matter how small.",
+      joke:
+        "Why did the teacher wear sunglasses? Because the students were too bright. I'm good at multitasking: I can waste time, be unproductive, and procrastinate all at once.",
     },
   ];
 
@@ -107,7 +129,7 @@ const About = () => {
         keywords="sunnyside therapy zambia, special needs school lusaka, autism therapy zambia, ben izzy phiri, speech therapy lusaka, occupational therapy zambia, down syndrome support zambia, special education zambia"
       />
 
-      <div className="pt-24 md:pt-24 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
+      <div className="pt-28 md:pt-28 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Hero Header */}
           <motion.div
@@ -403,7 +425,7 @@ const About = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {team.map((member, idx) => (
                 <motion.div
                   key={idx}
@@ -411,30 +433,70 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
+                  className="h-full"
                 >
-                  <Card variant="default" hover={true} padding="lg">
-                    <div className="text-center">
-                      <div className="mb-4">
-                        <div className="text-sm text-[#32cd32] font-medium mb-1">
-                          {member.years} Experience
+                  <Card
+                    variant="default"
+                    hover={true}
+                    padding="lg"
+                    className="h-full"
+                  >
+                    <div className="flex flex-col h-full min-h-[360px]">
+                      <div className="flex items-center gap-4 pb-5 border-b border-gray-100">
+                        <div className="w-20 h-20 rounded-2xl overflow-hidden border border-gray-200 shadow-sm shrink-0 bg-gray-50">
+                          <img
+                            src={member.image}
+                            alt={`${member.name} - ${member.role}`}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
                         </div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                          {member.name}
-                        </h3>
-                        <div className="text-lg text-[#32cd32] font-medium">
-                          {member.role}
+                        <div>
+                          <h3 className="text-xl font-bold text-gray-900">
+                            {member.name}
+                          </h3>
+                          <div className="text-sm text-[#32cd32] font-semibold mt-1">
+                            {member.role}
+                          </div>
                         </div>
                       </div>
-                      <p className="text-gray-600 mb-6">{member.description}</p>
-                      <div className="flex flex-wrap justify-center gap-2">
-                        {member.expertise.map((skill, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                          >
-                            {skill}
-                          </span>
-                        ))}
+
+                      <div className="mt-5 space-y-4 text-left flex-1">
+                        {!member.funFact && !member.favorite && !member.joke && (
+                          <p className="text-gray-600">
+                            Profile coming soon.
+                          </p>
+                        )}
+                        {member.funFact && (
+                          <div>
+                            <p className="text-[11px] uppercase tracking-wide text-gray-500 mb-1">
+                              Fun Fact
+                            </p>
+                            <p className="text-gray-700 leading-relaxed">
+                              {member.funFact}
+                            </p>
+                          </div>
+                        )}
+                        {member.favorite && (
+                          <div>
+                            <p className="text-[11px] uppercase tracking-wide text-gray-500 mb-1">
+                              Favorite Thing About Working With Children
+                            </p>
+                            <p className="text-gray-700 leading-relaxed">
+                              {member.favorite}
+                            </p>
+                          </div>
+                        )}
+                        {member.joke && (
+                          <div>
+                            <p className="text-[11px] uppercase tracking-wide text-gray-500 mb-1">
+                              Joke
+                            </p>
+                            <p className="text-gray-700 leading-relaxed">
+                              {member.joke}
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </Card>

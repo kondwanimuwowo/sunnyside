@@ -13,7 +13,7 @@ const Donate = () => {
         keywords="donate, support children, zambia donations, therapy center donations, special needs support"
       />
 
-      <div className="pt-24 md:pt-24 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
+      <div className="pt-28 md:pt-28 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <motion.div

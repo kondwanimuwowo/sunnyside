@@ -80,7 +80,7 @@ const BlogPost = () => {
 
       <div className="min-h-screen bg-white">
         {/* Header */}
-        <div className="bg-gradient-to-b from-gray-50 to-white pt-16 pb-8 md:pt-20 md:pb-8 px-4 sm:px-6 lg:px-8">
+      <div className="bg-gradient-to-b from-gray-50 to-white pt-20 pb-8 md:pt-24 md:pb-8 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col max-w-4xl mx-auto">
             <Link
               to="/blog"

@@ -60,7 +60,7 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link
             to={ROUTES.HOME}
@@ -69,7 +69,7 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Sunnyside Logo"
-              className="w-auto h-12 transform group-hover:scale-105 transition-transform"
+              className="w-auto h-14 transform group-hover:scale-105 transition-transform"
             />{" "}
           </Link>
 
@@ -79,7 +79,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors relative ${
+                className={`text-base font-medium transition-colors relative ${
                   isActive(link.path) ? "" : "text-gray-700"
                 }`}
                 style={{
@@ -149,7 +149,7 @@ const Navbar = () => {
             <Link
               key={link.path}
               to={link.path}
-              className="block px-4 py-3 rounded-lg font-medium transition-all"
+              className="block px-4 py-3 rounded-lg font-medium text-base transition-all"
               style={{
                 backgroundColor: isActive(link.path)
                   ? "var(--color-primary-alpha)"

@@ -58,7 +58,7 @@ const Blog = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section className="pt-24 md:pt-24 pb-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
+        <section className="pt-28 md:pt-28 pb-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

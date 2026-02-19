@@ -119,6 +119,146 @@ const Gallery = () => {
       description: "Welcome to Sunnyside",
       category: "facilities",
     },
+    {
+      id: 11,
+      src: IMAGES.childShopping1,
+      title: "Everyday Skills",
+      description: "Building independence through guided activities",
+      category: "activities",
+    },
+    {
+      id: 12,
+      src: IMAGES.childShopping2,
+      title: "Practical Learning",
+      description: "Real-world skills in a supportive setting",
+      category: "activities",
+    },
+    {
+      id: 13,
+      src: IMAGES.childTeacherJumpingCastle,
+      title: "Joyful Play",
+      description: "Movement and play-based engagement",
+      category: "events",
+    },
+    {
+      id: 14,
+      src: IMAGES.childTherapyRoom,
+      title: "Therapy Space",
+      description: "Focused, child-centered sessions",
+      category: "therapy",
+    },
+    {
+      id: 15,
+      src: IMAGES.childrenOnSwing,
+      title: "Outdoor Play",
+      description: "Confidence-building activities outdoors",
+      category: "activities",
+    },
+    {
+      id: 16,
+      src: IMAGES.childrenPlayingWithBeads,
+      title: "Fine Motor Practice",
+      description: "Hands-on learning through beading",
+      category: "activities",
+    },
+    {
+      id: 17,
+      src: IMAGES.childrenPlayground,
+      title: "Playground Time",
+      description: "Social skills in action",
+      category: "events",
+    },
+    {
+      id: 18,
+      src: IMAGES.childrenSessionRoom,
+      title: "Group Session",
+      description: "Collaborative learning and support",
+      category: "therapy",
+    },
+    {
+      id: 19,
+      src: IMAGES.childrenTherapyClassroom,
+      title: "Therapy Classroom",
+      description: "Structured learning environment",
+      category: "therapy",
+    },
+    {
+      id: 20,
+      src: IMAGES.childrenTherapyRoom,
+      title: "Calm Therapy Room",
+      description: "Safe, supportive space for growth",
+      category: "therapy",
+    },
+    {
+      id: 21,
+      src: IMAGES.childrensClassroomTherapy,
+      title: "Classroom Therapy",
+      description: "Guided learning with care",
+      category: "therapy",
+    },
+    {
+      id: 22,
+      src: IMAGES.freeGroupDevelopmentalTherapy,
+      title: "Group Therapy",
+      description: "Peer interaction and guided support",
+      category: "therapy",
+    },
+    {
+      id: 23,
+      src: IMAGES.groupChildrenTeachers,
+      title: "Teacher Support",
+      description: "Learning together with educators",
+      category: "activities",
+    },
+    {
+      id: 24,
+      src: IMAGES.outdoorTherapyChairSetup,
+      title: "Outdoor Therapy",
+      description: "Fresh-air sessions for focused learning",
+      category: "therapy",
+    },
+    {
+      id: 25,
+      src: IMAGES.outdoorTherapyChairSetup1,
+      title: "Outdoor Setup",
+      description: "Comfortable spaces for therapy",
+      category: "facilities",
+    },
+    {
+      id: 26,
+      src: IMAGES.paintedArt,
+      title: "Creative Expression",
+      description: "Art that tells a story",
+      category: "activities",
+    },
+    {
+      id: 27,
+      src: IMAGES.parentsTrainingSession,
+      title: "Parent Training",
+      description: "Empowering families with knowledge",
+      category: "events",
+    },
+    {
+      id: 28,
+      src: IMAGES.sunnysideOfficeSpace,
+      title: "Office Space",
+      description: "Where planning and care come together",
+      category: "facilities",
+    },
+    {
+      id: 29,
+      src: IMAGES.therapySessionRoom1,
+      title: "Session Room",
+      description: "Dedicated space for therapy",
+      category: "therapy",
+    },
+    {
+      id: 30,
+      src: IMAGES.withChildInPool,
+      title: "Pool Activity",
+      description: "Water-based play and therapy",
+      category: "activities",
+    },
   ];
 
   const filteredImages =
@@ -158,7 +298,7 @@ const Gallery = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
         {/* Hero Section */}
-        <section className="pt-24 md:pt-24 pb-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
+        <section className="pt-28 md:pt-28 pb-12 md:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -222,6 +362,7 @@ const Gallery = () => {
                     <img
                       src={image.src}
                       alt={image.title}
+                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
 
