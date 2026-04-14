@@ -369,11 +369,8 @@ const Gallery = () => {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <h3 className="font-bold text-base mb-2 line-clamp-2">
-                          {image.title}
-                        </h3>
-                        <p className="text-xs text-gray-300 line-clamp-2">
-                          {image.description}
+                        <p className="text-sm text-gray-200 font-medium">
+                          Sunnyside Therapy Center & Preparatory School
                         </p>
                       </div>
 
@@ -454,11 +451,10 @@ const Gallery = () => {
 
                 {/* Image Info */}
                 <div className="mt-6 text-center text-white max-w-2xl mx-auto">
-                  <h3 className="text-xl font-bold mb-3">
-                    {lightboxImage.title}
+                  <h3 className="text-lg font-bold mb-3">
+                    Sunnyside Therapy Center & Preparatory School
                   </h3>
-                  <p className="text-sm text-gray-300 leading-relaxed">{lightboxImage.description}</p>
-                  <p className="text-sm text-gray-400 mt-2">
+                  <p className="text-sm text-gray-400">
                     {lightboxIndex + 1} of {filteredImages.length}
                   </p>
                 </div>
