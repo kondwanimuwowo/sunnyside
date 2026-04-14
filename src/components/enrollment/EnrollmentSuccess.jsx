@@ -12,9 +12,9 @@ const EnrollmentSuccess = ({ referenceNumber }) => {
     <div className="text-center py-16 px-4">
       {/* Success Icon */}
       <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 200 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
         className="w-24 h-24 bg-[rgba(50,205,50,0.1)] rounded-full flex items-center justify-center mx-auto mb-8"
       >
         <CheckCircle className="w-14 h-14 text-[#32cd32]" />
@@ -26,10 +26,10 @@ const EnrollmentSuccess = ({ referenceNumber }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <h2 className="text-4xl font-bold mb-4 text-gray-900">
-          Enrollment Submitted! 🎉
+        <h2 className="text-3xl font-bold mb-4 text-gray-900">
+          Enrollment Submitted
         </h2>
-        <p className="text-xl text-gray-600 mb-8">
+        <p className="text-base lg:text-lg text-gray-600 mb-8">
           Thank you for choosing Sunnyside Therapy Center
         </p>
       </motion.div>

@@ -104,7 +104,7 @@ const BlogPost = () => {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight"
             >
               {post.title}
             </motion.h1>
@@ -197,7 +197,7 @@ const BlogPost = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.35, ease: "easeOut" }}
             className="max-w-5xl mx-auto"
           >
             <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">

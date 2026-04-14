@@ -147,10 +147,10 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
               Contact <span className="text-[#32cd32]">Us</span>
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
               Reach out to us today and take the first step toward supporting
               your child's journey.
             </p>
@@ -314,8 +314,9 @@ const Contact = () => {
 
                     {submitted ? (
                       <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         className="text-center py-6"
                       >
                         <div className="w-12 h-12 bg-[#32cd32]/10 rounded-full flex items-center justify-center mx-auto mb-3">

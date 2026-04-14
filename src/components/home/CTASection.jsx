@@ -15,6 +15,7 @@ const CTASection = () => {
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
           className="relative rounded-3xl overflow-hidden"
         >
           {/* Background Image with Overlay */}
@@ -29,11 +30,11 @@ const CTASection = () => {
           </div>
 
           <div className="relative z-10 text-center text-white p-12 md:p-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Be Part of Something Greater
             </h2>
 
-            <p className="text-xl mb-8 max-w-2xl mx-auto opacity-95">
+            <p className="text-base lg:text-lg mb-8 max-w-2xl mx-auto opacity-95">
               We're here to help families find the right support path. Talk with
               our team, schedule a visit, or learn how to get involved.
             </p>

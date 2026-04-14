@@ -356,7 +356,7 @@ const EnrollmentForm = () => {
 
           {/* Auto-save indicator */}
           <p className="text-xs text-center text-gray-500 mt-4">
-            💾 Your progress is automatically saved
+            Your progress is automatically saved
           </p>
         </div>
       </div>

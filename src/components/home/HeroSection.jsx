@@ -19,13 +19,13 @@ const HeroSection = () => {
   return (
     <section
       className="
-        relative 
+        relative
         min-h-[calc(100vh-5rem)]
         flex
         items-center
         px-4 sm:px-6 lg:px-8
         bg-cover bg-center bg-no-repeat
-        pt-20 pb-10
+        pt-32 sm:pt-28 md:pt-20 pb-10
       "
       style={{
         backgroundImage: `url(${bgImage})`,
@@ -44,22 +44,11 @@ const HeroSection = () => {
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-[rgba(50,205,50,0.12)] px-4 py-2 rounded-full"
-            >
-              <span className="text-sm text-center font-medium text-[#22a722]">
-                Sunnyside Therapy Center & Preparatory School
-              </span>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-6xl font-bold leading-tight text-gray-900"
+              className="text-4xl md:text-5xl font-bold leading-tight text-gray-900"
             >
               Empowering
               <br />
@@ -117,7 +106,7 @@ const HeroSection = () => {
                 alt="Ben holding a child"
                 className="w-full h-[400px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(67, 24, 221, 1)] to-[rgba(67, 24, 221, 0.1)]"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             </div>
 
             {/* Icon Grid Overlay */}
@@ -125,14 +114,14 @@ const HeroSection = () => {
               {iconComponents.map(({ Icon, label }, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ scale: 0, rotate: -10 }}
-                  animate={{ scale: 1, rotate: 0 }}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    delay: 0.6 + idx * 0.1,
-                    type: "spring",
-                    stiffness: 150,
+                    delay: 0.4 + idx * 0.08,
+                    duration: 0.4,
+                    ease: "easeOut",
                   }}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ y: -2 }}
                   className="bg-white p-4 rounded-xl shadow-md cursor-pointer border-2 border-[rgba(50,205,50,0.2)]"
                 >
                   <Icon className="w-8 h-8 text-[#32cd32] mx-auto mb-1" />

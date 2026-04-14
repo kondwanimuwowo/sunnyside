@@ -39,15 +39,15 @@ const StatsSection = () => {
               className="text-center px-8 py-8 bg-white"
             >
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
+                initial={{ opacity: 0, y: 6 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  delay: idx * 0.1 + 0.2,
+                  duration: 0.35,
+                  ease: "easeOut",
+                  delay: idx * 0.1,
                 }}
-                className="text-3xl md:text-4xl font-bold text-[#32cd32] mb-3"
+                className="text-2xl md:text-3xl font-bold text-[#32cd32] mb-3"
               >
                 {stat.value}
               </motion.div>

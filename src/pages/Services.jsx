@@ -132,10 +132,10 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16 md:mb-28 max-w-4xl mx-auto h-screen-flex justify-center items-center flex flex-col"
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
               Our <span className="text-[#32cd32]">Services</span>
             </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+            <p className="text-base text-gray-600 max-w-2xl mx-auto mb-8">
               At Sunnyside, we don't just provide therapy—we build comprehensive
               pathways to success for children, families, and communities across
               Zambia.
@@ -226,7 +226,7 @@ const Services = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900">
                 Our Structured Programs
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
                 Beyond individual therapy, we offer comprehensive programs
                 designed to create lasting change at every stage of development.
               </p>
@@ -296,7 +296,7 @@ const Services = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-r from-[#32cd32]/5 to-[#32cd32]/10 p-8 rounded-2xl text-center max-w-3xl mx-auto"
+              className="bg-[#32cd32]/5 p-8 rounded-2xl text-center max-w-3xl mx-auto"
             >
               <h3 className="text-2xl font-bold mb-4 text-gray-900">
                 Not Sure Which Program Is Right?
@@ -436,12 +436,13 @@ const Services = () => {
                       {/* Step indicator - desktop */}
                       <div className="hidden md:flex items-center justify-center w-16 flex-shrink-0">
                         <motion.div
-                          initial={{ scale: 0 }}
-                          whileInView={{ scale: 1 }}
+                          initial={{ opacity: 0, y: 6 }}
+                          whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
                           transition={{
-                            delay: idx * 0.2 + 0.3,
-                            type: "spring",
+                            delay: idx * 0.1,
+                            duration: 0.35,
+                            ease: "easeOut",
                           }}
                           className="w-16 h-16 rounded-full border-2 border-[#32cd32] flex items-center justify-center bg-white relative z-10"
                         >
@@ -550,7 +551,7 @@ const Services = () => {
                     <p className="text-gray-700 mb-4">
                       {opportunity.description}
                     </p>
-                    <div className="text-sm text-[#32cd32] font-medium bg-[#32cd32]/5 px-3 py-1 rounded-full inline-block">
+                    <div className="text-sm text-gray-600 font-medium inline-block">
                       {opportunity.commitment}
                     </div>
                   </div>

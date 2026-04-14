@@ -303,7 +303,7 @@ const DonationForm = () => {
                     <option value="annually">Annually</option>
                   </select>
                   <p className="text-xs text-gray-500 mt-2">
-                    💡 You can cancel anytime from your email confirmation
+                    You can cancel anytime from your email confirmation
                   </p>
                 </motion.div>
               )}
@@ -375,7 +375,7 @@ const DonationForm = () => {
             </Button>
 
             <p className="mt-4 text-xs text-center text-gray-500">
-              🔒 Secure payment powered by Lenco
+              Secure payment powered by Lenco
             </p>
           </motion.div>
         )}
@@ -404,7 +404,7 @@ const DonationForm = () => {
                     }}
                     className="flex-1 py-2 bg-[#32cd32] text-white rounded-lg font-medium hover:bg-[#22a722] transition-colors"
                   >
-                    🔄 Retry Payment
+                    Retry Payment
                   </button>
 
                   <button

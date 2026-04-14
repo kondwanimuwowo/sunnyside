@@ -11,13 +11,13 @@ export const DIAGNOSES = [
 ];
 
 export const AREAS_OF_CONCERN = [
-  { id: "academic", label: "Academic Skills", icon: "📚" },
-  { id: "communication", label: "Communication", icon: "💬" },
-  { id: "social", label: "Social Skills", icon: "👥" },
-  { id: "motor", label: "Motor Skills", icon: "🤸" },
-  { id: "adaptive", label: "Adaptive/Self-Care", icon: "🍽️" },
-  { id: "behavior", label: "Behavior", icon: "🎯" },
-  { id: "sensory", label: "Sensory Processing", icon: "👂" },
+  { id: "academic", label: "Academic Skills" },
+  { id: "communication", label: "Communication" },
+  { id: "social", label: "Social Skills" },
+  { id: "motor", label: "Motor Skills" },
+  { id: "adaptive", label: "Adaptive/Self-Care" },
+  { id: "behavior", label: "Behavior" },
+  { id: "sensory", label: "Sensory Processing" },
 ];
 
 export const DAYS_OF_WEEK = [

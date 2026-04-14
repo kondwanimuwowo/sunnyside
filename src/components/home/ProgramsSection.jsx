@@ -75,10 +75,10 @@ const ProgramsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-normal">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 leading-normal">
             Creating Lasting Change
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
             Our programs are designed to create sustainable impact at every
             level—for children, families, and the broader education system in
             Zambia.
@@ -91,7 +91,7 @@ const ProgramsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-3xl font-bold mb-8 text-gray-900">
+            <h3 className="text-2xl font-bold mb-8 text-gray-900">
               Core Initiatives
             </h3>
             <div className="space-y-6 mb-16">
@@ -108,7 +108,7 @@ const ProgramsSection = () => {
                     {program.title}
                   </h4>
                   <p className="text-gray-700 mb-3">{program.description}</p>
-                  <div className="text-sm text-[#32cd32] font-medium bg-[#32cd32]/5 px-3 py-1 rounded-full inline-block">
+                  <div className="text-sm text-gray-600 font-medium inline-block">
                     {program.impact}
                   </div>
                 </motion.div>
@@ -122,10 +122,10 @@ const ProgramsSection = () => {
               viewport={{ once: true }}
               className="text-center my-12 border-t border-[#32cd32]/50 pt-12"
             >
-              <h3 className="text-3xl font-bold mb-8 text-gray-900">
+              <h3 className="text-2xl font-bold mb-8 text-gray-900">
                 Our Therapy Domains
               </h3>
-              <p className="text-gray-600 mb-12 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-600 mb-12 text-base max-w-2xl mx-auto">
                 Comprehensive support across specialized learning domains,
                 delivered within our strategic programs
               </p>
@@ -194,7 +194,7 @@ const ProgramsSection = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.98 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 className="relative h-96 rounded-2xl bg-cover bg-center mb-6"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(${IMAGES.childrenPlayingWithBeads})`,

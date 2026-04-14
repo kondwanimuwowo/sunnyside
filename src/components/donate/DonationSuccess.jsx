@@ -22,9 +22,9 @@ const DonationSuccess = ({ amount, reference, onReset }) => {
     <div className="text-center py-12">
       {/* Success Icon */}
       <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ type: "spring", stiffness: 200, delay: 0.1 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35, ease: "easeOut", delay: 0.05 }}
         className="w-20 h-20 bg-[rgba(50,205,50,0.1)] rounded-full flex items-center justify-center mx-auto mb-6"
       >
         <CheckCircle className="w-12 h-12 text-[#32cd32]" />

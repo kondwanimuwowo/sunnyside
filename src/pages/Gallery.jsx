@@ -304,10 +304,10 @@ const Gallery = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
                 Our <span className="text-[#32cd32]">Gallery</span>
               </h1>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-base text-gray-600 max-w-2xl mx-auto">
                 Take a glimpse into daily life at Sunnyside Therapy Center -
                 where every child thrives
               </p>
@@ -352,10 +352,10 @@ const Gallery = () => {
                   <motion.div
                     key={image.id}
                     layout
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
                     className="group relative aspect-square rounded-xl overflow-hidden bg-gray-100 cursor-pointer"
                     onClick={() => openLightbox(image, idx)}
                   >
@@ -439,9 +439,10 @@ const Gallery = () => {
 
               {/* Image */}
               <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
                 className="max-w-6xl w-full"
                 onClick={(e) => e.stopPropagation()}
               >

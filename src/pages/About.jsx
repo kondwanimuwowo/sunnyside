@@ -29,7 +29,7 @@ const Card = ({
     default: "bg-white shadow-sm border border-gray-200",
     outlined: "bg-white border-2 border-gray-200",
     gradient:
-      "bg-gradient-to-br from-[#32cd32]/5 to-[#32cd32]/10 border border-[#32cd32]/20",
+      "bg-[#32cd32]/5 border border-[#32cd32]/20",
     dark: "bg-gray-900 text-white border border-gray-800",
   };
 
@@ -137,10 +137,10 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-6"
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
               About <span className="text-[#32cd32]">Us</span>
             </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base text-gray-600 max-w-2xl mx-auto">
               How a husband-and-wife team is transforming lives and creating
               inclusive futures for children with learning challenges across
               Zambia.
@@ -278,7 +278,7 @@ const About = () => {
                       </p>
                     </div>
 
-                    <div className="bg-gradient-to-r from-[#32cd32]/5 to-[#32cd32]/10 p-6 rounded-xl border border-[#32cd32]/20">
+                    <div className="bg-[#32cd32]/5 p-6 rounded-xl border border-[#32cd32]/20">
                       <h3 className="font-bold text-lg mb-3 text-gray-900">
                         The Gap We Fill
                       </h3>
@@ -315,7 +315,7 @@ const About = () => {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
                 The Hearts Behind the Mission
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
                 Meet the passionate founders whose combined 25+ years of
                 experience drive Sunnyside's life-changing work.
               </p>
@@ -349,16 +349,8 @@ const About = () => {
                       in creating nurturing environments where children can
                       develop at their own pace.
                     </p>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
-                        Developmental Therapy
-                      </span>
-                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
-                        Hands-on Support
-                      </span>
-                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
-                        Program Design
-                      </span>
+                    <div className="text-sm text-gray-500 font-medium">
+                      Developmental Therapy • Hands-on Support • Program Design
                     </div>
                   </div>
                 </Card>
@@ -391,16 +383,8 @@ const About = () => {
                       designs transformative programs that build confidence and
                       independence.
                     </p>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
-                        Behavior Management
-                      </span>
-                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
-                        Special Education
-                      </span>
-                      <span className="px-3 py-1 bg-[#32cd32]/10 text-[#32cd32] rounded-full text-sm font-medium">
-                        Program Development
-                      </span>
+                    <div className="text-sm text-gray-500 font-medium">
+                      Behavior Management • Special Education • Program Development
                     </div>
                   </div>
                 </Card>
@@ -540,7 +524,7 @@ const About = () => {
                   >
                     {/* Icon with Animation */}
                     <motion.div
-                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      whileHover={{ scale: 1.03 }}
                       className="mb-4"
                     >
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#32cd32]/10 to-[#32cd32]/20 flex items-center justify-center">
@@ -582,7 +566,7 @@ const About = () => {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
                 Our Core Values
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
                 The principles that guide every interaction and decision at
                 Sunnyside.
               </p>

@@ -65,10 +65,10 @@ const Blog = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center max-w-3xl mx-auto"
             >
-               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+               <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
                 Blog & <span className="text-[#32cd32]">Resources</span>
               </h1>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-base text-gray-600 mb-8">
                 Expert insights, success stories, and practical guidance for
                 parents and educators
               </p>

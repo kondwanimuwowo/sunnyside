@@ -57,7 +57,6 @@ const ProgramSelectionStep = ({ formData, updateFormData, errors }) => {
               }`}
             >
               <div className="flex items-center gap-3">
-                <span className="text-2xl">{area.icon}</span>
                 <span
                   className={`font-medium ${
                     formData.areasOfConcern?.includes(area.id)

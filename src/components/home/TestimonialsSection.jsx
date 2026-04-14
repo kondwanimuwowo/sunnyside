@@ -126,10 +126,10 @@ I must say, you gave my wife and me hope for our son. Donel can now politely req
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-normal">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 leading-normal">
             Stories of Transformation
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
             Real families. Real progress. Hear from parents whose children have
             found their path at Sunnyside.
           </p>
@@ -229,8 +229,8 @@ I must say, you gave my wife and me hope for our son. Donel can now politely req
         {selectedTestimonial && (
           <div className="space-y-4">
             <div className="flex items-center space-x-2 text-sm text-gray-500 mb-4">
-               <span className="bg-gray-100 px-3 py-1 rounded-full">{selectedTestimonial.role}</span>
-               <span className="bg-[#32cd32]/10 text-[#32cd32] px-3 py-1 rounded-full">{selectedTestimonial.child}</span>
+               <span>{selectedTestimonial.role}</span>
+               <span className="text-[#32cd32] font-medium">/ {selectedTestimonial.child}</span>
             </div>
             {selectedTestimonial.text.split("\n\n").map((paragraph, index) => (
               <p key={index} className="text-gray-700 leading-relaxed text-lg">

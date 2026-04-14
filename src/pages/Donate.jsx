@@ -21,10 +21,10 @@ const Donate = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
               Support <span className="text-[#32cd32]">Our Mission</span>
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-base text-gray-600">
               Your donation helps us provide quality therapy and education to
               children who need it most.
             </p>

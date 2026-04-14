@@ -53,10 +53,10 @@ const Timeline = ({
                   {/* Step indicator - desktop */}
                   <div className="hidden md:flex items-center justify-center w-16 flex-shrink-0">
                     <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
+                      initial={{ opacity: 0, y: 6 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: idx * 0.2 + 0.3, type: "spring" }}
+                      transition={{ delay: idx * 0.1, duration: 0.35, ease: "easeOut" }}
                       style={{ borderColor: lineColor }}
                       className="w-16 h-16 rounded-full border-2 flex items-center justify-center bg-white relative z-10"
                     >
